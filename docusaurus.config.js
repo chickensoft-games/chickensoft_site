@@ -84,9 +84,14 @@ const config = {
           name: 'og:description',
           content: 'News and open source tools for C# and Godot',
         },
+        {
+          name: 'twitter:description',
+          content: 'News and open source tools for C# and Godot',
+        },
         { name: 'og:image', content: '/img/preview.png' },
         { name: 'twitter:card', content: 'summary_large_image' },
         { name: 'twitter:image', content: '/img/preview.png' },
+        { name: 'twitter:creator', content: '@joannanyana' },
         { name: 'image', property: 'og:image', content: '/img/preview.png' },
       ],
       navbar: {
