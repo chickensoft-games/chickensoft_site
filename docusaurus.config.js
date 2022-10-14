@@ -82,7 +82,7 @@ const config = {
       metadata: [
         {
           name: 'og:description',
-          content: 'News and open source tools for C# and Godot.',
+          content: 'News and open source tools for C# and Godot',
         },
         { name: 'og:image', content: '/img/preview.png' },
       ],
