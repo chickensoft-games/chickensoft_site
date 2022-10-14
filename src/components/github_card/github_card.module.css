@@ -53,17 +53,20 @@
 .headerTitle h1 {
   font-weight: 700;
   font-size: 1.75rem;
+  font-size: min(5.5vw, 1.75rem);
   margin: 0px;
 }
 
 .headerTitle h2 {
   font-weight: 400;
   font-size: 1.08rem;
+  font-size: min(3.5vw, 1.08rem);
   margin: 0px;
 }
 
 .headerLogo {
   flex-basis: 2.2rem;
+  min-width: 2.2rem;
   flex-grow: 0;
   align-self: stretch;
 }
@@ -110,6 +113,7 @@
 .symbolAndLabel .symbol {
   width: 100%;
   font-size: 1.1rem;
+  font-size: min(3vw, 1.1rem);
   font-weight: 500;
 }
 
