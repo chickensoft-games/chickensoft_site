@@ -84,7 +84,7 @@ const config = {
           name: 'og:description',
           content: 'News and open source tools for C# and Godot.',
         },
-        { name: 'og:image', content: 'img/preview.png' },
+        { name: 'og:image', content: '/img/preview.png' },
       ],
       navbar: {
         title: 'Chickensoft',
