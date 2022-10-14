@@ -79,6 +79,13 @@ const config = {
   themeConfig:
     /** @type {import('@docusaurus/preset-classic').ThemeConfig} */
     ({
+      metadata: [
+        {
+          name: 'og:description',
+          content: 'News and open source tools for C# and Godot.',
+        },
+        { name: 'og:image', content: 'img/preview.png' },
+      ],
       navbar: {
         title: 'Chickensoft',
         logo: {
