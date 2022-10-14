@@ -90,7 +90,10 @@ const config = {
         },
         { name: 'og:image', content: '/img/preview.png' },
         { name: 'twitter:card', content: 'summary_large_image' },
-        { name: 'twitter:image', content: '/img/preview.png' },
+        {
+          name: 'twitter:image',
+          content: 'https://chickensoft.games/img/preview.png',
+        },
         { name: 'twitter:image:alt', content: 'Chickensoft website.' },
         { name: 'twitter:creator', content: '@joannanyana' },
         { name: 'twitter:site', content: '@joannanyana' },
