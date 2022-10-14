@@ -91,7 +91,9 @@ const config = {
         { name: 'og:image', content: '/img/preview.png' },
         { name: 'twitter:card', content: 'summary_large_image' },
         { name: 'twitter:image', content: '/img/preview.png' },
+        { name: 'twitter:image:alt', content: 'Chickensoft website.' },
         { name: 'twitter:creator', content: '@joannanyana' },
+        { name: 'twitter:site', content: '@joannanyana' },
         { name: 'image', property: 'og:image', content: '/img/preview.png' },
       ],
       navbar: {
