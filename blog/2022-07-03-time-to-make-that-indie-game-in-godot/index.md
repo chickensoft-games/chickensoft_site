@@ -1,7 +1,7 @@
 ---
 title: It’s time to make that indie C# game in Godot.
 description: Wondering if you should take the plunge and use Godot with C#? Read this!
-image: images/indie_cs_game_header.jpg
+image: ./header.jpg
 slug: time-to-make-that-indie-csharp-game-in-godot
 keywords: [ "indie", "csharp", "godot", "2022" ]
 authors: [ joanna ]
