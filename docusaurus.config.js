@@ -20,6 +20,9 @@ const config = {
     discord: 'https://discord.gg/MjA6HUzzAE',
     discordInviteCode: 'MjA6HUzzAE',
     logo: '/img/chickensoft/chickensoft_logo.svg',
+    homepagePreview: '/img/preview.png',
+    homepagePreviewAbsolute: 'https://chickensoft.games/img/preview.png',
+    twitter: '@joannanyana',
   },
 
   // GitHub pages deployment config.
@@ -79,26 +82,6 @@ const config = {
   themeConfig:
     /** @type {import('@docusaurus/preset-classic').ThemeConfig} */
     ({
-      metadata: [
-        {
-          name: 'og:description',
-          content: 'News and open source tools for C# and Godot',
-        },
-        {
-          name: 'twitter:description',
-          content: 'News and open source tools for C# and Godot',
-        },
-        { name: 'og:image', content: '/img/preview.png' },
-        { name: 'twitter:card', content: 'summary_large_image' },
-        {
-          name: 'twitter:image',
-          content: 'https://chickensoft.games/img/preview.png',
-        },
-        { name: 'twitter:image:alt', content: 'Chickensoft website.' },
-        { name: 'twitter:creator', content: '@joannanyana' },
-        { name: 'twitter:site', content: '@joannanyana' },
-        { name: 'image', property: 'og:image', content: '/img/preview.png' },
-      ],
       navbar: {
         title: 'Chickensoft',
         logo: {

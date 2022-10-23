@@ -1,3 +1,4 @@
+import Head from '@docusaurus/Head';
 import Link from '@docusaurus/Link';
 import { useColorMode } from '@docusaurus/theme-common';
 import useDocusaurusContext from '@docusaurus/useDocusaurusContext';
@@ -19,6 +20,9 @@ const logo = lookup(config, 'logo');
 const discord = lookup(config, 'discord');
 const discordInviteCode = lookup(config, 'discordInviteCode');
 const github = lookup(config, 'github');
+const homepagePreview = lookup(config, 'homepagePreview');
+const homepagePreviewAbsolute = lookup(config, 'homepagePreviewAbsolute');
+const twitter = lookup(config, 'twitter');
 
 type RecentPosts = { content: Content }[];
 interface HomeProps {
@@ -57,6 +61,17 @@ export default function Home(props: HomeProps): JSX.Element {
   const { siteConfig } = useDocusaurusContext();
   return (
     <Layout description={`${siteConfig.tagline}.`}>
+      <Head>
+        <meta name="og:description" content={siteConfig.tagline} />
+        <meta name="twitter:description" content={siteConfig.tagline} />
+        <meta name="og:image" content={homepagePreview} />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:image" content={homepagePreviewAbsolute} />
+        <meta name="twitter:image:alt" content={siteConfig.tagline} />
+        <meta name="twitter:creator" content={twitter} />
+        <meta name="twitter:site" content={twitter} />
+        <meta name="image" property="og:image" content={homepagePreview} />
+      </Head>
       <HomepageHeader />
       <main className="padding-horiz--md">
         <HomepageFeatures recentPosts={props.recentPosts} />
