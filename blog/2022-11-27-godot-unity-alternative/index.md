@@ -1,10 +1,10 @@
 ---
-title: "Godot and C#: A Viable Unity Alternative"
+title: 'Godot and C#: A Viable Unity Alternative'
 description: Godot had a really good year. So did C# support.
 image: ./header.jpg
 slug: godot-unity-alternative
-keywords: [ "indie", "csharp", "godot", "2022" ]
-authors: [ joanna ]
+keywords: ['indie', 'csharp', 'godot', '2022']
+authors: [joanna]
 ---
 
 import BlogDiscordInvite from '@site/src/components/blog_discord_invite/blog_discord_invite';
@@ -56,9 +56,9 @@ Godot continues to receive an overwhelming amount of support from the community.
 
 Essentially, the sheer number of contributors (1,800+ on GitHub) almost guarantees that any specific feature is being worked on at any given moment.
 
-On [Patreon], Godot now receives over **$15,000 USD** of donations *per month*. That went up about $2,000 per month since I last checked on it in the summer.
+On [Patreon][patreon], Godot now receives over **$15,000 USD** of donations _per month_. That went up about $2,000 per month since I last checked on it in the summer.
 
-The Godot subreddit, [r/Godot], now has over **101,000 members**, an increase of at least 5,000 users since the summer (probably in large part to [Unity's missteps][unity-problems]). The official [Godot Discord][godot-discord] now has over **50,000 users**.
+The Godot subreddit, [r/godot], now has over **101,000 members**, an increase of at least 5,000 users since the summer (probably in large part to [Unity's missteps][unity-problems]). The official [Godot Discord][godot-discord] now has over **50,000 users**.
 
 ## 🤵‍♀️ Addressing Your Concerns
 
@@ -68,12 +68,11 @@ If you don't believe me, read on. We'll respond to each of the common arguments 
 
 ### Where's the asset store?
 
-When I tell people that Godot is a viable Unity alternative, this is usually the first counterargument I hear, and for good reason. Godot doesn't have a monetization system for assets...*yet*.
+When I tell people that Godot is a viable Unity alternative, this is usually the first counterargument I hear, and for good reason. Godot doesn't have a monetization system for assets..._yet_.
 
 Of course, Godot does have an official [Asset Library][asset-library] with over 1,500 assets, but they're all free. 🙁
 
 Most of us would normally be thrilled about free assets, but when you're an artist or developer who relies on selling your assets to support yourself, giving away your products is a no-go. It's only fair that you should be able to make a living doing what you're good at.
-
 
 Monetization, as [someone pointed out on Reddit][reddit-asset-store-comment], requires a lot of beurocratic effort. Collecting payments and being responsible with payment handling is a gigantic chore.
 
@@ -81,7 +80,7 @@ In 2021, the founder of Godot — Juan Linietsky — confirmed a paid asset ma
 
 <Tweet id="1395380550983196673" />
 
-The Godot team recently announced the formation of the non-profit [Godot Foundation], citing a paid asset marketplace as one of the primary motivations:
+The Godot team recently announced the formation of the non-profit [Godot Foundation][godot-foundation], citing a paid asset marketplace as one of the primary motivations:
 
 > As Godot keeps growing, so do our needs. Godot's size merits the flexibility of having its own organization and the opportunity to explore broader funding sources.
 >
@@ -89,15 +88,15 @@ The Godot team recently announced the formation of the non-profit [Godot Foundat
 
 While that doesn't solve the problem today, you can probably get pretty far with the 1,500+ free assets that already exist.
 
-For some users, having access to a multitude of assets is non-negotiable. Those users will not use Godot until its asset library is a thriving, paid marketplace. For most developers, however, I believe the boost in developer productivity Godot provides over Unity *et al.* more than makes up for any reduction in assets.
+For some users, having access to a multitude of assets is non-negotiable. Those users will not use Godot until its asset library is a thriving, paid marketplace. For most developers, however, I believe the boost in developer productivity Godot provides over Unity _et al._ more than makes up for any reduction in assets.
 
 For example: if you're creating your own art, or purchasing art and models from artists, you're probably writing all your own custom code anyways. Why not do it in Godot? The editor won't hang for 2 minutes straight whenever it decides to scan your assets, [unlike in other engines][unity-painful].
 
 ### What About C#?
 
-People often ask "is C# a first class citizen?" when looking into Godot and C#. I believe the question became popular when Godot first introduced C#. Like all new features, C# support was initially incomplete and poorly documented, but solidified over time. These days, the [Godot Docs] provide almost every code example in both C# and GDScript, and C# support in Godot 3 (LTS) is incredibly robust.
+People often ask "is C# a first class citizen?" when looking into Godot and C#. I believe the question became popular when Godot first introduced C#. Like all new features, C# support was initially incomplete and poorly documented, but solidified over time. These days, the [Godot Docs][godot-docs] provide almost every code example in both C# and GDScript, and C# support in Godot 3 (LTS) is incredibly robust.
 
-If you are looking for C# API docs, [paulloz] maintains a [C# version of the Godot API docs][csharp-godot-docs]. 
+If you are looking for C# API docs, [paulloz] maintains a [C# version of the Godot API docs][csharp-godot-docs].
 
 Just to reiterate, **Godot supports two first-party programming languages: GDScript and C#**. All other language bindings are unofficial, third party projects.
 
@@ -109,7 +108,7 @@ I asked [neikeq] a couple of questions about C# in Godot via private message in 
 
 > **me**: A lot of people are on the fence about Godot because they're not sure C# support is planned long term, or maybe they've been burned by the lack of documentation in the past. What do you want them to know?
 >
-> **neikeq**: 
+> **neikeq**:
 > They shouldn't worry about C# support in the long term. There was a lot of concern about that this year because initially C# wasn't included with the Godot 4 alpha releases, but now it's already there and soon it will be unified as a single version of Godot.
 >
 > One of the most important factors for the future of C# support is that starting with Godot 4, it's much easier to maintain. There is still room for improvement (for example, changing/adding a type for marshalling takes a bit more work right now). But the amount of work we took off our shoulders is huge. That's time that can be spent on other parts like addressing issues.
@@ -118,17 +117,17 @@ I asked [neikeq] a couple of questions about C# in Godot via private message in 
 >
 > **me**: Is the maintenance effort easier because of the new source generators, or other changes that were made?
 >
-> **neikeq**: We no longer build the Mono runtime ourselves, which was especially painful on platforms like wasm, iOS and even Android sometimes. As well as having to maintain build code for some of those platforms and ensuring that it works (like AOT for iOS). That's all offloaded to  MSBuild with the official .NET releases. Granted we don't have mobile and wasm support yet but when the time comes, it will be easier to implement. The new hosting + pure C# + source generators is also easier to maintain than our previous approach with the Mono embedding APIs (although marshalling needs to be improved in this regard as I mentioned).
+> **neikeq**: We no longer build the Mono runtime ourselves, which was especially painful on platforms like wasm, iOS and even Android sometimes. As well as having to maintain build code for some of those platforms and ensuring that it works (like AOT for iOS). That's all offloaded to MSBuild with the official .NET releases. Granted we don't have mobile and wasm support yet but when the time comes, it will be easier to implement. The new hosting + pure C# + source generators is also easier to maintain than our previous approach with the Mono embedding APIs (although marshalling needs to be improved in this regard as I mentioned).
 >
 > **me**: Any closing words to those who were worried C# support was going away?
-> 
-> **neikeq**: ***We don't have any intention of removing C# support because a lot of people in the industry communicate to us that C# support is a big factor in adopting the engine.***
+>
+> **neikeq**: **_We don't have any intention of removing C# support because a lot of people in the industry communicate to us that C# support is a big factor in adopting the engine._**
 
 ### A Bigger C# Ecosystem
 
 Still skeptical about taking the plunge on an open source game engine? Allow me to sweeten the deal by showcasing some awesome C# projects.
 
-Our feature image for this article is from [SatiRogue], a "turn-based dungeon-crawler roguelike RPG, made with Godot 3.x C# + RelEcs" by [TetrisMcKenna]. The source code is freely available on GitHub under the MIT license.
+Our feature image for this article is from [SatiRogue][satirogue], a "turn-based dungeon-crawler roguelike RPG, made with Godot 3.x C# + RelEcs" by [TetrisMcKenna][tetrismckenna]. The source code is freely available on GitHub under the MIT license.
 
 <FancyImage src={require("./satirogue.jpg").default} alt="SatiRogue">
 </FancyImage>
@@ -150,17 +149,15 @@ If you were already using one of our packages, I'm pleased to announce that **al
 
 ### Announcing Chicken
 
-[Chicken] is a command line tool to help manage Godot addons and quickly create new Godot projects from a template.
+[Chicken][chicken] is a command line tool to help manage Godot addons and quickly create new Godot projects from a template.
 
 While learning Godot, I kept running into the same few headaches over and over. When trying to make my code reusable across game projects, I realized there was no easy way to keep my addons up to date while I was still developing them. Likewise, whenever I created a new sandbox project, I had to copy a dozen or so files into the new project every time.
 
-Chicken's addon management system allows you to declare dependencies in their own file (to prevent versioning headaches with git submodules), while template generation enables you to quickly create new projects without having to copy  over all the files you need each time.
+Chicken's addon management system allows you to declare dependencies in their own file (to prevent versioning headaches with git submodules), while template generation enables you to quickly create new projects without having to copy over all the files you need each time.
 
 <FancyImage src='/img/chickensoft/chicken_cli.svg' alt="Chicken CLI" widthOverride="200px" />
 
 <p><GithubCard profile='chickensoft-games' repo='Chicken' logo='/img/chickensoft/chicken_cli.svg'/></p>
-
-<!-- <Tweet id="1595283148073476097" /> -->
 
 #### Addon Management, Simplified
 
@@ -217,7 +214,7 @@ chicken egg crack ./MyGodot3Game \
   -- --title "MyGodot3Game"
 ```
 
-A Chicken template (or egg 🐣, if you will) contains an `EDIT_ACTIONS.json` file which describes the actions chicken should perform to customize the template based on input values. When running `chicken egg crack`, arguments after `--` are given directly to the template to satisfy its required inputs. To learn more about making and using eggs, hop on over to the [Chicken readme][Chicken]!
+A Chicken template (or egg 🐣, if you will) contains an `EDIT_ACTIONS.json` file which describes the actions chicken should perform to customize the template based on input values. When running `chicken egg crack`, arguments after `--` are given directly to the template to satisfy its required inputs. To learn more about making and using eggs, hop on over to the [Chicken readme][chicken]!
 
 ## 🎬 Conclusion
 
@@ -238,26 +235,24 @@ Making Godot games with C# is an incredible experience, and it's only getting be
 [communities]: https://godotengine.org/community/user-groups
 [nuget]: https://www.nuget.org
 [consoles]: https://godotengine.org/article/godot-consoles-all-you-need-know
-[Vulkan]: https://godotengine.org/article/dev-snapshot-godot-4-0-beta-1
 [godot4beta]: https://godotengine.org/article/dev-snapshot-godot-4-0-beta-1#rendering
 [open-metaverse]: https://uk-podcasts.co.uk/podcast/building-the-open-metaverse/the-role-of-open-source-game-engines-godot-and-o3d
 [open-metaverse-podcast]: https://cesium.com/open-metaverse-podcast/
 [juan]: https://twitter.com/reduzio
-[Patreon]: https://www.patreon.com/godotengine/posts
-[r/Godot]: https://www.reddit.com/r/godot/
+[patreon]: https://www.patreon.com/godotengine/posts
+[r/godot]: https://www.reddit.com/r/godot/
 [unity-problems]: /blog/time-to-make-that-indie-csharp-game-in-godot#unrest-in-the-indie-c-game-dev-world
 [godot-discord]: https://discord.gg/4JBkykG
-[Odin]: https://odininspector.com
 [reddit-asset-store-comment]: https://www.reddit.com/r/godot/comments/o5pam9/comment/h2o1u5w/?utm_source=share&utm_medium=web2x&context=3
-[Godot Foundation]: https://godotengine.org/article/godots-graduation-godot-moves-to-a-new-foundation
+[godot-foundation]: https://godotengine.org/article/godots-graduation-godot-moves-to-a-new-foundation
 [unity-painful]: https://www.youtube.com/watch?v=7PpkAhVZMDc
-[Godot Docs]: https://docs.godotengine.org/en/stable/index.html
+[godot-docs]: https://docs.godotengine.org/en/stable/index.html
 [paulloz]: https://twitter.com/pauljoannon
 [csharp-godot-docs]: https://paulloz.github.io/godot-csharp-api/
 [neikeq]: https://github.com/neikeq
 [native-extension]: https://discord.com/channels/862108653488963604/1039016978528088074/1039212956438773843
-[SatiRogue]: https://github.com/lewiji/SatiRogue
-[TetrisMcKenna]: https://twitter.com/TetrisMcKenna
-[Chicken]: https://github.com/chickensoft-games/chicken
+[satirogue]: https://github.com/lewiji/SatiRogue
+[tetrismckenna]: https://twitter.com/TetrisMcKenna
+[chicken]: https://github.com/chickensoft-games/chicken
 [home]: /
 [godot-3-game]: https://github.com/chickensoft-games/godot_3_game
