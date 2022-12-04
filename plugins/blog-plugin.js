@@ -3,7 +3,6 @@
 
 const blogPluginExports = require('@docusaurus/plugin-content-blog');
 const defaultBlogPlugin = blogPluginExports.default;
-require('dotenv').config();
 const tweetToHTML = require('./tweet-to-html');
 var TwitterClient = require('twitter-api-sdk').Client;
 
@@ -76,6 +75,7 @@ async function blogPluginExtended(...pluginArgs) {
 // returns a map of tweet id's to social post data if successful, otherwise an
 // empty map. ids should be an array of tweet id strings.
 async function fetchTweets(ids) {
+  require('dotenv').config({ override: true });
   var TWITTER_BEARER_TOKEN = process.env.TWITTER_BEARER_TOKEN;
 
   const client = new TwitterClient(TWITTER_BEARER_TOKEN);

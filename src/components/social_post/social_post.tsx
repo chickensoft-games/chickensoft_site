@@ -63,9 +63,10 @@ export default function SocialPost(props: SocialPostProps): JSX.Element {
             {postLogo}
           </header>
         </a>
-        <section className={css.postContent}>
-          <p dangerouslySetInnerHTML={{ __html: data.content ?? '' }}></p>
-        </section>
+        <section
+          className={css.postContent}
+          dangerouslySetInnerHTML={{ __html: data.content ?? '' }}
+        ></section>
         {(data.attachments ?? []).map((attachment) => {
           return (
             <section key={attachment.url} className={css.postAttachment}>

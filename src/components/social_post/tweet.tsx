@@ -11,5 +11,7 @@ export default function Tweet(props: Tweet): JSX.Element {
   var data = useGlobalData();
   var tweets = data['docusaurus-plugin-content-blog']['blog']['twitterData'];
   var tweet = tweets[props.id];
+  console.log('tweet = ', JSON.stringify(tweet, null, 2));
+  console.log('content = ', tweet.content ?? '');
   return <SocialPost data={tweet} provider="twitter" />;
 }
