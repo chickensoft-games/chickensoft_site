@@ -40,7 +40,6 @@ async function blogPluginExtended(...pluginArgs) {
 
       var twitterData = await fetchTweets(ids);
       setGlobalData({ twitterData: twitterData });
-      console.log('twitterData =', JSON.stringify(twitterData, null, 2));
 
       // Get the 5 latest blog posts
       const recentPosts = [...blogPosts].splice(0, 5);
