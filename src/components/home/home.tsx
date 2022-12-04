@@ -4,7 +4,7 @@ import { useColorMode } from '@docusaurus/theme-common';
 import useDocusaurusContext from '@docusaurus/useDocusaurusContext';
 import config from '@generated/docusaurus.config';
 import BlogPreview from '@site/src/components/blog_preview/blog_preview';
-import DiscordServer from '@site/src/components/discord_server/discord_server';
+import ChickensoftDiscordServer from '@site/src/components/chickensoft_discord_server/chickensoft_discord_server';
 import GithubCard, {
   GithubCardProps,
 } from '@site/src/components/github_card/github_card';
@@ -18,7 +18,6 @@ import styles from './home.module.css';
 
 const logo = lookup(config, 'logo');
 const discord = lookup(config, 'discord');
-const discordInviteCode = lookup(config, 'discordInviteCode');
 const github = lookup(config, 'github');
 const homepagePreview = lookup(config, 'homepagePreview');
 const homepagePreviewAbsolute = lookup(config, 'homepagePreviewAbsolute');
@@ -152,8 +151,11 @@ function HomepageFeatures(props: HomeProps): JSX.Element {
         </div>
         <div className="row">
           {repos.map((repo) => (
-            <div className={clsx('col col--4 padding-vert--sm')}>
-              <GithubCard {...repo} />
+            <div
+              key={repo.repo}
+              className={clsx('col col--4 padding-vert--sm')}
+            >
+              <GithubCard key={repo.repo} {...repo} />
             </div>
           ))}
         </div>
@@ -168,16 +170,17 @@ function HomepageFeatures(props: HomeProps): JSX.Element {
         </div>
         <div className="row">
           <div className={clsx('col col--4 padding-vert--sm')}>
-            <DiscordServer
-              serverName={config.title}
-              logo={logo}
-              discordInviteCode={discordInviteCode}
-              discord={discord}
-            />
+            <ChickensoftDiscordServer />
           </div>
           {props.recentPosts.map(({ content: BlogPostContent }) => (
-            <div className={clsx('col col--4 padding-vert--sm')}>
-              <BlogPreview BlogPostContent={BlogPostContent} />
+            <div
+              key={BlogPostContent.metadata.permalink}
+              className={clsx('col col--4 padding-vert--sm')}
+            >
+              <BlogPreview
+                key={BlogPostContent.metadata.editUrl}
+                BlogPostContent={BlogPostContent}
+              />
             </div>
           ))}
         </div>

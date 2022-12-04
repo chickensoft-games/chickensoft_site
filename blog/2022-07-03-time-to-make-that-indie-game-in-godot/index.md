@@ -7,7 +7,12 @@ keywords: [ "indie", "csharp", "godot", "2022" ]
 authors: [ joanna ]
 ---
 
-![Godot Demo](header.jpg)
+import BlogDiscordInvite from '@site/src/components/blog_discord_invite/blog_discord_invite';
+import FancyImage from '@site/src/components/fancy_image/fancy_image';
+
+<FancyImage src={require("./header.jpg").default} alt="Godot's Third Person Shooter Demo">
+<a href="https://github.com/godotengine/tps-demo">Third Person Shooter Demo</a> by the <a href="https://godotengine.org">Godot Engine</a>
+</FancyImage>
 
 You've always dreamed of making that C# game, but engines have always made it too difficult — until now.
 
@@ -121,6 +126,8 @@ I know that’s a little technical, but knowing those few things should save you
 Godot may not ever be the dominating game engine, but we believe an open source game engine will dominate the field someday, given enough time. Godot prioritizes developers, and when developers win, everyone else eventually wins, too.
 
 So what are you waiting on? It’s certainly not Godot. Make that indie C# game you’ve been dreaming about! We’ll always be in [Discord] to help! Visit [Chickensoft] on Github!
+
+<BlogDiscordInvite />
 
 <!-- Links -->
 
