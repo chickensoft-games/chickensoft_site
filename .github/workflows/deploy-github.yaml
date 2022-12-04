@@ -8,6 +8,8 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
+    env:
+      TWITTER_BEARER_TOKEN: ${{ secrets.TWITTER_BEARER_TOKEN }}
 
     steps:
       - name: 📚 Git Checkout
@@ -22,6 +24,14 @@ jobs:
 
       - name: 📦 Install Dependencies
         run: npm install
+
+      # export repository secrets to .env file before building
+      # we use secrets to store our twitter api auth so that the app can
+      # embed tweets statically during the build.
+      - name: 🔐 Export Secrets
+        run: |
+          touch .env
+          echo "TWITTER_BEARER_TOKEN=$TWITTER_BEARER_TOKEN" >> .env
 
       - name: 👷 Build website
         run: npm run build
