@@ -12,6 +12,7 @@ import FancyImage from '@site/src/components/fancy_image/fancy_image';
 import Toot from '@site/src/components/social_post/toot';
 import Tweet from '@site/src/components/social_post/tweet';
 import GithubCard from '@site/src/components/github_card/github_card';
+import Spacer from '@site/src/components/spacer/spacer';
 import useBaseUrl from '@docusaurus/useBaseUrl';
 
 <FancyImage src={require("./header.jpg").default} alt="SatiRogue by @lewiji on GitHub">
@@ -134,10 +135,10 @@ Our feature image for this article is from [SatiRogue][satirogue], a "turn-based
 
 Here's a few other awesome projects written in C#:
 
-<p><GithubCard profile='lewiji' repo='SatiRogue' /></p>
-<p><GithubCard profile='Carnagion' repo='GDSerializer' /></p>
-<p><GithubCard profile='derkork' repo='godot-test-driver' /></p>
-<p><GithubCard profile='Byteron' repo='RelEcsGodot' /></p>
+<Spacer><GithubCard profile='lewiji' repo='SatiRogue' /></Spacer>
+<Spacer><GithubCard profile='Carnagion' repo='GDSerializer' /></Spacer>
+<Spacer><GithubCard profile='derkork' repo='godot-test-driver' /></Spacer>
+<Spacer><GithubCard profile='Byteron' repo='RelEcsGodot' /></Spacer>
 
 ## 🐤 Free Stuff from Chickensoft
 
@@ -157,7 +158,7 @@ Chicken's addon management system allows you to declare dependencies in their ow
 
 <FancyImage src='/img/chickensoft/chicken_cli.svg' alt="Chicken CLI" widthOverride="200px" />
 
-<p><GithubCard profile='chickensoft-games' repo='Chicken' logo='/img/chickensoft/chicken_cli.svg'/></p>
+<Spacer><GithubCard profile='chickensoft-games' repo='Chicken' logo='/img/chickensoft/chicken_cli.svg'/></Spacer>
 
 #### Addon Management, Simplified
 
@@ -204,7 +205,7 @@ Chickensoft is introducing an opionated [Godot 3 Game Template][godot-3-game] th
 
 > In the near future, we hope to introduce a Godot 4 game template, as well as templates for making reusable nuget packages for Godot!
 
-<p><GithubCard profile='chickensoft-games' repo='godot_3_game'/></p>
+<Spacer><GithubCard profile='chickensoft-games' repo='godot_3_game'/></Spacer>
 
 To generate a project based on a template, use Chicken like so:
 

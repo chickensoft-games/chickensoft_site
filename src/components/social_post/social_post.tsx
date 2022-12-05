@@ -2,7 +2,7 @@ import { useColorMode } from '@docusaurus/theme-common';
 import MastodonLogo from '@site/src/components/social_post/mastodon_logo';
 import TwitterLogo from '@site/src/components/social_post/twitter_logo';
 import clsx from 'clsx';
-import React from 'react';
+import React, { useLayoutEffect, useState } from 'react';
 import css from './social_post.module.css';
 
 export type SocialPostProvider = 'mastodon' | 'twitter';
@@ -31,8 +31,12 @@ export interface SocialPostData {
 }
 
 export default function SocialPost(props: SocialPostProps): JSX.Element {
-  var data = props.data;
-  var colorMode = useColorMode().colorMode;
+  const data = props.data;
+  const [colorMode, setColorMode] = useState(useColorMode().colorMode);
+
+  useLayoutEffect(() => {
+    setColorMode(colorMode);
+  }, []);
 
   var postLogo =
     props.provider == 'mastodon' ? (
