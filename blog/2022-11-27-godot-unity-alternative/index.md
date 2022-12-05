@@ -61,7 +61,7 @@ On [Patreon][patreon], Godot now receives over **$15,000 USD** of donations _per
 
 The Godot subreddit, [r/godot], now has over **101,000 members**, an increase of at least 5,000 users since the summer (probably in large part to [Unity's missteps][unity-problems]). The official [Godot Discord][godot-discord] now has over **50,000 users**.
 
-## 🤵‍♀️ Addressing Your Concerns
+## 💁‍♀️ Addressing Your Concerns
 
 On Reddit (and occasionally elesewhere), interested users will ask if C# is "ready" or a "first-class" citizen in Godot. The answer is simple: **yes**.
 
