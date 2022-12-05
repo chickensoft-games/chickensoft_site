@@ -75,7 +75,7 @@ Of course, Godot does have an official [Asset Library][asset-library] with over 
 
 Most of us would normally be thrilled about free assets, but when you're an artist or developer who relies on selling your assets to support yourself, giving away your products is a no-go. It's only fair that you should be able to make a living doing what you're good at.
 
-Monetization, as [someone pointed out on Reddit][reddit-asset-store-comment], requires a lot of beurocratic effort. Collecting payments and being responsible with payment handling is a gigantic chore.
+Monetization, as [someone pointed out on Reddit][reddit-asset-store-comment], requires a lot of beurocratic effort. Collecting payments and being responsible for payment handling is a gigantic chore.
 
 In 2021, the founder of Godot — Juan Linietsky — confirmed a paid asset marketplace was on the way.
 
@@ -91,7 +91,7 @@ While that doesn't solve the problem today, you can probably get pretty far with
 
 For some users, having access to a multitude of assets is non-negotiable. Those users will not use Godot until its asset library is a thriving, paid marketplace. For most developers, however, I believe the boost in developer productivity Godot provides over Unity _et al._ more than makes up for any reduction in assets.
 
-For example: if you're creating your own art, or purchasing art and models from artists, you're probably writing all your own custom code anyways. Why not do it in Godot? The editor won't hang for 2 minutes straight whenever it decides to scan your assets, [unlike in other engines][unity-painful].
+For example: if you're creating your own art, or purchasing art and models from artists, you're probably writing all your own custom code anyways. Why not do it in Godot? The editor won't [hang for 2 minutes straight][unity-painful] whenever it decides to scan your assets, unlike in other engines, _cough cough_.
 
 ### What About C#?
 
