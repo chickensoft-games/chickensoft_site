@@ -3,7 +3,7 @@
  */
 module.exports = {
   extends: ['plugin:@docusaurus/recommended'],
-  plugins: ['@docusaurus'],
+  plugins: ['@docusaurus', 'eslint-plugin-frontmatter'],
   parserOptions: {
     ecmaVersion: 'latest',
     sourceType: 'module',

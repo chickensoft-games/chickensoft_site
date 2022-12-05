@@ -12,7 +12,7 @@
   --ifm-background-color: #fff5ee;
   --ifm-background-surface-color: #ffffff;
   --ifm-navbar-background-color: #ffebcf;
-  --ifm-color-primary: #ff723b;
+  --ifm-color-primary: #ee6606;
   --ifm-color-primary-dark: #e1643e;
   --ifm-color-primary-darker: #da3a45;
   --ifm-color-primary-darkest: #8b284a;
@@ -23,6 +23,7 @@
   --ifm-font-size-base: 18px;
   --ifm-font-family-base: Catamaran, sans-serif;
   --ifm-footer-background-color: #ffebcf;
+  --tabs-background-color: var(--ifm-navbar-background-color);
   --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.1);
 }
 
@@ -39,7 +40,15 @@
   --ifm-color-primary-lighter: #ffef8a;
   --ifm-color-primary-lightest: #fff8ca;
   --ifm-footer-background-color: #1c1715 !important;
+  --tabs-background-color: var(--ifm-background-surface-color);
   --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.3);
+}
+
+/* Override tabs background */
+.tabs-container {
+  background-color: var(--tabs-background-color);
+  border-radius: 8px;
+  padding: 8px 16px;
 }
 
 /* Override blog article font */

@@ -7,14 +7,6 @@ keywords: ['indie', 'csharp', 'godot', '2022']
 authors: [joanna]
 ---
 
-import BlogDiscordInvite from '@site/src/components/blog_discord_invite/blog_discord_invite';
-import FancyImage from '@site/src/components/fancy_image/fancy_image';
-import Toot from '@site/src/components/social_post/toot';
-import Tweet from '@site/src/components/social_post/tweet';
-import GithubCard from '@site/src/components/github_card/github_card';
-import Spacer from '@site/src/components/spacer/spacer';
-import useBaseUrl from '@docusaurus/useBaseUrl';
-
 <FancyImage src={require("./header.jpg").default} alt="SatiRogue by @lewiji on GitHub">
 <a href="https://github.com/lewiji/SatiRogue">SatiRogue</a> by <a href="https://twitter.com/TetrisMcKenna">@TetrisMcKenna</a>
 </FancyImage>
@@ -28,6 +20,8 @@ The engine provides a significantly better development experience (via text-base
 Over the last few months, I've heard dozens of questions from interested users about Godot, the C# support it provides, and the future of the engine. It's important to note that I am in no way officially affiliated with the Godot Engine organization. I have, however, spoken with some of the core engine developers and contributors and **I'd like to put the arguments against Godot and C# to rest, once and for all.**
 
 There's a lot to cover, and it's all good news — so let's dive in!
+
+> Unrelated: this blog has officially moved away from Medium![^1]
 
 ## 🎇 Godot's Big Year
 
@@ -53,13 +47,13 @@ To top it all off, C# support has been completely overhauled by migrating away f
 
 Godot continues to receive an overwhelming amount of support from the community. The creator of Godot, [Juan Linietsky][juan], describes how Godot suffers from the best possible problem:
 
-> we have too many people who are doing things really really efficiently and really well."[^1]
+> we have too many people who are doing things really really efficiently and really well."[^2]
 
 Essentially, the sheer number of contributors (1,800+ on GitHub) almost guarantees that any specific feature is being worked on at any given moment.
 
-On [Patreon][patreon], Godot now receives over **$15,000 USD** of donations _per month_. That went up about $2,000 per month since I last checked on it in the summer.
+On [Patreon][patreon], Godot now receives over **`$15,000 USD`** of donations _per month_. That's an increase of `$2,000 USD` per month since I last checked on it in the summer.
 
-The Godot subreddit, [r/godot], now has over **101,000 members**, an increase of at least 5,000 users since the summer (probably in large part to [Unity's missteps][unity-problems]). The official [Godot Discord][godot-discord] now has over **50,000 users**.
+The Godot subreddit, [r/godot], now has over **101,000 members**, an **increase of at least 5,000 users** since the summer (probably in large part to [Unity's missteps][unity-problems]). The official [Godot Discord][godot-discord] now has over **50,000 users**.
 
 ## 💁‍♀️ Addressing Your Concerns
 
@@ -146,23 +140,35 @@ Chickensoft had a good first year: what originally started as a C#-focused fan c
 
 ### Ready for Godot 4
 
-If you were already using one of our packages, I'm pleased to announce that **all of the Chickensoft packages have been officially update for Godot 4!** See our [home page][home] for the complete list.
+I'm pleased to announce that **all of the Chickensoft packages have been officially updated for Godot 4!**
+
+By adding a few nuget `<PackageReference>` tags to your `.csproj` file, you can get [node-based dependency provisioning][go_dot_dep], [logging][go_dot_log], [automated testing][go_dot_test], and [state machines][go_dot_net] up and running with Godot 4, for free!
+
+> All of the Chickensoft packages were dogfooded, meaning I built them because I was trying to solve the same problems every time I created a new game project. I never did finish a game, but at least I have some tools. Maybe next time...
 
 ### Announcing Chicken
 
 [Chicken][chicken] is a command line tool to help manage Godot addons and quickly create new Godot projects from a template.
 
-While learning Godot, I kept running into the same few headaches over and over. When trying to make my code reusable across game projects, I realized there was no easy way to keep my addons up to date while I was still developing them. Likewise, whenever I created a new sandbox project, I had to copy a dozen or so files into the new project every time.
-
-Chicken's addon management system allows you to declare dependencies in their own file (to prevent versioning headaches with git submodules), while template generation enables you to quickly create new projects without having to copy over all the files you need each time.
-
 <FancyImage src='/img/chickensoft/chicken_cli.svg' alt="Chicken CLI" widthOverride="200px" />
 
 <Spacer><GithubCard profile='chickensoft-games' repo='Chicken' logo='/img/chickensoft/chicken_cli.svg'/></Spacer>
 
+While learning Godot, I kept running into the same few headaches over and over. When trying to make my code reusable across game projects, I realized there was no easy way to keep my addons up to date while I was still developing them. Likewise, whenever I created a new sandbox project, I had to copy a dozen or so files into the new project every time.
+
+Chicken's addon management system allows you to declare dependencies in their own file (to prevent versioning headaches with git submodules), while template generation enables you to quickly create new projects without having to copy over all the files you need each time.
+
 #### Addon Management, Simplified
 
 Godot addons are simply git repositories with an `addons/your_addon_name` folder inside them. The contents of that folder (scenes, scripts, art assets, etc) will be copied to a project folder's `addons/your_addon_name` when a user installs your addon. Because addons are a flat folder structure, people often think to use git submodules for addons in their project repositories. I initially tried git submodules and found it was too difficult to keep everything up-to-date across all of my projects that were using the addons.
+
+:::info
+When using C# with Godot, you have two mechanisms for reusing code: addons and nuget packages.
+
+Importing nuget packages is as simple as adding them to your Godot project's `.csproj` file. Unfortunately, you can't really import scenes or other assets from nuget packages. They're only good for reusing code.
+
+Addons, on the other hand, allow you to reuse _anything_.
+:::
 
 If git submodules also sound too painful to you, Chicken allows you to declare what addons your project needs in an `addons.json` file so it can install them for you.
 
@@ -203,8 +209,6 @@ Godot will generate a new C# project for you the moment you add your first C# sc
 
 Chickensoft is introducing an opionated [Godot 3 Game Template][godot-3-game] that provides working tests, test coverage, and VSCode debug configurations all working out-of-the-box. Sometimes it's easier to delete a feature you don't need than it is to create one, so feel free to fork it and make your own template.
 
-> In the near future, we hope to introduce a Godot 4 game template, as well as templates for making reusable nuget packages for Godot!
-
 <Spacer><GithubCard profile='chickensoft-games' repo='godot_3_game'/></Spacer>
 
 To generate a project based on a template, use Chicken like so:
@@ -217,7 +221,13 @@ chicken egg crack ./MyGodot3Game \
 
 A Chicken template (or egg 🐣, if you will) contains an `EDIT_ACTIONS.json` file which describes the actions chicken should perform to customize the template based on input values. When running `chicken egg crack`, arguments after `--` are given directly to the template to satisfy its required inputs. To learn more about making and using eggs, hop on over to the [Chicken readme][chicken]!
 
+:::info
+In the near future, we hope to introduce a Godot 4 game template, as well as templates for making nuget packages that can be used in Godot projects!
+:::
+
 ## 🎬 Conclusion
+
+The Godot ecosystem provides an [asset library][asset-library], [monthly game jams][game-jams], and numerous [developer communities][communities]. If you're using C# with Godot, you can use just about anything on [nuget] in your project, unlocking the entire C# ecosystem _in addition to everything Godot has to offer_. Whether you're still planning your project or putting the finishing touches on it, there's an entire ecosystem in place to support you. Godot apps can be released on every major platform, and multiple companies can provide support for developers who wish to publish their games [on consoles][consoles].
 
 Making Godot games with C# is an incredible experience, and it's only getting better. If you're looking to start (or continue) your game development journey, you are more than welcome to be a part of our open source community here at Chickensoft.
 
@@ -227,7 +237,8 @@ Making Godot games with C# is an incredible experience, and it's only getting be
 
 ### Footnotes
 
-[^1]: Tune into around 00:48:00 of [The Role of Open Source Game Engines: Godot and O3DE][open-metaverse] on the Podcast [Building the Open Metaverse][open-metaverse-podcast]
+[^1]: Hosting the blog on a website instead of on Medium allows me to integrate custom widgets: it's a big win all around. If you like this website, [feel free to fork it][chickensoft-website]. Besides, hacker news readers (who have been the most engaged audience so far) tend to dislike Medium because of the reading limit. If you're reading this from hacker news (or anywhere else), welcome!
+[^2]: Tune into around 00:48:00 of [The Role of Open Source Game Engines: Godot and O3DE][open-metaverse] on the Podcast [Building the Open Metaverse][open-metaverse-podcast]
 
 <!-- Links -->
 
@@ -257,3 +268,8 @@ Making Godot games with C# is an incredible experience, and it's only getting be
 [chicken]: https://github.com/chickensoft-games/chicken
 [home]: /
 [godot-3-game]: https://github.com/chickensoft-games/godot_3_game
+[chickensoft-website]: https://github.com/chickensoft-games/chickensoft_site
+[go_dot_dep]: https://github.com/chickensoft-games/go_dot_dep
+[go_dot_log]: https://github.com/chickensoft-games/go_dot_log
+[go_dot_test]: https://github.com/chickensoft-games/go_dot_test
+[go_dot_net]: https://github.com/chickensoft-games/go_dot_net
