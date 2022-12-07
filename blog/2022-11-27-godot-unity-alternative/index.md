@@ -127,9 +127,10 @@ Our feature image for this article is from [SatiRogue][satirogue], a "turn-based
 <FancyImage src={require("./satirogue.jpg").default} alt="SatiRogue">
 </FancyImage>
 
+<Spacer><GithubCard profile='lewiji' repo='SatiRogue' /></Spacer>
+
 Here's a few other awesome projects written in C#:
 
-<Spacer><GithubCard profile='lewiji' repo='SatiRogue' /></Spacer>
 <Spacer><GithubCard profile='Carnagion' repo='GDSerializer' /></Spacer>
 <Spacer><GithubCard profile='derkork' repo='godot-test-driver' /></Spacer>
 <Spacer><GithubCard profile='Byteron' repo='RelEcsGodot' /></Spacer>
