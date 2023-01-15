@@ -117,6 +117,11 @@ const repos: Array<GithubCardProps> = [
   },
   {
     profile: 'chickensoft-games',
+    repo: 'SuperNodes',
+    logo: logo,
+  },
+  {
+    profile: 'chickensoft-games',
     repo: 'go_dot_test',
     logo: logo,
   },
