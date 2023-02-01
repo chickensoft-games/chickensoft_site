@@ -117,6 +117,11 @@ const repos: Array<GithubCardProps> = [
   },
   {
     profile: 'chickensoft-games',
+    repo: 'setup-godot',
+    logo: logo,
+  },
+  {
+    profile: 'chickensoft-games',
     repo: 'SuperNodes',
     logo: logo,
   },
@@ -139,6 +144,11 @@ const repos: Array<GithubCardProps> = [
     profile: 'chickensoft-games',
     repo: 'go_dot_log',
     logo: logo,
+  },
+  {
+    profile: 'chickensoft-games',
+    repo: 'EditorConfig',
+    logo: 'img/chickensoft/editorconfig.svg',
   },
   {
     profile: 'chickensoft-games',
