@@ -39,34 +39,35 @@
 
 .ghLogo {
   align-self: flex-start;
-  margin-right: 16px;
   margin-top: 4px;
+  margin-right: 8px;
 }
 
 .headerTitle {
   display: flex;
+  align-self: flex-start;
   flex-direction: column;
   justify-content: space-between;
+  min-width: 0px;
   flex-grow: 1;
+  word-wrap: break-word;
 }
 
 .headerTitle h1 {
   font-weight: 700;
-  font-size: 1.75rem;
-  font-size: min(5.5vw, 1.5rem);
+  font-size: 1.5rem;
   margin: 0px;
 }
 
 .headerTitle h2 {
   font-weight: 400;
   font-size: 1.08rem;
-  font-size: min(3.5vw, 1.08rem);
   margin: 0px;
 }
 
 .headerLogo {
   flex-basis: 2.2rem;
-  min-width: 1.5rem;
+  min-width: 60px;
   flex-grow: 0;
   align-self: stretch;
 }
@@ -112,14 +113,13 @@
 
 .symbolAndLabel .symbol {
   width: 100%;
-  font-size: 1.1rem;
-  font-size: min(4.5vw, 1.1rem);
+  font-size: 0.8rem;
   font-weight: 500;
 }
 
 .symbolAndLabel .label {
   font-weight: 300;
-  font-size: 0.9rem;
+  font-size: 0.8rem;
   margin-top: 4px;
 }
 

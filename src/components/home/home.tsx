@@ -108,7 +108,7 @@ const repos: Array<GithubCardProps> = [
   {
     profile: 'chickensoft-games',
     repo: 'Chicken',
-    logo: 'img/chickensoft/chicken_cli.svg',
+    logo: 'img/chickensoft/chicken.svg',
   },
   {
     profile: 'chickensoft-games',
@@ -118,32 +118,32 @@ const repos: Array<GithubCardProps> = [
   {
     profile: 'chickensoft-games',
     repo: 'setup-godot',
-    logo: logo,
+    logo: 'img/chickensoft/setup_godot.svg',
   },
   {
     profile: 'chickensoft-games',
     repo: 'SuperNodes',
-    logo: logo,
+    logo: 'img/chickensoft/super_nodes.svg',
   },
   {
     profile: 'chickensoft-games',
     repo: 'go_dot_test',
-    logo: logo,
+    logo: 'img/chickensoft/go_dot_test.svg',
   },
   {
     profile: 'chickensoft-games',
     repo: 'go_dot_net',
-    logo: logo,
+    logo: 'img/chickensoft/go_dot_net.svg',
   },
   {
     profile: 'chickensoft-games',
     repo: 'go_dot_dep',
-    logo: logo,
+    logo: 'img/chickensoft/go_dot_dep.svg',
   },
   {
     profile: 'chickensoft-games',
     repo: 'go_dot_log',
-    logo: logo,
+    logo: 'img/chickensoft/go_dot_log.svg',
   },
   {
     profile: 'chickensoft-games',
@@ -153,7 +153,7 @@ const repos: Array<GithubCardProps> = [
   {
     profile: 'chickensoft-games',
     repo: 'go_dot_midi',
-    logo: logo,
+    logo: 'img/chickensoft/chickensoft_package.svg',
   },
 ];
 
