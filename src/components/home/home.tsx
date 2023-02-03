@@ -152,8 +152,8 @@ const repos: Array<GithubCardProps> = [
   },
   {
     profile: 'chickensoft-games',
-    repo: 'go_dot_midi',
-    logo: 'img/chickensoft/chickensoft_package.svg',
+    repo: 'godot_3_game',
+    logo: 'img/chickensoft/package.svg',
   },
 ];
 
@@ -168,7 +168,7 @@ function HomepageFeatures(props: HomeProps): JSX.Element {
           {repos.map((repo) => (
             <div
               key={repo.repo}
-              className={clsx('col col--4 padding-vert--sm')}
+              className={clsx('col col--4 padding-vert--sm github-card-home')}
             >
               <GithubCard key={repo.repo} {...repo} />
             </div>

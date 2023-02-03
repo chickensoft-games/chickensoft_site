@@ -1,3 +1,7 @@
+/* :global(.col--4.github-card-home) { */
+/* Github card containers on the home page. */
+/* } */
+
 .ghCard {
   position: relative;
   display: flex;
@@ -48,34 +52,34 @@
   align-self: flex-start;
   flex-direction: column;
   justify-content: space-between;
-  min-width: 0px;
+  /* min-width: 0px; */
   flex-grow: 1;
-  word-wrap: break-word;
 }
 
 .headerTitle h1 {
   font-weight: 700;
-  font-size: 1.5rem;
+  font-size: 1.25rem;
   margin: 0px;
 }
 
 .headerTitle h2 {
   font-weight: 400;
-  font-size: 1.08rem;
+  font-size: 1rem;
   margin: 0px;
 }
 
 .headerLogo {
   flex-basis: 2.2rem;
-  min-width: 60px;
-  flex-grow: 0;
+  /* min-width: 60px; */
+  max-width: 60px;
+  flex-grow: 1;
   align-self: stretch;
 }
 
 .description {
-  margin-top: 24px;
   opacity: 0.7;
-  flex-grow: 1;
+  margin-top: 8px;
+  flex-grow: 0;
 }
 
 .description:hover {
