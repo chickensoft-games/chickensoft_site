@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
 <svg width="100%" height="100%" viewBox="0 0 512 512" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve" xmlns:serif="http://www.serif.com/" style="fill-rule:evenodd;clip-rule:evenodd;stroke-linejoin:round;stroke-miterlimit:2;">
-    <g id="Icon" transform="matrix(1,0,0,1,0,2.34131)">
+    <g id="Package-Icons" serif:id="Package Icons" transform="matrix(1,0,0,1,0,2.34131)">
         <g id="Box" transform="matrix(1,0,0,1,2.11992,-2.81953)">
-            <path d="M247.92,325.256L247.92,507.977L77.646,441.384L79.377,343.053L194.818,396.442L247.92,325.256ZM259.841,325.256L259.841,507.977L430.114,441.384L428.383,343.053L312.942,396.442L259.841,325.256ZM241.433,306.804L190.845,378.165L20.341,296.235L74.245,230.259L241.433,306.804ZM266.327,306.804L316.916,378.165L487.419,296.235L433.515,230.259L266.327,306.804Z" style="fill:rgb(161,118,111);fill-rule:nonzero;"/>
+            <path d="M247.92,325.256L247.92,507.977L77.646,441.384L79.377,343.053L194.818,396.442L247.92,325.256ZM259.841,325.256L259.841,507.977L430.114,441.384L428.383,343.053L312.942,396.442L259.841,325.256ZM241.433,306.804L190.845,378.165L20.341,296.235L74.245,230.259L241.433,306.804ZM266.327,306.804L316.916,378.165L487.419,296.235L433.515,230.259L266.327,306.804Z" style="fill:rgb(199,161,114);fill-rule:nonzero;"/>
         </g>
         <g id="Clip-Window" serif:id="Clip Window" transform="matrix(1.03628,0,0,1.03628,-11.359,-19.0013)">
             <path d="M82.654,223.645L243.988,297.51L268.012,297.51L429.346,223.645L526.106,223.645L526.106,-10.237L-10.014,-10.237L-10.014,223.645L82.654,223.645Z" style="fill:none;"/>
