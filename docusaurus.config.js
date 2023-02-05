@@ -128,6 +128,10 @@ const config = {
                 label: 'Blog',
                 href: '/blog',
               },
+              {
+                label: 'Open Source License',
+                href: '/license',
+              },
             ],
           },
           {
