@@ -110,7 +110,7 @@ export default function GithubCard(props: GithubCardProps): JSX.Element {
             <span className={css.label}>Forks</span>
           </div>
         </div>
-        <div className={css.footerItem}>
+        <div className={css.footerItemLanguages}>
           <span
             className={css.langColor}
             style={{
