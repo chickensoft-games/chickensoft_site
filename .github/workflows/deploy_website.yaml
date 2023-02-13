@@ -31,8 +31,8 @@ jobs:
       - name: 🔐 Export Secrets
         run: |
           touch .env
-          echo "TWITTER_BEARER_TOKEN={{ secrets.TWITTER_BEARER_TOKEN }}" >> .env
-          echo "GITHUB_PAT={{ secrets.GH_BASIC }}" >> .env
+          echo "TWITTER_BEARER_TOKEN=${{ secrets.TWITTER_BEARER_TOKEN }}" >> .env
+          echo "GITHUB_PAT=${{ secrets.GH_BASIC }}" >> .env
 
       - name: 👷 Build website
         run: npm run build
