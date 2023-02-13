@@ -5,6 +5,9 @@ const blogPluginExports = require('@docusaurus/plugin-content-blog');
 const defaultBlogPlugin = blogPluginExports.default;
 const tweetToHTML = require('./tweet-to-html');
 var TwitterClient = require('twitter-api-sdk').Client;
+const { Octokit } = require('@octokit/rest');
+
+const organizationName = 'chickensoft-games';
 
 async function blogPluginExtended(...pluginArgs) {
   const blogPluginInstance = await defaultBlogPlugin(...pluginArgs);
@@ -19,6 +22,8 @@ async function blogPluginExtended(...pluginArgs) {
       var { setGlobalData, addRoute } = data.actions;
 
       const blogPosts = data.content.blogPosts;
+
+      var repos = await fetchOrganizationPublicRepositories(organizationName);
 
       // find twitter id's in blogPosts and fetch them from twitter.
       // we have to do this at build time since twitter's api requires a
@@ -38,7 +43,9 @@ async function blogPluginExtended(...pluginArgs) {
       });
 
       var twitterData = await fetchTweets(ids);
-      setGlobalData({ twitterData: twitterData });
+
+      // Allow other plugins to access the cached twitter and repository data.
+      setGlobalData({ twitterData: twitterData, repos: repos });
 
       // Get the 5 latest blog posts
       const recentPosts = [...blogPosts].splice(0, 5);
@@ -70,6 +77,39 @@ async function blogPluginExtended(...pluginArgs) {
       return blogPluginInstance.contentLoaded(data);
     },
   };
+}
+
+// Returns a map of repository full names to repository data.
+async function fetchOrganizationPublicRepositories(organizationName) {
+  const octokit = new Octokit({ auth: process.env.GITHUB_PAT });
+
+  // Get EVERY public repo in the organization.
+  const data = await octokit.paginate(octokit.repos.listForOrg, {
+    type: 'public',
+    per_page: 100,
+    org: organizationName,
+  });
+
+  if (!Array.isArray(data)) {
+    throw new Error(
+      'Unexpected response from GitHub API: ' + JSON.stringify(data, null, 2)
+    );
+  }
+
+  // Return a map of repository full names to repository data.
+  // e.g., an object that looks like:
+  // {
+  //   'chickensoft-games/chickensoft_site': { /* github repo object */ },
+  //   ...
+  // }
+  var repos = {};
+  for (const repo of data) {
+    const fullName = repo['full_name'];
+    repos[fullName] = repo;
+    console.log('Found repo: ' + fullName);
+  }
+
+  return repos;
 }
 
 // returns a map of tweet id's to social post data if successful, otherwise an
@@ -116,6 +156,7 @@ async function fetchTweets(ids) {
   });
 
   const result = {};
+
   if (!response) {
     return result;
   }

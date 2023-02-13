@@ -1,31 +1,46 @@
-# 🐤 Chickensoft Site
+# Chickensoft Site
 
-<img src="static/img/chickensoft//chickensoft_site.svg" width="80" />
+[![Chickensoft Badge][chickensoft-badge]][chickensoft-website] [![Discord][discord-badge]][discord]
 
-The Chickensoft website is built using [Docusaurus 2](https://docusaurus.io/), a modern static website generator.
+The official [Chickensoft Website][chickensoft-website]. Built using [Docusaurus 2](https://docusaurus.io/), a modern static website generator.
 
-### ⚙️ Installation
+---
 
+<p align="center">
+<img alt="Chickensoft Site Logo" src="static/img/chickensoft//chickensoft_site.svg" width="200">
+</p>
+
+## ⚙️ Installation
+
+```sh
+npm install
 ```
-$ npm install
-```
 
-### 🧑‍💻 Local Development
+## 🧑‍💻 Local Development
 
-```
-$ npm run start
+```sh
+npm run start
 ```
 
 This command starts a local development server and opens up a browser window. Most changes are reflected live without having to restart the server.
 
-### 📦 Build
+## 📦 Build
 
-```
-$ npm run build
+```sh
+npm run build
 ```
 
 This command generates static content into the `build` directory and can be served using any static contents hosting service.
 
-### ☁️ Deployment
+## ☁️ Deployment
 
-Deployment occurs whenever the main branch is updated. 🪄
+Deployment occurs every day and whenever the main branch is updated. 🪄
+
+<!-- Links -->
+
+<!-- Header -->
+
+[chickensoft-badge]: https://chickensoft.games/images/chickensoft/chickensoft_badge.svg
+[chickensoft-website]: https://chickensoft.games
+[discord]: https://discord.gg/gSjaPgMmYW
+[discord-badge]: https://img.shields.io/badge/Chickensoft%20Discord-%237289DA.svg?style=flat&logo=discord&logoColor=white
