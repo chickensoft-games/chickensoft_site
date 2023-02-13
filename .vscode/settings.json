@@ -6,7 +6,14 @@
     "source.fixAll.eslint": true
   },
   "eslint.options": {
-    "extensions": [".js", ".jsx", ".md", ".mdx", ".ts", ".tsx"]
+    "extensions": [
+      ".js",
+      ".jsx",
+      ".md",
+      ".mdx",
+      ".ts",
+      ".tsx"
+    ]
   },
   "eslint.validate": [
     "markdown",
@@ -30,6 +37,7 @@
     // Allow a top level heading despite a yaml front matter "title" property.
     "MD025": {
       "front_matter_title": ""
-    }
+    },
+    "MD033": false
   }
 }

@@ -1,3 +1,4 @@
+import useGlobalData from '@docusaurus/useGlobalData';
 import { languageColors } from '@site/src/components/github_card/github_languages';
 import GithubLogo from '@site/src/components/github_logo/github_logo';
 import React, { useEffect, useState } from 'react';
@@ -10,51 +11,65 @@ export type GithubCardProps = {
   logo: string;
 };
 
+const githubApiPrefix = 'https://api.github.com/repos';
+
 export default function GithubCard(props: GithubCardProps): JSX.Element {
-  const [description, setDescription] = useState('');
-  const [stars, setStars] = useState(0);
-  const [forks, setForks] = useState(0);
-  const [language, setLanguage] = useState('');
+  const data = useGlobalData();
+  const repos = data['docusaurus-plugin-content-blog']['blog']['repos'];
+  const fullName = `${props.profile}/${props.repo}`;
+  const repo = repos[fullName];
+
+  const initialDescription = repo?.['description'] ?? '';
+  const initialStars = repo?.['stargazers_count'] ?? 0;
+  const initialForks = repo?.['forks'] ?? 0;
+  const initialLanguage = repo?.['language'] ?? '';
+
+  const [description, setDescription] = useState(initialDescription);
+  const [stars, setStars] = useState(initialStars);
+  const [forks, setForks] = useState(initialForks);
+  const [language, setLanguage] = useState(initialLanguage);
 
   var url = `https://github.com/${props.profile}/${props.repo}`;
-  let requestUrl = `https://api.github.com/repos/${props.profile}/${props.repo}`;
+  let requestUrl = `${githubApiPrefix}/${props.profile}/${props.repo}`;
 
-  useEffect(() => {
-    let request = new XMLHttpRequest();
-    request.onload = function () {
-      let data = JSON.parse(this.response);
+  if (!repo) {
+    // No cached repository data...fetch it from the client's browser.
+    useEffect(() => {
+      let request = new XMLHttpRequest();
+      request.onload = function () {
+        let data = JSON.parse(this.response);
 
-      if (request.status != 200) {
-        return;
-      }
+        if (request.status != 200) {
+          return;
+        }
 
-      let description = data['description'];
-      if (typeof description !== 'undefined') {
-        setDescription(description);
-      }
+        let description = data['description'];
+        if (typeof description !== 'undefined') {
+          setDescription(description);
+        }
 
-      let lang = data['language'];
-      if (
-        typeof lang !== 'undefined' &&
-        typeof languageColors[lang] !== 'undefined'
-      ) {
-        setLanguage(lang);
-      }
+        let lang = data['language'];
+        if (
+          typeof lang !== 'undefined' &&
+          typeof languageColors[lang] !== 'undefined'
+        ) {
+          setLanguage(lang);
+        }
 
-      let stars = data['stargazers_count'];
-      if (typeof stars !== 'undefined') {
-        setStars(stars);
-      }
+        let stars = data['stargazers_count'];
+        if (typeof stars !== 'undefined') {
+          setStars(stars);
+        }
 
-      let forks = data['forks'];
-      if (typeof forks !== 'undefined') {
-        setForks(forks);
-      }
-    };
-
-    request.open('GET', requestUrl, true);
-    request.send();
-  }, []);
+        let forks = data['forks'];
+        if (typeof forks !== 'undefined') {
+          setForks(forks);
+        }
+      };
+      request.open('GET', requestUrl, true);
+      request.send();
+    }, []);
+  }
 
   return (
     <a href={url} className={css.ghCard}>
