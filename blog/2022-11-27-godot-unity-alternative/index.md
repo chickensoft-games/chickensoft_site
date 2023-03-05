@@ -232,7 +232,7 @@ Making Godot games with C# is an incredible experience, and it's only getting be
 [juan]: https://twitter.com/reduzio
 [patreon]: https://www.patreon.com/godotengine/posts
 [r/godot]: https://www.reddit.com/r/godot/
-[unity-problems]: /blog/time-to-make-that-indie-csharp-game-in-godot#unrest-in-the-indie-c-game-dev-world
+[unity-problems]: /blog/indie-game-godot#unrest-in-the-indie-c-game-dev-world
 [godot-discord]: https://discord.gg/4JBkykG
 [reddit-asset-store-comment]: https://www.reddit.com/r/godot/comments/o5pam9/comment/h2o1u5w/?utm_source=share&utm_medium=web2x&context=3
 [godot-foundation]: https://godotengine.org/article/godots-graduation-godot-moves-to-a-new-foundation
