@@ -57,7 +57,7 @@ The Godot subreddit, [r/godot], now has over **101,000 members**, an **increase 
 
 ## 💁‍♀️ Addressing Your Concerns
 
-On Reddit (and occasionally elesewhere), interested users will ask if C# is "ready" or a "first-class" citizen in Godot. The answer is simple: **yes**.
+On Reddit (and occasionally elsewhere), interested users will ask if C# is "ready" or a "first-class" citizen in Godot. The answer is simple: **yes**.
 
 If you don't believe me, read on. We'll respond to each of the common arguments against Godot and its support for C#.
 
@@ -69,7 +69,7 @@ Of course, Godot does have an official [Asset Library][asset-library] with over 
 
 Most of us would normally be thrilled about free assets, but when you're an artist or developer who relies on selling your assets to support yourself, giving away your products is a no-go. It's only fair that you should be able to make a living doing what you're good at.
 
-Monetization, as [someone pointed out on Reddit][reddit-asset-store-comment], requires a lot of beurocratic effort. Collecting payments and being responsible for payment handling is a gigantic chore.
+Monetization, as [someone pointed out on Reddit][reddit-asset-store-comment], requires a lot of bureaucratic effort. Collecting payments and being responsible for payment handling is a gigantic chore.
 
 In 2021, the founder of Godot — Juan Linietsky — confirmed a paid asset marketplace was on the way.
 
@@ -122,7 +122,7 @@ I asked [neikeq] a couple of questions about C# in Godot via private message in 
 
 Still skeptical about taking the plunge on an open source game engine? Allow me to sweeten the deal by showcasing some awesome C# projects.
 
-Our feature image for this article is from [SatiRogue][satirogue], a "turn-based dungeon-crawler roguelike RPG, made with Godot 3.x C# + RelEcs" by [TetrisMcKenna][tetrismckenna]. The source code is freely available on GitHub under the MIT license.
+Our feature image for this article is from [SatiRogue][satirogue], a "turn-based dungeon-crawler rogue-like RPG, made with Godot 3.x C# + RelEcs" by [TetrisMcKenna][tetrismckenna]. The source code is freely available on GitHub under the MIT license.
 
 <FancyImage src={require("./satirogue.jpg").default} alt="SatiRogue">
 </FancyImage>
@@ -153,7 +153,7 @@ By adding a few nuget `<PackageReference>` tags to your `.csproj` file, you can 
 
 <FancyImage src='/img/chickensoft/chicken_cli.svg' alt="Chicken CLI" widthOverride="200px" />
 
-<Spacer><GithubCard profile='chickensoft-games' repo='Chicken' logo='/img/chickensoft/chicken_cli.svg'/></Spacer>
+<Spacer><GithubCard profile='chickensoft-games' repo='Chicken' logo='/img/chickensoft/chicken.svg'/></Spacer>
 
 While learning Godot, I kept running into the same few headaches over and over. When trying to make my code reusable across game projects, I realized there was no easy way to keep my addons up to date while I was still developing them. Likewise, whenever I created a new sandbox project, I had to copy a dozen or so files into the new project every time.
 
@@ -204,28 +204,6 @@ Then, all you have to do is run the following:
 chicken addons install
 ```
 
-#### Creating New Godot C# Projects
-
-Godot will generate a new C# project for you the moment you add your first C# script to a node. Unfortunately, the C# project that Godot generates doesn't include a lot of common fixes needed in the `.csproj` for most projects or any other features.
-
-Chickensoft is introducing an opionated [Godot 3 Game Template][godot-3-game] that provides working tests, test coverage, and VSCode debug configurations all working out-of-the-box. Sometimes it's easier to delete a feature you don't need than it is to create one, so feel free to fork it and make your own template.
-
-<Spacer><GithubCard profile='chickensoft-games' repo='godot_3_game'/></Spacer>
-
-To generate a project based on a template, use Chicken like so:
-
-```sh
-chicken egg crack ./MyGodot3Game \
-  --egg "git@github.com:chickensoft-games/godot_3_game.git" \
-  -- --title "MyGodot3Game"
-```
-
-A Chicken template (or egg 🐣, if you will) contains an `EDIT_ACTIONS.json` file which describes the actions chicken should perform to customize the template based on input values. When running `chicken egg crack`, arguments after `--` are given directly to the template to satisfy its required inputs. To learn more about making and using eggs, hop on over to the [Chicken readme][chicken]!
-
-:::info
-In the near future, we hope to introduce a Godot 4 game template, as well as templates for making nuget packages that can be used in Godot projects!
-:::
-
 ## 🎬 Conclusion
 
 The Godot ecosystem provides an [asset library][asset-library], [monthly game jams][game-jams], and numerous [developer communities][communities]. If you're using C# with Godot, you can use just about anything on [nuget] in your project, unlocking the entire C# ecosystem _in addition to everything Godot has to offer_. Whether you're still planning your project or putting the finishing touches on it, there's an entire ecosystem in place to support you. Godot apps can be released on every major platform, and multiple companies can provide support for developers who wish to publish their games [on consoles][consoles].
@@ -254,7 +232,7 @@ Making Godot games with C# is an incredible experience, and it's only getting be
 [juan]: https://twitter.com/reduzio
 [patreon]: https://www.patreon.com/godotengine/posts
 [r/godot]: https://www.reddit.com/r/godot/
-[unity-problems]: /blog/time-to-make-that-indie-csharp-game-in-godot#unrest-in-the-indie-c-game-dev-world
+[unity-problems]: /blog/indie-game-godot#unrest-in-the-indie-c-game-dev-world
 [godot-discord]: https://discord.gg/4JBkykG
 [reddit-asset-store-comment]: https://www.reddit.com/r/godot/comments/o5pam9/comment/h2o1u5w/?utm_source=share&utm_medium=web2x&context=3
 [godot-foundation]: https://godotengine.org/article/godots-graduation-godot-moves-to-a-new-foundation
@@ -267,8 +245,6 @@ Making Godot games with C# is an incredible experience, and it's only getting be
 [satirogue]: https://github.com/lewiji/SatiRogue
 [tetrismckenna]: https://twitter.com/TetrisMcKenna
 [chicken]: https://github.com/chickensoft-games/chicken
-[home]: /
-[godot-3-game]: https://github.com/chickensoft-games/godot_3_game
 [chickensoft-website]: https://github.com/chickensoft-games/chickensoft_site
 [go_dot_dep]: https://github.com/chickensoft-games/go_dot_dep
 [go_dot_log]: https://github.com/chickensoft-games/go_dot_log
