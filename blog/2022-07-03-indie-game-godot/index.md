@@ -2,7 +2,7 @@
 title: It’s time to make that indie C# game in Godot.
 description: Wondering if you should take the plunge and use Godot with C#? Read this!
 image: ./header.jpg
-slug: time-to-make-that-indie-csharp-game-in-godot
+slug: indie-game-godot
 keywords: ['indie', 'csharp', 'godot', '2022']
 authors: [joanna]
 ---
@@ -30,7 +30,7 @@ Unity can _technically_ do much more than Godot, at least on paper. In practice,
 
 Do you want to make the world’s best-looking game with the latest, buggy technologies, or do you want to _actually have fun_ making games? If you said yes to the last part of that question, I’d like to invite you to try [Godot][godot]. If you’ve already tried Godot a while back and gave up, I’d like to ask you to give Godot another chance. It might be better now than you realize.
 
-## Unity isn’t fun anymore.
+## Unity isn’t fun anymore
 
 It’s no secret that [Unity is painful to use][unity-painful]: it’s slow to open, and it often pauses to re-scan the entire project while you’re trying to work. If you’re trying to use source control with a few other people, you have to work even harder to get everything to play nice with Unity’s unique file formats. By modern standards, Unity development can feel a bit backwards at times.
 
@@ -40,7 +40,7 @@ In Godot, everything is composed of nodes. No prefabs, game components, or other
 
 Godot also gives you full control of your `.csproj` file, allowing you to setup dependencies and configure MSBuild as much as you want. Want to use code generators? You can do that. Custom Roslyn analyzers? Go for it. Your own nuget packages? Check.
 
-## It's actually fun to use Godot.
+## It's actually fun to use Godot
 
 Godot doesn’t fight you when you’re building scenes. Making a scene feels a lot like creating a class using [composition], and scenes can even [inherit] from other scenes (using another scene as the the root node of a scene allows you to inherit from it and override its properties in the editor and in code), allowing you to express patterns you’re intimately familiar with from object-oriented programming.
 
@@ -58,7 +58,7 @@ Most people would probably agree that being retired with a terrible disease that
 
 If it’s just the Unity Asset Store holding you back, there’s probably nothing I can say to convince you to give Godot a chance. But if you’re resourceful and don’t mind a little extra work, and/or you’re willing to port your scripts over and import your 3D models into Godot, you might be pleasantly surprised by what you’re missing.
 
-## You’re the star of the show.
+## You’re the star of the show
 
 Godot prioritizes developer experience. I don’t think that’s explicitly written in the docs, and I’ve never heard anyone else say it, but that’s how I feel when I use Godot. Sure, it has fewer features than the dominating game engines, but the “few” features it does have are so polished and well thought-out that it’s a joy to use. When I use Godot, I feel special. Godot’s docs are thorough, well-written, and explanatory. If you’re really stuck, you can look through it’s source code (I’ve actually done that a few times and figured things out). Everything just works (generally), right out of the box!
 
@@ -120,7 +120,7 @@ Because of the way Godot spins up classes, you should avoid creating values in y
 
 I know that’s a little technical, but knowing those few things should save you a few headaches. It certainly would have helped us!
 
-## Open source always wins.
+## Open source always wins
 
 Godot may not ever be the dominating game engine, but we believe an open source game engine will dominate the field someday, given enough time. Godot prioritizes developers, and when developers win, everyone else eventually wins, too.
 
