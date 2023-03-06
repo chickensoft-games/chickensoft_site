@@ -13,11 +13,9 @@
     "source.fixAll.eslint": true
   },
   "eslint.options": {
-    "extensions": [".js", ".jsx", ".md", ".mdx", ".ts", ".tsx"]
+    "extensions": [".js", ".jsx", ".ts", ".tsx"]
   },
   "eslint.validate": [
-    "markdown",
-    "mdx",
     "javascript",
     "javascriptreact",
     "typescript",

@@ -12,6 +12,7 @@
     "dogfooded",
     "dompurify",
     "frontmatter",
+    "godotengine",
     "gtag",
     "Kenna",
     "Krita",
@@ -20,6 +21,7 @@
     "Linietsky",
     "Metaverse",
     "Monogame",
+    "nameof",
     "neikeq",
     "Netcode",
     "paulloz",
@@ -32,6 +34,7 @@
     "Tetris",
     "tweens",
     "typecheck",
+    "typeof",
     "Vulkan"
   ]
 }

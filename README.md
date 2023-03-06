@@ -7,7 +7,7 @@ The official [Chickensoft Website][chickensoft-website]. Built using [Docusaurus
 ---
 
 <p align="center">
-<img alt="Chickensoft Site Logo" src="static/img/chickensoft//chickensoft_site.svg" width="200">
+<img alt="Chickensoft Site Logo" src="static/img/chickensoft/chickensoft_site.svg" width="200">
 </p>
 
 ## ⚙️ Installation

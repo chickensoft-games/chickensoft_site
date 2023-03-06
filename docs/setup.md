@@ -257,8 +257,6 @@ godot --build-solutions
 
 Open the new project in VSCode and use the provided launch configurations to debug your application. Make sure Godot is open, or nothing will happen!
 
-<!-- Links -->
-
 [dotnet-6-sdk]: https://dotnet.microsoft.com/en-us/download/dotnet/6.0
 [download-godot]: https://downloads.tuxfamily.org/godotengine/
 [vscode]: https://code.visualstudio.com
