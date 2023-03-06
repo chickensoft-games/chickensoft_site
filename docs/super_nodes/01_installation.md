@@ -1,8 +1,6 @@
 ---
-title: Installation
+title: 📦 Installation
 ---
-
-## 📦 Installation
 
 Find the latest version on [Nuget][nuget]! Note the version number and add the following to your project's `.csproj` file, replacing `{VERSION}` with whatever compatible version you need from Nuget.
 

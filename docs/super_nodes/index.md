@@ -1,5 +1,5 @@
 ---
-title: SuperNodes
+title: 🔮 SuperNodes
 image: ./header.jpg
 ---
 

@@ -1,5 +1,5 @@
 ---
-title: Source Generators
+title: 🤖 Source Generators
 ---
 
 ## 🔄 Lifecycle Hooks
@@ -97,7 +97,7 @@ If you've tried to use a third party source generator alongside Godot's official
 We cannot solve problem #1, but we _can_ live with it. Essentially, any members added to a class by a third-party source generator will not be visible from Godot or GDScript, but will work just fine in C#. If you're writing code primarily in C#, this will not cause you any issues.
 :::
 
-## 🤝 Source Generator Conventions
+## 💖 Source Generator Solutions
 
 Theoretically, we **can** solve problem #2.
 

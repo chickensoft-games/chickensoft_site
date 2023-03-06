@@ -1,5 +1,5 @@
 ---
-title: Getting Started
+title: 🏁 Getting Started
 sidebar_position: 0 # This comes first!
 ---
 
