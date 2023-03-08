@@ -1,6 +1,6 @@
 # Chickensoft Site
 
-[![Chickensoft Badge][chickensoft-badge]][chickensoft-website] [![Discord][discord-badge]][discord] [![Read the docs]][read-the-docs-badge]
+[![Chickensoft Badge][chickensoft-badge]][chickensoft-website] [![Discord][discord-badge]][discord] [![Read the docs][read-the-docs-badge]][docs]
 
 The official [Chickensoft Website][chickensoft-website]. Built using [Docusaurus 2](https://docusaurus.io/), a modern static website generator.
 
@@ -42,6 +42,7 @@ Deployment occurs every day and whenever the main branch is updated. 🪄
 
 [chickensoft-badge]: https://chickensoft.games/images/chickensoft/chickensoft_badge.svg
 [read-the-docs-badge]: https://chickensoft.games/img/badges/read_the_docs_badge.svg
+[docs]: https://chickensoft.games/docs/setup
 [chickensoft-website]: https://chickensoft.games
 [discord]: https://discord.gg/gSjaPgMmYW
 [discord-badge]: https://img.shields.io/badge/Chickensoft%20Discord-%237289DA.svg?style=flat&logo=discord&logoColor=white
