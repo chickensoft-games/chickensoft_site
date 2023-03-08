@@ -10,6 +10,9 @@ import Toot from '@site/src/components/social_post/toot';
 import Tweet from '@site/src/components/social_post/tweet';
 import Spacer from '@site/src/components/spacer/spacer';
 import MDXComponents from '@theme-original/MDXComponents';
+import Admonition from '@theme/Admonition';
+import CodeBlock from '@theme/CodeBlock';
+import Details from '@theme/Details';
 import TabItem from '@theme/TabItem';
 import Tabs from '@theme/Tabs';
 
@@ -26,4 +29,7 @@ export default {
   useBaseUrl,
   Tabs,
   TabItem,
+  Admonition,
+  Details,
+  CodeBlock,
 };

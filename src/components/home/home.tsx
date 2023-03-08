@@ -48,6 +48,9 @@ function HomepageHeader() {
           <a href={discord} className={styles.badge}>
             <img src="img/badges/discord_badge.svg" height="20" />
           </a>
+          <Link to="/docs/setup" className={styles.badge}>
+            <img src="img/badges/read_the_docs_badge.svg" height="20" />
+          </Link>
         </p>
         <HomepageCTA />
         {/* <HomepageHeroImage /> */}
