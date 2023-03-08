@@ -180,7 +180,21 @@ We'll discuss how to take advantage of these features in your projects in the do
 
 ## 🪄 Beneath the Magic
 
-SuperNodes will generate several implementation files for `ExampleNode`. Here's what's in the main implementation file that contains the `_Notification` method:
+SuperNodes will generate several implementation files for `ExampleNode` so that it can be magically enhanced.
+
+:::tip
+To show generated files, you can add the following to your `.csproj` file:
+
+```xml
+<PropertyGroup>
+  <EmitCompilerGeneratedFiles>true</EmitCompilerGeneratedFiles>
+  <CompilerGeneratedFilesOutputPath>.generated</CompilerGeneratedFilesOutputPath>
+</PropertyGroup>
+```
+
+:::
+
+Here's what's in the main implementation file that contains the `_Notification` method:
 
 <Details summary={<summary><code>SimpleExample.ExampleNode.g.cs</code></summary>}>
 

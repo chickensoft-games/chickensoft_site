@@ -1,10 +1,11 @@
 ---
-title: 📝 Implementing Interfaces
+title: 🔋 PowerUps & Interfaces
+image: ../header.jpg
 ---
 
 PowerUps can implement interfaces on behalf of a SuperNode.
 
-Whenever a SuperNode applies a PowerUp, the SuperNode implements any interfaces that the PowerUp had implemented.
+Whenever a SuperNode applies a PowerUp, the SuperNode implements any interfaces that the PowerUp had also implemented.
 
 ```csharp
 namespace ImplementedInterfaceExample;

@@ -1,5 +1,6 @@
 ---
 title: 🤖 Source Generators
+image: ./header.jpg
 ---
 
 ## 🔄 Lifecycle Hooks

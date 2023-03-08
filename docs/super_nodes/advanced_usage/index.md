@@ -1,6 +1,7 @@
 ---
-title: 🔋 PowerUps
+title: 🧬 Advanced Usage
 sidebar_position: 3
+image: ../header.jpg
 ---
 
 In the [first section][super_nodes], we explained the basics of PowerUps and how to apply them to SuperNodes.
