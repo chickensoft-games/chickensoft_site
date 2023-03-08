@@ -41,7 +41,7 @@ Deployment occurs every day and whenever the main branch is updated. 🪄
 <!-- Header -->
 
 [chickensoft-badge]: https://chickensoft.games/images/chickensoft/chickensoft_badge.svg
-[read-the-docs-badge]: https://chickensoft.games/images/chickensoft/read_the_docs_badge.svg
+[read-the-docs-badge]: https://chickensoft.games/img/badges/read_the_docs_badge.svg
 [chickensoft-website]: https://chickensoft.games
 [discord]: https://discord.gg/gSjaPgMmYW
 [discord-badge]: https://img.shields.io/badge/Chickensoft%20Discord-%237289DA.svg?style=flat&logo=discord&logoColor=white
