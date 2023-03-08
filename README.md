@@ -1,6 +1,6 @@
 # Chickensoft Site
 
-[![Chickensoft Badge][chickensoft-badge]][chickensoft-website] [![Discord][discord-badge]][discord] [![Read the docs!][read-the-docs-badge]]
+[![Chickensoft Badge][chickensoft-badge]][chickensoft-website] [![Discord][discord-badge]][discord] [![Read the docs]][read-the-docs-badge]
 
 The official [Chickensoft Website][chickensoft-website]. Built using [Docusaurus 2](https://docusaurus.io/), a modern static website generator.
 
