@@ -47,7 +47,7 @@ public interface ISerializer {
 
 // Stub implementation for example — build or use your own serializer!
 public class MySerializer : ISerializer {
-  public bool Serialize<T>(T value) => true; 
+  public bool Serialize<T>(T value) => true;
   public T Deserialize<T>(dynamic value) => default!;
 }
 ```

@@ -178,7 +178,7 @@ SuperNodes generates a static property on each SuperNode class called `ScriptPro
 The `PropertiesAndFields` instance property makes it easier for outside objects classes to access static information about a particular instance's class.
 :::
 
-`ScriptPropertiesAndFields` is just a mapping of property and field names found in the SuperNode class (and any of its applied PowerUps) to a `ScriptPropertyOrField` object.  
+`ScriptPropertiesAndFields` is just a mapping of property and field names found in the SuperNode class (and any of its applied PowerUps) to a `ScriptPropertyOrField` object.
 
 :::caution
 The `SuperNodes.Types` package has to be included in each project that wants to use SuperNodes, as well as in any assemblies that want to leverage SuperNodes' static reflection capabilities. If the models were injected rather than shared in a package, each assembly would have its own copy of the models which would make cross-assembly static reflection more difficult.
@@ -236,7 +236,7 @@ Inside a script, you can access the `PropertiesAndFields` dictionary to get info
 [SuperNode(typeof(MyPowerUp))]
 public partial class MySuperNode : Node2D {
   public override partial void _Notification(int what);
-  
+
   [Export(PropertyHint.Range, "0, 100")]
   public int Probability { get; set; } = 50;
 
