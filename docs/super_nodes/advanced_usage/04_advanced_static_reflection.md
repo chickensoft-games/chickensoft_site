@@ -1,6 +1,6 @@
 ---
 title: 🔬 Advanced Static Reflection
-image: docs/super_nodes/header.jpg
+image: https://chickensoft.games/assets/images/header-bbf251851f04eefa5fd63323124240f2.jpg
 ---
 
 SuperNodes can do some cool coding tricks. If you want to learn how to use them, you've come to the right place!

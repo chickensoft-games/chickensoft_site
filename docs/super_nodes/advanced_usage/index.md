@@ -1,7 +1,7 @@
 ---
 title: 🧬 Advanced Usage
 sidebar_position: 3
-image: /docs/super_nodes/header.jpg
+image: https://chickensoft.games/assets/images/header-bbf251851f04eefa5fd63323124240f2.jpg
 ---
 
 In the [first section][super_nodes], we explained the basics of PowerUps and how to apply them to SuperNodes.
