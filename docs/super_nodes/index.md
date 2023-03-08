@@ -134,6 +134,10 @@ If you need your script to also implement `_Notification`, just declare a method
 
 You may have noticed that instead of overriding `_Ready` and `_Process`, the SuperNode uses methods named `OnReady` and `OnProcess` that have otherwise identical signatures to their Godot counterparts. The SuperNodes generator will look inside SuperNodes for methods named `On{LifecycleHandler}` for each Godot lifecycle notification (there are quite a few) and call the handler with the same name, prefixed with the word `On`.
 
+:::tip
+See the [full list of lifecycle handlers][lifecycle-handlers] to determine which methods you can implement!
+:::
+
 ```csharp
 public partial class ExampleNode : Node {
   public override partial void _Notification(int what);
@@ -242,3 +246,4 @@ We've barely scratched the surface of showing what's possible with SuperNodes an
 [macros]: https://en.wikipedia.org/wiki/Macro_(computer_science)
 [default-interfaces]: https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/proposals/csharp-8.0/default-interface-methods
 [default-interfaces-instance-data]: https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/proposals/csharp-8.0/default-interface-methods#detailed-design
+[lifecycle-handlers]: ./lifecycle_handlers
