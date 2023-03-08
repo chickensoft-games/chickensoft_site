@@ -1,6 +1,6 @@
 ---
 title: 🔋 PowerUps & Interfaces
-image: ../header.jpg
+image: docs/super_nodes/header.jpg
 ---
 
 PowerUps can implement interfaces on behalf of a SuperNode.

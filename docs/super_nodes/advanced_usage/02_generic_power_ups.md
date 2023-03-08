@@ -1,6 +1,6 @@
 ---
 title: 🪫 Generic PowerUps
-image: ../header.jpg
+image: docs/super_nodes/header.jpg
 ---
 
 PowerUps support generic type parameters. Using PowerUps as generic mixins can allow you to implement patterns that would otherwise be difficult, painful, or impossible to implement without expensive runtime reflection.

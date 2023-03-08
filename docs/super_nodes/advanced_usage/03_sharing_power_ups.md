@@ -1,6 +1,6 @@
 ---
 title: ♻️ Sharing PowerUps
-image: ../header.jpg
+image: docs/super_nodes/header.jpg
 ---
 
 To share a PowerUp, we need to be able to share the code for it, not a compiled `.dll` of its contents. If we aren't able to share the source code for a PowerUp, the SuperNodes generator can't apply it to a SuperNode.

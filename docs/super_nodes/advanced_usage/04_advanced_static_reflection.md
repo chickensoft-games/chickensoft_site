@@ -1,6 +1,6 @@
 ---
 title: 🔬 Advanced Static Reflection
-image: ../header.jpg
+image: docs/super_nodes/header.jpg
 ---
 
 SuperNodes can do some cool coding tricks. If you want to learn how to use them, you've come to the right place!
