@@ -87,7 +87,7 @@ function HomepageCTA() {
     <div className={styles.width}>
       <Link
         className="button button--primary button--lg margin-top--lg"
-        to="/docs/setup"
+        to="/docs"
       >
         Get Started
       </Link>
