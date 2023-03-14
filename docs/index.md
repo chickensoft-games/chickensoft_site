@@ -2,6 +2,7 @@
 title: 🐣 Chickensoft
 sidebar_position: 0 # This comes first!
 image: ./header.jpg
+description: Chickensoft is an open source organization for tools and templates that help the C# Godot community.
 ---
 
 [![Chickensoft Badge][chickensoft-badge]][chickensoft-website] [![Discord][discord-badge]][discord]
