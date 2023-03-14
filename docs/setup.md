@@ -1,13 +1,12 @@
 ---
 title: 🏁 Getting Started
-sidebar_position: 0 # This comes first!
+sidebar_position: 1
+image: ./header.jpg
 ---
-
-# Getting Started
 
 Ready to make games with Godot and C#? Let's start by making sure your development environment is ready to go!
 
-## Installing the .NET SDK
+## 📦 Installing the .NET SDK
 
 To use C# with Godot, you'll need .NET 6. The .NET 6 SDK works great for both Godot 3 and Godot 4.
 
@@ -48,7 +47,7 @@ If you want to install the .NET 6 SDK manually, you can find [all available down
 
 Make sure you keep track of where the .NET 6 SDK was installed. We'll need that path later.
 
-## Installing Mono
+## 🚉 Installing Mono
 
 For Godot 3, you need to install [Mono][mono]. Instructions and installers are available for each platform on the Mono website.
 
@@ -56,7 +55,7 @@ For Godot 3, you need to install [Mono][mono]. Instructions and installers are a
 You can skip this step if you're only using Godot 4. Godot 4 integrates directly with .NET 6 instead of Mono.
 :::
 
-## Installing Godot
+## 🤖 Installing Godot
 
 You'll need to [download Godot][download-godot], if you haven't already.
 
@@ -66,7 +65,7 @@ Godot currently comes in 2 flavors: **regular**, and **mono**. For C# developmen
 Godot 4 eventually intends to combine both versions into one, but that hasn't happened just yet.
 :::
 
-### Where to Put Godot
+### ❓ Where to Put Godot
 
 Since Godot doesn't have an installer, you get to decide where to put it on your computer. Here's some recommendations for where to install it on each platform.
 
@@ -92,7 +91,7 @@ folder in your user folder: `~/Godot`.
   </TabItem>
 </Tabs>
 
-## Shell Environment
+## 🖥 Shell Environment
 
 Let's modify the shell environment to contain environment variables that point to Godot and the .NET SDK.
 
@@ -215,13 +214,13 @@ Make sure the paths to the .NET 6 SDK, Mono, and Godot match where those tools w
 If you're not installing both Godot 3 and 4, remove the lines you don't need.
 :::
 
-## Visual Studio Code
+## ⌨️ Visual Studio Code
 
 All of Chickensoft's packages and templates are designed to work well with Visual Studio Code (VSCode).
 
 You can download [Visual Studio Code][vscode] here.
 
-## Your First Project
+## ✨ Your First Project
 
 You can use [Chicken][chicken] to create a new project. Chicken is a command-line tool that helps you create and manage Godot projects.
 

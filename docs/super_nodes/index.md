@@ -1,6 +1,7 @@
 ---
 title: 🔮 SuperNodes
 image: ./header.jpg
+sidebar_position: 3
 ---
 
 [SuperNodes] is a C# source generator that gives superpowers to Godot node scripts.
@@ -34,7 +35,7 @@ Interfaces may not contain instance state. While static fields are now permitted
 </Admonition>
 </Details>
 
-To make up for these shortcomings in C#, the SuperNodes generator allows you to turn an ordinary Godot script and turn it into a `SuperNode` by applying a `[SuperNode]` attribute on it. Turning a node into a SuperNode allows you to:
+To make up for these shortcomings in C#, the SuperNodes generator allows you to turn any ordinary Godot script into a `SuperNode` by adding a `[SuperNode]` attribute to it. Turning a node into a SuperNode allows you to:
 
 - ✅ Apply PowerUps (essentially mixins for C#) to your node scripts.
 - ✅ Use third-party source generators alongside Godot's official source generators.
