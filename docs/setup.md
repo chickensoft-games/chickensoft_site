@@ -220,41 +220,29 @@ All of Chickensoft's packages and templates are designed to work well with Visua
 
 You can download [Visual Studio Code][vscode] here.
 
-## ✨ Your First Project
+## ✨ Creating Godot Projects
 
-You can use [Chicken][chicken] to create a new project. Chicken is a command-line tool that helps you create and manage Godot projects.
+Chickensoft provides a `dotnet new` template to help you quickly create a C# nuget package for use with Godot 4 projects. Using the GodotPackage template allows you to setup a package with continuous integration, auto-formatting, debugger profiles for VSCode, and a pre-configured unit test project.
 
-If all your paths are setup correctly, you can open a bash shell to install it.
-
-```sh
-dotnet tool install --global Chickensoft.Chicken
-# or to update to the latest version
-dotnet tool update --global Chickensoft.Chicken
-```
-
-Using the Godot 3 game template, generate a new project:
-
-```sh
-chicken egg crack ./my_godot_3_game \
-  --egg "git@github.com:chickensoft-games/godot_3_game.git" \
-  -- --title "MyGodot3Game"
-```
-
-This will clone the egg (template) from GitHub to the subfolder `my_godot_3_game` and then perform the edit actions described in the template to customize it for your project.
-
-The `--` is required to separate the arguments to Chicken from the arguments to the egg. The egg requires one argument, `--title`, which is the name of your new project.
+<Spacer><GithubCard profile='chickensoft-games' repo='GodotPackage' logo='/img/chickensoft/package.svg'/></Spacer>
 
 :::info
-Already have your own way of making new Godot C# projects? Learn [how to make your own eggs][chicken] for Chicken!
+The GodotPackage is great for making nuget packages that can be used from your game project, but it is not intended to create a game project itself. Because the project is configured as a nuget package, it is not suitable to generate game projects with unless you customize it heavily. Additionally, tests are not run in a simulated graphical environment (which would be required for testing Godot game projects).
+
+We are currently working on a GodotGame template that is suited for quickly spinning up C# Godot 4 games that follows Chickensoft's best practices for testing, code coverage, CI/CD, and dependency management that is specific to a game project. Check back soon!
 :::
 
-In the project folder, you can run the following to make Godot generate the C# glue for your project so that you can run it from VSCode:
+Once you've generated a project, you can run the following from the project directory to make Godot generate the C# glue for your project.
 
 ```sh
-godot --build-solutions
+godot --headless --quit --build-solutions
 ```
 
-Open the new project in VSCode and use the provided launch configurations to debug your application. Make sure Godot is open, or nothing will happen!
+Open the new project in VSCode and use the provided launch configurations to debug your application.
+
+:::caution
+If you're using Godot 3, make sure Godot is open (or else nothing will happen).
+:::
 
 [dotnet-6-sdk]: https://dotnet.microsoft.com/en-us/download/dotnet/6.0
 [download-godot]: https://downloads.tuxfamily.org/godotengine/
@@ -262,4 +250,3 @@ Open the new project in VSCode and use the provided launch configurations to deb
 [mono]: https://www.mono-project.com/download/stable/
 [vs-2022]: https://visualstudio.microsoft.com/downloads/
 [win-env-vars]: https://github.com/sindresorhus/guides/blob/main/set-environment-variables.md#windows-7-and-8
-[chicken]: https://github.com/chickensoft-games/chicken
