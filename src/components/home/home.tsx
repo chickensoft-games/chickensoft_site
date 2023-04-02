@@ -115,8 +115,8 @@ const repos: Array<GithubCardProps> = [
   },
   {
     profile: 'chickensoft-games',
-    repo: 'chickensoft_site',
-    logo: 'img/chickensoft/chickensoft_site.svg',
+    repo: 'GodotPackage',
+    logo: 'img/chickensoft/package.svg',
   },
   {
     profile: 'chickensoft-games',
@@ -145,18 +145,23 @@ const repos: Array<GithubCardProps> = [
   },
   {
     profile: 'chickensoft-games',
-    repo: 'go_dot_log',
+    repo: 'GoDotLog',
+    logo: 'img/chickensoft/go_dot_log.svg',
+  },
+  {
+    profile: 'chickensoft-games',
+    repo: 'chickensoft_site',
+    logo: 'img/chickensoft/chickensoft_site.svg',
+  },
+  {
+    profile: 'chickensoft-games',
+    repo: 'GoDotCollections',
     logo: 'img/chickensoft/go_dot_log.svg',
   },
   {
     profile: 'chickensoft-games',
     repo: 'EditorConfig',
     logo: 'img/chickensoft/editorconfig.svg',
-  },
-  {
-    profile: 'chickensoft-games',
-    repo: 'GodotPackage',
-    logo: 'img/chickensoft/package.svg',
   },
 ];
 
