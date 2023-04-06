@@ -35,7 +35,7 @@ public partial class MyPowerUp : Node2D {
 
 The `MySuperNode` script has a property that it exports to the Godot editor, `Probability`. Because it also applies `MyPowerUp`, the SuperNode ends up gaining two additional properties: `MyName` and `Identifier`.
 
-At compile-time, SuperNodes will generate the following static reflection implementation for `MySuperNode`. The generated implementation includes the table of properties, their attributes, types, visibility, mutability information, and methods to get and set the values of those properties.
+At compile-time, SuperNodes will [generate][generated] the following static reflection implementation for `MySuperNode`. The generated implementation includes the table of properties, their attributes, types, visibility, mutability information, and methods to get and set the values of those properties.
 
 <Details summary={<summary><code>StaticReflectionExample.MySuperNode_Reflection.g.cs</code></summary>}>
 
@@ -314,3 +314,4 @@ If you're importing multiple assemblies that use SuperNodes and want to store re
 [installation]: ./installation
 [multiple-attributes]: https://learn.microsoft.com/en-us/dotnet/api/system.attributeusageattribute.allowmultiple
 [dynamic-types]: https://learn.microsoft.com/en-us/dotnet/csharp/advanced-topics/interop/using-type-dynamic
+[generated]: ./#-beneath-the-magic

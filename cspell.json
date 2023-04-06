@@ -29,6 +29,8 @@
     "nupkg",
     "paulloz",
     "peaceiris",
+    "Postinitialize",
+    "Predelete",
     "reblogs",
     "satirogue",
     "SDFGI",
@@ -38,6 +40,7 @@
     "tweens",
     "typecheck",
     "typeof",
+    "Unparented",
     "Vulkan"
   ]
 }

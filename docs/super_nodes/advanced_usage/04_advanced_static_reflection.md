@@ -182,9 +182,7 @@ public interface IMyPowerUp<T> {
 }
 ```
 
-//! TODO: show how to show generated code
-
-If we look at the generated code for MySuperNode, we'll see that the SuperNodes generator refers to the `Value` property as `IMyPowerUp<int>.Value`:
+If we look at the [generated code][generated] for MySuperNode, we'll see that the SuperNodes generator refers to the `Value` property as `IMyPowerUp<int>.Value`:
 
 ```csharp
 public static ImmutableDictionary<string, ScriptPropertyOrField> ScriptPropertiesAndFields { get; }
@@ -207,3 +205,4 @@ public static ImmutableDictionary<string, ScriptPropertyOrField> ScriptPropertie
 [composition-pattern]: https://en.wikipedia.org/wiki/Composition_over_inheritance
 [IDE0002]: https://learn.microsoft.com/en-us/dotnet/fundamentals/code-analysis/style-rules/ide0002
 [explicit-interface-implementations]: https://learn.microsoft.com/en-us/dotnet/csharp/programming-guide/interfaces/explicit-interface-implementation
+[generated]: ../#-beneath-the-magic
