@@ -81,7 +81,7 @@ async function blogPluginExtended(...pluginArgs) {
 
 // Returns a map of repository full names to repository data.
 async function fetchOrganizationPublicRepositories(organizationName) {
-  const octokit = new Octokit({ auth: process.env.GITHUB_PAT });
+  const octokit = new Octokit({ auth: process.env['GH_BASIC'] });
 
   // Get EVERY public repo in the organization.
   const data = await octokit.paginate(octokit.repos.listForOrg, {
