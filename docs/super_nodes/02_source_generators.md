@@ -23,7 +23,7 @@ public partial class MySuperNode : Node {
 
 The `MySuperNode` class has declared a lifecycle hook named `MyLifecycleHook`. Because we've declared this method, SuperNodes will know to invoke it from its generated implementation of `_Notification`.
 
-Here's what the generated code looks like.
+Here's what the [generated code][generated] looks like.
 
 ```csharp
 #nullable enable
@@ -76,7 +76,7 @@ public override partial void _Notification(int what) {
 }
 ```
 
-Lifecycle hooks and PowerUps are always invoked before user-defined lifecycle handlers like `OnReady`, `OnProcess`, `OnEnterTree`, etc.
+Lifecycle hooks and PowerUps are always invoked before user-defined [lifecycle handlers][lifecycle-handlers] like `OnReady`, `OnProcess`, `OnEnterTree`, etc.
 
 :::
 
@@ -189,3 +189,5 @@ If you're working on a source generator, get in touch with us on [Discord][disco
 [SuperNodes]: ./
 [generator-problems]: https://github.com/godotengine/godot/issues/66597
 [discord]: https://discord.gg/gSjaPgMmYW
+[lifecycle-handlers]: ./lifecycle-handlers
+[generated]: ./#-beneath-the-magic

@@ -42,6 +42,7 @@ To make up for these shortcomings in C#, the SuperNodes generator allows you to 
 - ✅ Get and set the value of script properties and fields at runtime, without using reflection.
 - ✅ Examine the attributes and types of script properties and fields at runtime, without using reflection.
 - ✅ Inspect SuperNodes across assemblies using the shared runtime types.
+- ✅ Utilize PowerUps from source-only nuget packages.
 
 Making a PowerUp is also easy: just mark another script class with a `[PowerUp]` attribute and then apply that PowerUp to a SuperNode.
 
@@ -246,4 +247,4 @@ We've barely scratched the surface of showing what's possible with SuperNodes an
 [macros]: https://en.wikipedia.org/wiki/Macro_(computer_science)
 [default-interfaces]: https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/proposals/csharp-8.0/default-interface-methods
 [default-interfaces-instance-data]: https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/proposals/csharp-8.0/default-interface-methods#detailed-design
-[lifecycle-handlers]: ./lifecycle_handlers
+[lifecycle-handlers]: ./lifecycle-handlers

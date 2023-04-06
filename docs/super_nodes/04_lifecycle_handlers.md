@@ -1,5 +1,6 @@
 ---
 title: 🔄 Lifecycle Handlers
+slug: lifecycle-handlers
 image: ./header.jpg
 ---
 
@@ -17,7 +18,7 @@ Note that `OnProcess` and `OnPhysicsProcess` are special cases that each have a 
   - `OnPostinitialize` = `NotificationPostinitialize`
   - `OnPredelete` = `NotificationPredelete`
 - **`Godot.Node` Notifications**
-  - `OnNotification( what)` = `override _Notification( what)`
+  - `OnNotification(what)` = `override void _Notification(what)`
   - `OnEnterTree` = `NotificationEnterTree`
   - `OnWmWindowFocusIn` = `NotificationWmWindowFocusIn`
   - `OnWmWindowFocusOut` = `NotificationWmWindowFocusOut`
