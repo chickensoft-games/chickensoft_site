@@ -4,6 +4,8 @@
     "asynchrony",
     "Byteron",
     "Carnagion",
+    "chickengame",
+    "chickenpackage",
     "Chickensoft",
     "clsx",
     "cybereality",
@@ -26,9 +28,12 @@
     "nameof",
     "neikeq",
     "Netcode",
+    "nugetclean",
     "nupkg",
+    "OPTOUT",
     "paulloz",
     "peaceiris",
+    "pkgconfig",
     "Postinitialize",
     "Predelete",
     "reblogs",
@@ -41,6 +46,7 @@
     "typecheck",
     "typeof",
     "Unparented",
-    "Vulkan"
+    "Vulkan",
+    "winget"
   ]
 }

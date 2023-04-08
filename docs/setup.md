@@ -222,26 +222,54 @@ You can download [Visual Studio Code][vscode] here.
 
 ## ✨ Creating Godot Projects
 
-Chickensoft provides a `dotnet new` template to help you quickly create a C# nuget package for use with Godot 4 projects. Using the GodotPackage template allows you to setup a package with continuous integration, auto-formatting, debugger profiles for VSCode, and a pre-configured unit test project.
+Chickensoft provides a few `dotnet new` templates to help you quickly create a C# projects for use with Godot 4.
+
+```sh
+# Install or update the latest Chickensoft Templates
+dotnet new --install Chickensoft.GodotGame
+dotnet new --install Chickensoft.GodotPackage
+```
+
+### 🎮 Creating a Godot Game
+
+The GodotGame template allows you to quickly generate a game with debug launch configurations for VSCode, testing (locally and on CI/CD), code coverage, dependency update checks, and spell checking!
+
+<Spacer><GithubCard profile='chickensoft-games' repo='GodotGame' logo='/img/chickensoft/godot_game.svg'/></Spacer>
+
+```sh
+dotnet new --install Chickensoft.GodotGame
+
+dotnet new chickengame --name "MyGameName" --param:author "My Name"
+
+cd MyGameName
+/path/to/godot4 --headless --build-solutions --quit
+dotnet build
+```
+
+### 📦 Creating a Reusable Nuget Package
+
+If you want to share compiled source code between projects or allow others to use your code in their projects, you can release a Nuget package.
+
+Using the GodotPackage template allows you to setup a package with continuous integration, auto-formatting, debugger profiles for VSCode, and a pre-configured unit test project.
 
 <Spacer><GithubCard profile='chickensoft-games' repo='GodotPackage' logo='/img/chickensoft/package.svg'/></Spacer>
 
-:::info
-The GodotPackage is great for making nuget packages that can be used from your game project, but it is not intended to create a game project itself. Because the project is configured as a nuget package, it is not suitable to generate game projects with unless you customize it heavily. Additionally, tests are not run in a simulated graphical environment (which would be required for testing Godot game projects).
-
-We are currently working on a GodotGame template that is suited for quickly spinning up C# Godot 4 games that follows Chickensoft's best practices for testing, code coverage, CI/CD, and dependency management that is specific to a game project. Check back soon!
-:::
-
-Once you've generated a project, you can run the following from the project directory to make Godot generate the C# glue for your project.
-
 ```sh
-godot --headless --quit --build-solutions
+dotnet new --install Chickensoft.GodotPackage
+
+dotnet new chickenpackage --name "MyPackageName" --param:author "My Name"
+
+cd MyPackageName
+/path/to/godot4 --headless --build-solutions --quit
+dotnet build
 ```
 
 Open the new project in VSCode and use the provided launch configurations to debug your application.
 
-:::caution
-If you're using Godot 3, make sure Godot is open (or else nothing will happen).
+:::tip
+If you need to share code **and** other resource files like scenes, textures, music, and anything else that isn't a C# source file, you should use a Godot Asset Library package instead. Chickensoft's [Chicken] CLI tool allows you to easily install and manage addons in your project.
+
+<Spacer><GithubCard profile='chickensoft-games' repo='Chicken' logo='/img/chickensoft/chicken.svg'/></Spacer>
 :::
 
 [dotnet-6-sdk]: https://dotnet.microsoft.com/en-us/download/dotnet/6.0
@@ -250,3 +278,4 @@ If you're using Godot 3, make sure Godot is open (or else nothing will happen).
 [mono]: https://www.mono-project.com/download/stable/
 [vs-2022]: https://visualstudio.microsoft.com/downloads/
 [win-env-vars]: https://github.com/sindresorhus/guides/blob/main/set-environment-variables.md#windows-7-and-8
+[Chicken]: https://github.com/chickensoft-games/chicken
