@@ -8,11 +8,11 @@ Simply add the following package references to your project's `.csproj` file (yo
 ```xml
 <ItemGroup>
   <!-- Include SuperNodes as a Source Generator -->
-  <PackageReference Include="Chickensoft.SuperNodes" Version="1.0.0" PrivateAssets="all" OutputItemType="analyzer" />
+  <PackageReference Include="Chickensoft.SuperNodes" Version="1.1.0" PrivateAssets="all" OutputItemType="analyzer" />
 
   <!-- Type definitions and attributes used by SuperNodes. -->
   <!-- By convention, version will be the same as the generator itself. -->
-  <PackageReference Include="Chickensoft.SuperNodes.Types" Version="1.0.0" />
+  <PackageReference Include="Chickensoft.SuperNodes.Types" Version="1.1.0" />
 </ItemGroup>
 ```
 
