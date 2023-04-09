@@ -145,13 +145,13 @@ const repos: Array<GithubCardProps> = [
   },
   {
     profile: 'chickensoft-games',
-    repo: 'GoDotNet',
-    logo: 'img/chickensoft/go_dot_net.svg',
+    repo: 'AutoInject',
+    logo: 'img/chickensoft/auto_inject.svg',
   },
   {
     profile: 'chickensoft-games',
-    repo: 'go_dot_dep',
-    logo: 'img/chickensoft/go_dot_dep.svg',
+    repo: 'GoDotNet',
+    logo: 'img/chickensoft/go_dot_net.svg',
   },
   {
     profile: 'chickensoft-games',
