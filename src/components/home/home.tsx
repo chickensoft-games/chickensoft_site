@@ -135,6 +135,11 @@ const repos: Array<GithubCardProps> = [
   },
   {
     profile: 'chickensoft-games',
+    repo: 'Bloc.NET',
+    logo: 'img/chickensoft/bloc_net.svg',
+  },
+  {
+    profile: 'chickensoft-games',
     repo: 'GoDotTest',
     logo: 'img/chickensoft/go_dot_test.svg',
   },
