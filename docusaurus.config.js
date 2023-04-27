@@ -79,6 +79,17 @@ const config = {
       },
     ],
   ],
+  headTags: [
+    // These will be injected into the head of every page.
+    {
+      // Mastodon verification :)
+      tagName: 'link',
+      attributes: {
+        rel: 'me',
+        href: 'https://mastodon.online/@jolexxa',
+      },
+    },
+  ],
   themeConfig:
     /** @type {import('@docusaurus/preset-classic').ThemeConfig} */
     ({
