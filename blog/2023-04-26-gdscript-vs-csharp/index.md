@@ -60,7 +60,7 @@ On the other hand, here's some reasons why you might choose C#:
 - ❌ You don't need to publish to Android or iOS. Currently, C# support is lagging behind GDScript in Godot 4.x for mobile platforms. You can [track the progress here][csharp-mobile].
 - ❌ You don't need to integrate with any GDExtensions. Currently, Godot does not generate C# bindings for GDExtensions, meaning you cannot call a GDExtension from C#. You can work around this by calling into GDScript from C# if you are willing to incur the performance penalty.
 - ❌ You don't need to create custom [resources][godot-resources] with C# (there's a [pull request][csharp-resources] for it open, but it hasn't made it in).
-:::
+  :::
 
 ## 🤖 GDScript
 
@@ -97,7 +97,7 @@ So what's the catch with GDScript? Not much, really, but I'll list a few conside
 - ⬜️ Whitespace-delimited syntax. If you can't stand Python or just strongly prefer curly braces, no amount of GDScript will ever soothe your soul. Likewise, if you love whitespace-delimited syntax, you'll feel right at home.
 - ⚡️ Not statically typed. While you can specify type hints to help with error-checking, they are optional at best. For some, this is an advantage. For others, the lack of enforced static typing presents a headache.
 
-For the majority of game developers I've spoken to, none of those are typically deal-breakers. GDScript has a cult following for a reason: it's *really*, *really* great. Now that you know its strengths and weaknesses, you can feel confident choosing it.
+For the majority of game developers I've spoken to, none of those are typically deal-breakers. GDScript has a cult following for a reason: it's _really_, _really_ great. Now that you know its strengths and weaknesses, you can feel confident choosing it.
 
 Still not convinced? Let's talk about C#.
 
@@ -155,7 +155,7 @@ If you'd like to use Godot from a GitHub actions workflow, you can use [setup-go
 We also have packages for [running tests inside Godot][go-dot-test], creating basic [state machines][go-dot-net] in C#, [logging][go-dot-log], and a handful of other things.
 
 :::tip
-Chickensoft is an open source organization — all of our offerings are *free*. We welcome contributions and feedback from the community!
+Chickensoft is an open source organization — all of our offerings are _free_. We welcome contributions and feedback from the community!
 :::
 
 ## 🎁 Wrapping Up
