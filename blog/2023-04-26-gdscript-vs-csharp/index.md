@@ -158,6 +158,18 @@ We also have packages for [running tests inside Godot][go-dot-test], creating ba
 Chickensoft is an open source organization — all of our offerings are _free_. We welcome contributions and feedback from the community!
 :::
 
+## 😅 Afraid of Commitment?
+
+Since you can mix and match C# and GDScript in the same project, you only have to choose which language you want to use for the _majority_ of your project.
+
+:::tip
+Since most of the existing Godot addons are written with GDScript, it's unlikely you'd need to call into C# from GDScript if you picked GDScript for your scripting language.
+:::
+
+If you happened to have chosen C# as your primary scripting language, you may need to be able to call into GDScript occasionally from C# since it is impractical to rewrite every addon you might need in C#. While this probably isn't as efficient as keeping everything in one language, it can really help in a pinch.
+
+So, if you hate committing to a single language, why not have both[^1]? The Godot documentation discusses [how to bridge between C# and GDScript][cross-lang-scripting].
+
 ## 🎁 Wrapping Up
 
 Even though Chickensoft is dedicated to the C# Godot community, C# isn't necessarily the correct choice for every Godot game. For most people, GDScript is probably the best choice.
@@ -169,6 +181,8 @@ Ultimately, if you decide to embark on an adventure and use C# for your next God
 :::info
 If you're interested in what I'm up to, you are more than welcome to [follow me on Mastodon][mastodon] or [reach out to me on Discord][discord-personal].
 :::
+
+[^1]: Practically speaking, there are very good reasons to keep the majority of your codebase in a single language: consistency, ease of refactoring, lowering the barrier to ramp up contributors, etc.
 
 [gdscript-lambdas]: https://docs.godotengine.org/en/stable/tutorials/scripting/gdscript/gdscript_basics.html#lambda-functions
 [gdextension]: https://docs.godotengine.org/en/stable/tutorials/scripting/gdextension/what_is_gdextension.html
@@ -200,3 +214,4 @@ If you're interested in what I'm up to, you are more than welcome to [follow me 
 [vs]: https://visualstudio.microsoft.com/
 [rider]: https://www.jetbrains.com/rider/
 [vscode]: https://code.visualstudio.com/
+[cross-lang-scripting]: https://docs.godotengine.org/en/stable/tutorials/scripting/cross_language_scripting.html
