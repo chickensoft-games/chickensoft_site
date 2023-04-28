@@ -24,8 +24,10 @@
   --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.1);
 
   /* Change tips from green to purple */
-  --ifm-color-success-contrast-background: rgb(255, 231, 218) !important;
-  --ifm-color-success-dark: rgb(209, 168, 142) !important;
+  --ifm-color-success-contrast-background: rgb(255, 240, 218) !important;
+  --ifm-color-success-dark: rgb(229, 204, 174) !important;
+  --ifm-alert-background-color-highlight: #a4570026 !important;
+  --ifm-color-success-contrast-foreground: #483e30 !important;
 
   /* Custom sizings */
   --ifm-font-size-base: 18px;
@@ -49,9 +51,20 @@
   --tabs-background-color: var(--ifm-background-surface-color);
   --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.3);
 
-  /* Change tips from green to purple */
+  /* Change tips from green to something less jarring */
   --ifm-color-success-contrast-background: rgb(46, 36, 31) !important;
   --ifm-color-success-dark: rgb(86, 66, 53) !important;
+  --ifm-alert-background-color-highlight: #a4570026 !important;
+  --ifm-color-success-contrast-foreground: #ecc9a2 !important;
+}
+
+/** Make normal tip alerts yellow-ish instead of green */
+.alert--success {
+  --ifm-code-background: #ecddca !important;
+}
+
+[data-theme='dark'] .alert--success {
+  --ifm-code-background: #40372b !important;
 }
 
 /* Override tabs background */
