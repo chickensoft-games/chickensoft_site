@@ -8,6 +8,7 @@ var TwitterClient = require('twitter-api-sdk').Client;
 const { Octokit } = require('@octokit/rest');
 
 const organizationName = 'chickensoft-games';
+const numBlogsToShowOnHome = 3;
 
 async function blogPluginExtended(...pluginArgs) {
   const blogPluginInstance = await defaultBlogPlugin(...pluginArgs);
@@ -47,8 +48,8 @@ async function blogPluginExtended(...pluginArgs) {
       // Allow other plugins to access the cached twitter and repository data.
       setGlobalData({ twitterData: twitterData, repos: repos });
 
-      // Get the 5 latest blog posts
-      const recentPosts = [...blogPosts].splice(0, 5);
+      // Get the latest blog posts
+      const recentPosts = [...blogPosts].splice(0, numBlogsToShowOnHome);
 
       addRoute({
         // Add route for the home page

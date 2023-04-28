@@ -205,6 +205,14 @@ function HomepageFeatures(props: HomeProps): JSX.Element {
           <div className={clsx('col col--4 padding-vert--sm')}>
             <ChickensoftDiscordServer />
           </div>
+        </div>
+        <div className="row padding-top--lg">
+          <div>
+            <h1>Latest Articles</h1>
+            <p>For more on Godot and C#, check out our latest articles!</p>
+          </div>
+        </div>
+        <div className="row">
           {props.recentPosts.map(({ content: BlogPostContent }) => (
             <div
               key={BlogPostContent.metadata.permalink}
