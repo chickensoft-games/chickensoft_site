@@ -12,7 +12,7 @@ import { lookup } from '@site/src/utils/lookup';
 import { Content } from '@theme/BlogPostPage';
 import Layout from '@theme/Layout';
 import clsx from 'clsx';
-import React from 'react';
+import React, { useEffect } from 'react';
 
 import styles from './home.module.css';
 
@@ -22,6 +22,21 @@ const github = lookup(config, 'github');
 const homepagePreview = lookup(config, 'homepagePreview');
 const homepagePreviewAbsolute = lookup(config, 'homepagePreviewAbsolute');
 const twitter = lookup(config, 'twitter');
+
+const senderNetEmailSignUpScript = `
+  (function (s, e, n, d, er) {
+    s['Sender'] = er;
+    s[er] = s[er] || function () {
+      (s[er].q = s[er].q || []).push(arguments)
+    }, s[er].l = 1 * new Date();
+    var a = e.createElement(n),
+        m = e.getElementsByTagName(n)[0];
+    a.async = 1;
+    a.src = d;
+    m.parentNode.insertBefore(a, m)
+  })(window, document, 'script', 'https://cdn.sender.net/accounts_resources/universal.js', 'sender');
+  sender('92c709a1255511')
+`;
 
 type RecentPosts = { content: Content }[];
 interface HomeProps {
@@ -61,6 +76,13 @@ function HomepageHeader() {
 
 export default function Home(props: HomeProps): JSX.Element {
   const { siteConfig } = useDocusaurusContext();
+  useEffect(() => {
+    const body = document.querySelector('body');
+    const script = document.createElement('script');
+    script.innerHTML = senderNetEmailSignUpScript;
+    script.type = 'text/javascript';
+    body.appendChild(script);
+  }, [senderNetEmailSignUpScript]);
   return (
     <Layout description={`${siteConfig.tagline}.`}>
       <Head>
@@ -203,7 +225,22 @@ function HomepageFeatures(props: HomeProps): JSX.Element {
         </div>
         <div className="row">
           <div className={clsx('col col--4 padding-vert--sm')}>
-            <ChickensoftDiscordServer />
+            <div className={styles.panelContainer}>
+              <div className={styles.panelContainerContents}>
+                <ChickensoftDiscordServer />
+              </div>
+            </div>
+          </div>
+          <div className={clsx('col col--4 padding-vert--sm')}>
+            <div className={styles.panelContainer}>
+              <div className={styles.panelContainerContents}>
+                <div
+                  style={{ textAlign: 'left' }}
+                  className="sender-form-field"
+                  data-sender-form-id="lh11hwhxdw6ozbn5zfo"
+                ></div>
+              </div>
+            </div>
           </div>
         </div>
         <div className="row padding-top--lg">
