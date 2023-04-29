@@ -11,12 +11,16 @@
   flex-direction: column;
   justify-content: space-between;
   background-color: var(--discord-background-color);
-  border-radius: 10px;
+  border-radius: 6px;
   padding: 16px;
   font-family: Whitney, 'Helvetica Neue', Helvetica, Arial, sans-serif;
   font-size: 14px;
-  flex-grow: 1;
   text-align: center;
+  flex-grow: 1;
+  max-width: 418px;
+  height: calc(100% - 10px);
+  box-shadow: rgba(0, 0, 0, 0.25) 0px 0px 10px 5px;
+  padding: 24px 16px;
 }
 
 .discordServer:hover {
@@ -69,9 +73,9 @@
   position: absolute;
 }
 
-.discordInviteVerifiedTickSvg {
-  /* color: white; */
-}
+/* .discordInviteVerifiedTickSvg {
+  color: white;
+} */
 
 .discordInviteCounts {
   margin: 0;
