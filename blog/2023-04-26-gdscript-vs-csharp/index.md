@@ -59,7 +59,7 @@ On the other hand, here's some reasons why you might choose C#:
 - ✅ You need access to the vast library of .NET packages.
 - ❌ You don't need to publish to Android or iOS. Currently, C# support is lagging behind GDScript in Godot 4.x for mobile platforms. You can [track the progress here][csharp-mobile].
 - ❌ You don't need to integrate with any GDExtensions. Currently, Godot does not generate C# bindings for GDExtensions, meaning you cannot call a GDExtension from C#. You can work around this by calling into GDScript from C# if you are willing to incur the performance penalty.
-- ❌ You don't need to create custom [resources][godot-resources] with C# (there's a [pull request][csharp-resources] for it open, but it hasn't made it in).
+- ~~❌ You don't need to edit [resources][godot-resources] created with C# in the editor~~. Actually, [this has been fixed][csharp-resources]!
 
 :::
 
@@ -116,7 +116,6 @@ Before we get too far, it's worth reiterating a couple of points:
 
 - ❌ Godot can't export C# games for iOS or Android.
 - ❌ You cannot call GDExtensions directly from C#.
-- ❌ You can't create custom [resources][godot-resources] with C# (there's a [pull request][csharp-resources] for it open, but it hasn't made it in).
 
 If either of those are an immediate must-have for your project, you should **not** use C#. Unless you are optimistic and believe those shortcomings will be addressed by the time your project requires them, you should use GDScript or a third party language integration instead.
 
