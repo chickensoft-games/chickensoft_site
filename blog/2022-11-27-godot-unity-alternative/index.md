@@ -71,9 +71,7 @@ Most of us would normally be thrilled about free assets, but when you're an arti
 
 Monetization, as [someone pointed out on Reddit][reddit-asset-store-comment], requires a lot of bureaucratic effort. Collecting payments and being responsible for payment handling is a gigantic chore.
 
-In 2021, the founder of Godot — Juan Linietsky — confirmed a paid asset marketplace was on the way.
-
-<Tweet id="1395380550983196673" />
+In 2021, the founder of Godot — Juan Linietsky — [confirmed a paid asset marketplace was on the way][godot-paid-assets].
 
 The Godot team recently announced the formation of the non-profit [Godot Foundation][godot-foundation], citing a paid asset marketplace as one of the primary motivations:
 
@@ -250,3 +248,4 @@ Making Godot games with C# is an incredible experience, and it's only getting be
 [go_dot_log]: https://github.com/chickensoft-games/go_dot_log
 [go_dot_test]: https://github.com/chickensoft-games/go_dot_test
 [go_dot_net]: https://github.com/chickensoft-games/go_dot_net
+[godot-paid-assets]: https://twitter.com/reduzio/status/1395380550983196673

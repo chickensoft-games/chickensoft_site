@@ -26,6 +26,14 @@ async function blogPluginExtended(...pluginArgs) {
 
       var repos = await fetchOrganizationPublicRepositories(organizationName);
 
+      /*
+      ------------------------------------------------------------------------
+      INFO: The owner of Twitter is a nazi. Incidentally, he's also disabled
+      free access to the Twitter API — so all of this no longer works.
+
+      No more embedding tweets :'(
+      ------------------------------------------------------------------------
+
       // find twitter id's in blogPosts and fetch them from twitter.
       // we have to do this at build time since twitter's api requires a
       // bearer token we can't share.
@@ -47,6 +55,11 @@ async function blogPluginExtended(...pluginArgs) {
 
       // Allow other plugins to access the cached twitter and repository data.
       setGlobalData({ twitterData: twitterData, repos: repos });
+
+      ------------------------------------------------------------------------
+      */
+
+      setGlobalData({ repos: repos });
 
       // Get the latest blog posts
       const recentPosts = [...blogPosts].splice(0, numBlogsToShowOnHome);
