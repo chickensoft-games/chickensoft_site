@@ -157,8 +157,8 @@ const repos: Array<GithubCardProps> = [
   },
   {
     profile: 'chickensoft-games',
-    repo: 'Bloc.NET',
-    logo: 'img/chickensoft/bloc_net.svg',
+    repo: 'LogicBlocks',
+    logo: 'img/chickensoft/logic_blocks.png',
   },
   {
     profile: 'chickensoft-games',
