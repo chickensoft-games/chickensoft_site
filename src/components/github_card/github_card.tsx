@@ -82,7 +82,7 @@ export default function GithubCard(props: GithubCardProps): JSX.Element {
           <h1>{props.repo}</h1>
         </div>
         <div className={css.headerLogo}>
-          <img src={props.logo} width="auto" height="100%" />
+          <img src={props.logo} width="auto" height="auto" />
         </div>
       </header>
       <summary className={css.description}>{description}</summary>
