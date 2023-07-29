@@ -83,9 +83,15 @@ export default function Home(props: HomeProps): JSX.Element {
     script.type = 'text/javascript';
     body.appendChild(script);
   }, [senderNetEmailSignUpScript]);
+
+  // noodp and noydir tell search engines not to use metadata from the Open
+  // Directory project or the Yahoo Directory, increasing the likelihood of
+  // using the metadata we provide.
+
   return (
     <Layout description={`${siteConfig.tagline}.`}>
       <Head>
+        <meta name="robots" content="noodp,noydir" />
         <meta name="og:description" content={siteConfig.tagline} />
         <meta name="twitter:description" content={siteConfig.tagline} />
         <meta name="og:image" content={homepagePreview} />
