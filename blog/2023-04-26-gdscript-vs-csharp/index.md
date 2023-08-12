@@ -57,9 +57,8 @@ On the other hand, here's some reasons why you might choose C#:
 - ✅ You need access to mature developer tooling: linting, custom analyzers, and source generation.
 - ✅ You want additional performance without resorting to a systems language.
 - ✅ You need access to the vast library of .NET packages.
-- ❌ You don't need to publish to Android or iOS. Currently, C# support is lagging behind GDScript in Godot 4.x for mobile platforms. You can [track the progress here][csharp-mobile].
+- ⚠️ You don't need to export to iOS or web — yet. [While C# Android export is being tested][csharp-android-export] in the latest releases, support for exporting to iOS and web are still planned for future releases. You can [track the progress here][csharp-mobile].
 - ❌ You don't need to integrate with any GDExtensions. Currently, Godot does not generate C# bindings for GDExtensions, meaning you cannot call a GDExtension from C#. You can work around this by calling into GDScript from C# if you are willing to incur the performance penalty.
-- ~~❌ You don't need to edit [resources][godot-resources] created with C# in the editor~~. Actually, [this has been fixed][csharp-resources]!
 
 :::
 
@@ -114,7 +113,7 @@ C# code for an editor tool that helps visualize a <code>RayCast3D</code>.
 
 Before we get too far, it's worth reiterating a couple of points:
 
-- ❌ Godot can't export C# games for iOS or Android.
+- ❌ Godot can't export C# games for iOS or web.
 - ❌ You cannot call GDExtensions directly from C#.
 
 If either of those are an immediate must-have for your project, you should **not** use C#. Unless you are optimistic and believe those shortcomings will be addressed by the time your project requires them, you should use GDScript or a third party language integration instead.
@@ -195,8 +194,6 @@ If you're interested in what I'm up to, you are more than welcome to [follow me 
 [gdscript-formatter]: https://marketplace.visualstudio.com/items?itemName=Razoric.gdscript-toolkit-formatter
 [godot-2022-poll]: https://docs.google.com/forms/d/e/1FAIpQLSe-OIpxXqou9cDnPXEAjxzpICbf8_YZB3jUizdECXRydtB8cA/viewanalytics
 [csharp-whats-new]: https://godotengine.org/article/whats-new-in-csharp-for-godot-4-0/
-[godot-resources]: https://docs.godotengine.org/en/stable/tutorials/scripting/resources.html
-[csharp-resources]: https://github.com/godotengine/godot/pull/72619
 [godot-discord]: https://discord.gg/4JBkykG
 [discord]: https://discord.gg/gSjaPgMmYW
 [Chickensoft]: /
@@ -215,3 +212,4 @@ If you're interested in what I'm up to, you are more than welcome to [follow me 
 [rider]: https://www.jetbrains.com/rider/
 [vscode]: https://code.visualstudio.com/
 [cross-lang-scripting]: https://docs.godotengine.org/en/stable/tutorials/scripting/cross_language_scripting.html
+[csharp-android-export]: https://godotengine.org/article/dev-snapshot-godot-4-2-dev-3/
