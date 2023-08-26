@@ -178,11 +178,6 @@ const repos: Array<GithubCardProps> = [
   },
   {
     profile: 'chickensoft-games',
-    repo: 'GoDotNet',
-    logo: 'img/chickensoft/go_dot_net.svg',
-  },
-  {
-    profile: 'chickensoft-games',
     repo: 'GoDotLog',
     logo: 'img/chickensoft/go_dot_log.svg',
   },
