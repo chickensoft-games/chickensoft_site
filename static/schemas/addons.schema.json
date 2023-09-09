@@ -4,7 +4,7 @@
   "title": "Godot Addons",
   "description": "Godot addons configuration file.",
   "type": "object",
-  "dependencies": {
+  "definitions": {
     "addon": {
       "type": "object",
       "description": "Information about an addon for a Godot project.",
