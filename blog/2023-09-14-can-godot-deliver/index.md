@@ -82,6 +82,7 @@ So, if I was a big studio with millions of dollars to toss around, I'd put it in
 <!-- truncate -->
 
 <!-- Sources -->
+
 [forbes]: https://www.forbes.com/sites/paultassi/2023/09/13/the-entire-gaming-industry-unites-against-unitys-baffling-pricing-change/?sh=3f403fa5679b
 [valid-installs]: https://twitter.com/unity/status/1701689241456021607
 [marketwatch]: https://www.marketwatch.com/story/unity-software-loses-5-billion-in-market-cap-after-apples-changes-lead-to-self-inflicted-wound-11652291876
