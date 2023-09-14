@@ -10,7 +10,7 @@ const discordInviteCode = lookup(config, 'discordInviteCode');
 export default function ChickensoftDiscordServer() {
   return (
     <DiscordServer
-      serverName={config.title}
+      serverName={lookup(config, 'shortTitle')}
       logo={logo}
       discordInviteCode={discordInviteCode}
       discord={discord}
