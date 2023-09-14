@@ -36,6 +36,8 @@ authors: [joanna]
 
 The game engine company Unity has once again gained notoriety for offending its users. This time, they've announced [a $0.20 per install fee][forbes] for games that surpass $200,000 in revenue. Of course, how they determine what constitutes a valid install is [not something they're willing to share][valid-installs].
 
+<!-- truncate -->
+
 ## 💔 Loved by all?
 
 Unity's recent cash grab is not all that unexpected, either: this is just the latest transgression in a string of unpopular decisions. In case you missed it, here's what the world's most-popular game engine has been up to:
