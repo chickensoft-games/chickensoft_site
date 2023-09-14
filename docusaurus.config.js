@@ -23,6 +23,7 @@ const config = {
     homepagePreview: '/img/preview.png',
     homepagePreviewAbsolute: 'https://chickensoft.games/img/preview.png',
     twitter: '@joannanyana',
+    shortTitle: 'Chickensoft',
   },
 
   // GitHub pages deployment config.

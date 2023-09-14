@@ -50,7 +50,9 @@ function HomepageHeader() {
       <div className="container">
         <span>
           <img src={logo} height="128" />
-          <h1 className="hero__title inline">{siteConfig.title}</h1>
+          <h1 className="hero__title inline">
+            {lookup(siteConfig, 'shortTitle')}
+          </h1>
         </span>
         <p className="hero__subtitle">{siteConfig.tagline}</p>
         <p>
