@@ -34,7 +34,7 @@ authors: [joanna]
 
 <FancyImage src={require("./header.jpg").default} alt="While Unity continues to break the trust of its users, Godot is promising to be the free and open 'game engine you've been waiting for.' But can it deliver?" />
 
-The game engine company Unity has once again gained notoriety for offending its users. This time, they've announced [a $0.20 per install fee][forbes] for games that surpass $200,000 in revenue. Of course, how they determine what constitutes a valid install is [not something they're willing to share][valid-installs].
+The game engine company Unity has once again gained notoriety for offending its users. This time, they've announced [a $0.20 per install fee](https://www.forbes.com/sites/paultassi/2023/09/13/the-entire-gaming-industry-unites-against-unitys-baffling-pricing-change/?sh=3f403fa5679b) for games that surpass $200,000 in revenue. Of course, how they determine what constitutes a valid install is [not something they're willing to share](https://twitter.com/unity/status/1701689241456021607).
 
 <!-- truncate -->
 
@@ -85,8 +85,6 @@ So, if I was a big studio with millions of dollars to toss around, I'd put it in
 
 <!-- Sources -->
 
-[forbes]: https://www.forbes.com/sites/paultassi/2023/09/13/the-entire-gaming-industry-unites-against-unitys-baffling-pricing-change/?sh=3f403fa5679b
-[valid-installs]: https://twitter.com/unity/status/1701689241456021607
 [marketwatch]: https://www.marketwatch.com/story/unity-software-loses-5-billion-in-market-cap-after-apples-changes-lead-to-self-inflicted-wound-11652291876
 [gigaya]: https://forum.unity.com/threads/introducing-gigaya-unitys-upcoming-sample-game.1257135/page-2#post-8278305
 [techspot]: https://www.techspot.com/news/95143-unity-laying-off-hundreds-employees-shares-continue-slide.html
