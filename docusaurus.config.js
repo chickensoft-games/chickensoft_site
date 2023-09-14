@@ -6,8 +6,8 @@ const darkCodeTheme = require('prism-react-renderer/themes/duotoneDark');
 
 /** @type {import('@docusaurus/types').Config} */
 const config = {
-  title: 'Chickensoft',
-  tagline: 'Open source tools for C# and Godot.',
+  title: 'Chickensoft — Open source tools for Godot and C#',
+  tagline: 'Open source tools for Godot and C#.',
   url: 'https://chickensoft.games',
   baseUrl: '/',
   onBrokenLinks: 'throw',

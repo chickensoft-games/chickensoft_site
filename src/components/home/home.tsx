@@ -138,8 +138,8 @@ function HomepageHeroImage() {
 const repos: Array<GithubCardProps> = [
   {
     profile: 'chickensoft-games',
-    repo: 'Chicken',
-    logo: 'img/chickensoft/chicken.svg',
+    repo: 'GodotEnv',
+    logo: 'img/chickensoft/godot_env.png',
   },
   {
     profile: 'chickensoft-games',
