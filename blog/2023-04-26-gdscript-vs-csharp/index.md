@@ -143,7 +143,7 @@ Want to quickly create a Godot game with basic CI/CD and unit testing already se
 
 Need to inject code into lifecycle methods in your scripts automatically? We have a [source generator][super-nodes] for that. How about automatic, [node-based dependency injection][auto-inject]?
 
-We even have our own command line tool, [Chicken][chicken], that will automatically manage Godot addons for your project based on an `addons.json` file and let you symlink addons locally while they're in development. No more git submodules for addons!
+We even have our own command line tool, [GodotEnv][godotenv], that will automatically manage Godot addons for your project based on an `addons.json` file and let you symlink addons locally while they're in development. No more git submodules for addons!
 
 <FancyImage src={require("./packages.jpg").default} alt="Chickensoft's package offerings">
 Chickensoft's package offerings as of April 2023.
@@ -205,7 +205,7 @@ If you're interested in what I'm up to, you are more than welcome to [follow me 
 [go-dot-test]: https://github.com/chickensoft-games/GoDotTest
 [go-dot-net]: https://github.com/chickensoft-games/GoDotNet
 [go-dot-log]: https://github.com/chickensoft-games/GoDotLog
-[Chicken]: https://github.com/chickensoft-games/Chicken
+[godotenv]: https://github.com/chickensoft-games/GodotEnv
 [mastodon]: https://mastodon.online/@jolexxa
 [discord-personal]: https://discordapp.com/users/jolexxa#4292
 [vs]: https://visualstudio.microsoft.com/

@@ -267,9 +267,9 @@ dotnet build
 Open the new project in VSCode and use the provided launch configurations to debug your application.
 
 :::tip
-If you need to share code **and** other resource files like scenes, textures, music, and anything else that isn't a C# source file, you should use a Godot Asset Library package instead. Chickensoft's [Chicken] CLI tool allows you to easily install and manage addons in your project.
+If you need to share code **and** other resource files like scenes, textures, music, and anything else that isn't a C# source file, you should use a Godot Asset Library package instead. Chickensoft's [GodotEnv] CLI tool allows you to easily install and manage addons in your project.
 
-<Spacer><GithubCard profile='chickensoft-games' repo='Chicken' logo='/img/chickensoft/chicken.svg'/></Spacer>
+<Spacer><GithubCard profile='chickensoft-games' repo='GodotEnv' logo='/img/chickensoft/godot_env.png'/></Spacer>
 :::
 
 [dotnet-6-sdk]: https://dotnet.microsoft.com/en-us/download/dotnet/6.0
@@ -278,4 +278,4 @@ If you need to share code **and** other resource files like scenes, textures, mu
 [mono]: https://www.mono-project.com/download/stable/
 [vs-2022]: https://visualstudio.microsoft.com/downloads/
 [win-env-vars]: https://github.com/sindresorhus/guides/blob/main/set-environment-variables.md#windows-7-and-8
-[Chicken]: https://github.com/chickensoft-games/chicken
+[GodotEnv]: https://github.com/chickensoft-games/GodotEnv

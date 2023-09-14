@@ -145,7 +145,7 @@ So what are you waiting on? It’s certainly not Godot. Make that indie C# game 
 [godot-paid]: https://github.com/godotengine/godot-asset-library/issues/126
 [godot-now-avail]: https://godotengine.org/article/release-candidate-godot-3-5-rc-5
 [csharp-users]: https://docs.google.com/forms/d/e/1FAIpQLSe-OIpxXqou9cDnPXEAjxzpICbf8_YZB3jUizdECXRydtB8cA/viewanalytics
-[addons]: https://github.com/chickensoft-games/chicken
+[addons]: https://github.com/chickensoft-games/GodotEnv
 [test-frameworks]: https://github.com/chickensoft-games/go_dot_test
 [serializers]: https://github.com/Carnagion/GDSerializer
 [mod-loaders]: https://github.com/Carnagion/Modot

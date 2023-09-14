@@ -145,17 +145,17 @@ By adding a few nuget `<PackageReference>` tags to your `.csproj` file, you can 
 
 > All of the Chickensoft packages were dogfooded, meaning I built them because I was trying to solve the same problems every time I created a new game project. I never did finish a game, but at least I have some tools. Maybe next time...
 
-### Announcing Chicken
+### Announcing GodotEnv
 
-[Chicken][chicken] is a command line tool to help manage Godot addons and quickly create new Godot projects from a template.
+[GodotEnv][godotenv] is a command line tool to help manage Godot addons and quickly create new Godot projects from a template.
 
-<FancyImage src='/img/chickensoft/chicken_cli.svg' alt="Chicken CLI" widthOverride="200px" />
+<FancyImage src='/img/chickensoft/godot_env.png' alt="GodotEnv CLI" widthOverride="200px" />
 
-<Spacer><GithubCard profile='chickensoft-games' repo='Chicken' logo='/img/chickensoft/chicken.svg'/></Spacer>
+<Spacer><GithubCard profile='chickensoft-games' repo='GodotEnv' logo='/img/chickensoft/godot_env.png'/></Spacer>
 
 While learning Godot, I kept running into the same few headaches over and over. When trying to make my code reusable across game projects, I realized there was no easy way to keep my addons up to date while I was still developing them. Likewise, whenever I created a new sandbox project, I had to copy a dozen or so files into the new project every time.
 
-Chicken's addon management system allows you to declare dependencies in their own file (to prevent versioning headaches with git submodules), while template generation enables you to quickly create new projects without having to copy over all the files you need each time.
+GodotEnv's addon management system allows you to declare dependencies in their own file (to prevent versioning headaches with git submodules), while template generation enables you to quickly create new projects without having to copy over all the files you need each time.
 
 #### Addon Management, Simplified
 
@@ -169,9 +169,9 @@ Importing nuget packages is as simple as adding them to your Godot project's `.c
 Addons, on the other hand, allow you to reuse _anything_.
 :::
 
-If git submodules also sound too painful to you, Chicken allows you to declare what addons your project needs in an `addons.json` file so it can install them for you.
+If git submodules also sound too painful to you, GodotEnv allows you to declare what addons your project needs in an `addons.json` file so it can install them for you.
 
-Chicken also lets you install addons by copying or symlinking to local folders.
+GodotEnv also lets you install addons by copying or symlinking to local folders.
 
 ```js
 {
@@ -199,7 +199,7 @@ Chicken also lets you install addons by copying or symlinking to local folders.
 Then, all you have to do is run the following:
 
 ```sh
-chicken addons install
+godotenv addons install
 ```
 
 ## 🎬 Conclusion
@@ -242,7 +242,7 @@ Making Godot games with C# is an incredible experience, and it's only getting be
 [native-extension]: https://discord.com/channels/862108653488963604/1039016978528088074/1039212956438773843
 [satirogue]: https://github.com/lewiji/SatiRogue
 [tetrismckenna]: https://twitter.com/TetrisMcKenna
-[chicken]: https://github.com/chickensoft-games/chicken
+[godotenv]: https://github.com/chickensoft-games/GodotEnv
 [chickensoft-website]: https://github.com/chickensoft-games/chickensoft_site
 [go_dot_dep]: https://github.com/chickensoft-games/go_dot_dep
 [go_dot_log]: https://github.com/chickensoft-games/go_dot_log
