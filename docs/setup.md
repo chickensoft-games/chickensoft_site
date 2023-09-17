@@ -175,7 +175,7 @@ In Windows, when using the bash shell that comes with Git (Git Bash), you can pl
 ```sh
 # .NET SDK Configuration
 export DOTNET_CLI_TELEMETRY_OPTOUT=1 # Disable analytics
-export DOTNET_ROOT="C:\\Program Files\\dotnet\\dotnet.exe"
+export DOTNET_ROOT="C:\\Program Files\\dotnet\\"
 
 # Add the .NET SDK to the system paths so we can use the `dotnet` tool.
 export PATH="C:\\Program Files\\dotnet:$PATH"
