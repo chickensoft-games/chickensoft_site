@@ -86,7 +86,7 @@ Let's setup the shell environment to contain environment variables that point to
 
 ### 👩‍💻 Which shell should I use?
 
-For the sake of consistency, Chickensoft officially recommends using a bash shell on every OS, *especially* if you are developing your game to be cross-platform on macOS, Windows, and Linux — which is pretty easy to do with Godot, once your environments are setup correctly.
+For the sake of consistency, Chickensoft officially recommends using a bash shell on every OS, _especially_ if you are developing your game to be cross-platform on macOS, Windows, and Linux — which is pretty easy to do with Godot, once your environments are setup correctly.
 
 Since a bash shell is not available on Windows by default, you can access one by installing [git], which includes the Git Bash for Windows application. You can also configure the Windows Terminal (there's an option to add a Windows Terminal profile in the git installer) and [VSCode to use bash][vscode-bash] by default.
 
@@ -209,7 +209,7 @@ Using GodotEnv to install and manage Godot on your system provides a number of a
 - ✅ Standardizes installation locations across platforms and machines, making it easier to collaborate with other teammates.
 
 - ✅ Quickly change the system Godot version to any installed version, as well as listing all the installed versions.
-:::
+  :::
 
 If you're not convinced, you can always [download Godot][download-godot] manually and install it wherever you'd like.
 
@@ -220,26 +220,26 @@ If you're using GodotEnv, Godot versions will automatically be installed in the 
 <Tabs groupId="os">
   <TabItem value="macOS">
 
-  | Location    | Path                                                                                                      |
-  |-------------|-----------------------------------------------------------------------------------------------------------|
-  | Symlink     | `/Users/{you}/.config/godotenv/godot/bin`                                                                 |
-  | Actual Path | `/Users/{you}/.config/godotenv/godot/versions/godot_dotnet_{version}/Godot_mono.app/Contents/MacOS/Godot` |
+| Location    | Path                                                                                                      |
+| ----------- | --------------------------------------------------------------------------------------------------------- |
+| Symlink     | `/Users/{you}/.config/godotenv/godot/bin`                                                                 |
+| Actual Path | `/Users/{you}/.config/godotenv/godot/versions/godot_dotnet_{version}/Godot_mono.app/Contents/MacOS/Godot` |
 
   </TabItem>
   <TabItem value="Linux">
 
-  | Location    | Path                                                                                                                                                     |
-  |-------------|----------------------------------------------------------------------------------------------------------------------------------------------------------|
-  | Symlink     | `/home/{you}/.config/godotenv/godot/bin`                                                                                                                 |
-  | Actual Path | `/home/{you}/.config/godotenv/godot/versions/godot_dotnet_{version}/Godot_v{version}-stable_mono_linux_x86_64/Godot_v{version}-stable_mono_linux.x86_64` |
+| Location    | Path                                                                                                                                                     |
+| ----------- | -------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Symlink     | `/home/{you}/.config/godotenv/godot/bin`                                                                                                                 |
+| Actual Path | `/home/{you}/.config/godotenv/godot/versions/godot_dotnet_{version}/Godot_v{version}-stable_mono_linux_x86_64/Godot_v{version}-stable_mono_linux.x86_64` |
 
   </TabItem>
   <TabItem value="Windows">
 
-  | Location    | Path                                                                                                                                                      |
-  |-------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------|
-  | Symlink     | `C:\Users\{you}\AppData\Roaming\godotenv\godot\bin`                                                                                                       |
-  | Actual Path | `C:\Users\{you}\AppData\Roaming\godotenv\godot\versions\godot_dotnet_{version}\Godot_v{version}-stable_mono_win64\Godot_v{version}-stable_mono_win64.exe` |
+| Location    | Path                                                                                                                                                      |
+| ----------- | --------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Symlink     | `C:\Users\{you}\AppData\Roaming\godotenv\godot\bin`                                                                                                       |
+| Actual Path | `C:\Users\{you}\AppData\Roaming\godotenv\godot\versions\godot_dotnet_{version}\Godot_v{version}-stable_mono_win64\Godot_v{version}-stable_mono_win64.exe` |
 
   </TabItem>
 </Tabs>
@@ -253,33 +253,33 @@ All Chickensoft templates and [VSCode launch configurations][vscode-launch] rely
 
 If you're not using GodotEnv or want to double check that the variable exists, please make sure you've setup the environment variables as follows:
 <Tabs groupId="os">
-  <TabItem value="macOS">
+<TabItem value="macOS">
 
-  In your `~/.zshrc` file, make sure something like the following exists.
-  
-  ```sh
-  # This should be added to your ~/.zshrc file by GodotEnv automatically, but
-  # you can also add it manually and change the path of Godot to match
-  # your system. 
-  export GODOT="/Users/{you}/.config/godotenv/godot/bin"
-  ```
+In your `~/.zshrc` file, make sure something like the following exists.
+
+```sh
+# This should be added to your ~/.zshrc file by GodotEnv automatically, but
+# you can also add it manually and change the path of Godot to match
+# your system.
+export GODOT="/Users/{you}/.config/godotenv/godot/bin"
+```
 
   </TabItem>
   <TabItem value="Linux">
 
-  In your `~/.bashrc` file, make sure something like the following exists.
-  
-  ```sh
-  # This should be added to your ~/.zshrc file by GodotEnv automatically, but
-  # you can also add it manually and change the path of Godot to match
-  # your system. 
-  export GODOT="/home/{you}/.config/godotenv/godot/bin"
-  ```
+In your `~/.bashrc` file, make sure something like the following exists.
+
+```sh
+# This should be added to your ~/.zshrc file by GodotEnv automatically, but
+# you can also add it manually and change the path of Godot to match
+# your system.
+export GODOT="/home/{you}/.config/godotenv/godot/bin"
+```
 
   </TabItem>
   <TabItem value="Windows">
 
-  Windows has a visual editor for updating environment variables. See [this article][win-env-vars].
+Windows has a visual editor for updating environment variables. See [this article][win-env-vars].
 
   </TabItem>
 </Tabs>
@@ -338,7 +338,7 @@ Open your [VSCode Settings as a JSON file][vscode-settings] and add the followin
 // Respect .editorconfig files.
 "omnisharp.enableEditorConfigSupport": true,
 // Scan the entire project.
-"omnisharp.enableMsBuildLoadProjectsOnDemand": false, 
+"omnisharp.enableMsBuildLoadProjectsOnDemand": false,
 // Find all the symbols — or as many/few as your computer can handle.
 "omnisharp.maxFindSymbolsItems": 10000,
 // Keeps using statements nicely organized.
@@ -347,7 +347,7 @@ Open your [VSCode Settings as a JSON file][vscode-settings] and add the followin
 "omnisharp.useModernNet": true,
 // ------------------------------------------------------------------- //
 // Uncomment these and adjust as necessary if you get OmniSharp output
-// errors in VSCode. It'll usually say if it needs a specific 
+// errors in VSCode. It'll usually say if it needs a specific
 // version of the .NET SDK or something.
 //
 // "omnisharp.sdkPath": "/usr/local/share/dotnet/sdk/6.0.410",
