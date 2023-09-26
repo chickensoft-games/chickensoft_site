@@ -11,7 +11,7 @@ Ready to make games with Godot and C#? Let's start by making sure your developme
 > If you get stuck on a step or want to inform us about incorrect or outdated documentation, please [join us on Discord][discord].
 
 :::tip
-This guide is specific to **Godot 4** — all Chickensoft packages have officially migrated to Godot 4. Many of the same steps still apply to Godot 3, but you will also need to install Mono — instructions and installers are available for each platform from the [Mono][mono] website.
+This guide is specific to **Godot 4** — all Chickensoft packages have officially migrated to Godot 4.
 :::
 
 ## 📦 Installing the .NET SDK
@@ -119,15 +119,6 @@ export PATH="$HOME/.dotnet/tools:$PATH"
 
 # Run this if you ever run into errors while doing a `dotnet restore`
 alias nugetclean="dotnet nuget locals --clear all"
-
-# Additional entries only needed for Godot 3.x and below:
-# ------------------------------------------------------------------------- #
-# Add mono to the system path.
-export PATH="/Library/Frameworks/Mono.framework/Versions/Current/Commands/mono:$PATH"
-
-# Prevents the occasional "can't create res://.mono" error
-# Issue: https://godotengine.org/qa/21875/cant-generate-mono-glue-on-osx
-export PKG_CONFIG_PATH="/Library/Frameworks/Mono.framework/Versions/6.12.0/lib/pkgconfig"
 ```
 
   </TabItem>
@@ -147,11 +138,6 @@ export PATH="$HOME/.dotnet/tools:$PATH"
 
 # Run this if you ever run into errors while doing a `dotnet restore`
 alias nugetclean="dotnet nuget locals --clear all"
-
-# Additional entry only needed for Godot 3.x and below:
-# ------------------------------------------------------------------------- #
-# Add mono to the system path.
-export PATH="/usr/bin/mono:$PATH"
 ```
 
   </TabItem>
@@ -171,22 +157,15 @@ export PATH="$HOME\\.dotnet\\tools:$PATH"
 
 # Run this if you ever run into errors while doing a `dotnet restore`
 alias nugetclean="dotnet nuget locals --clear all"
-
-# Additional entry only needed for Godot 3.x and below:
-# ------------------------------------------------------------------------- #
-# Add mono to the system path.
-export PATH="C:\\Program Files/Mono/bin/mono:$PATH"
 ```
 
   </TabItem>
 </Tabs>
 
 :::info
-Depending on how you install the .NET SDK (and Mono, if using Godot 3.x and below), you may or may not need to add them to your path in `~/.bashrc`. You can run `which dotnet` or `which mono` in a bash shell to see if they're already in your path. If they are, remove the `export PATH` lines for them.
+Depending on how you install the .NET SDK, you may or may not need to add them to your path in `~/.bashrc` (linux) or `~/.zshrc` (macOS). You can run `which dotnet` in a bash shell to see if they're already in your path. If they are, remove the `export PATH` lines for them.
 
-Make sure the paths to the .NET SDK, Mono, and Godot match where those tools were installed on your particular system, since it might be different if you installed them manually.
-
-If you're not using Godot 3, feel free to remove the entries specific to it.
+Make sure the paths to the .NET SDK and Godot match where those tools were installed on your particular system, since it might be different if you installed them manually.
 :::
 
 ## 🤖 Installing Godot
@@ -209,7 +188,24 @@ Using GodotEnv to install and manage Godot on your system provides a number of a
 - ✅ Standardizes installation locations across platforms and machines, making it easier to collaborate with other teammates.
 
 - ✅ Quickly change the system Godot version to any installed version, as well as listing all the installed versions.
-  :::
+
+:::
+
+To install GodotEnv, run the following:
+
+```sh
+dotnet tool install --global Chickensoft.GodotEnv
+```
+
+### 🦾 Installing with GodotEnv
+
+You can install Godot automatically by specifying a Godot version the way it appears [here][godot-sharp-version].
+
+```sh
+godotenv godot install 4.0.1
+```
+
+### 😓 Installing Manually
 
 If you're not convinced, you can always [download Godot][download-godot] manually and install it wherever you'd like.
 
@@ -221,7 +217,7 @@ If you're using GodotEnv, Godot versions will automatically be installed in the 
   <TabItem value="macOS">
 
 | Location    | Path                                                                                                      |
-| ----------- | --------------------------------------------------------------------------------------------------------- |
+|-------------|-----------------------------------------------------------------------------------------------------------|
 | Symlink     | `/Users/{you}/.config/godotenv/godot/bin`                                                                 |
 | Actual Path | `/Users/{you}/.config/godotenv/godot/versions/godot_dotnet_{version}/Godot_mono.app/Contents/MacOS/Godot` |
 
@@ -229,7 +225,7 @@ If you're using GodotEnv, Godot versions will automatically be installed in the 
   <TabItem value="Linux">
 
 | Location    | Path                                                                                                                                                     |
-| ----------- | -------------------------------------------------------------------------------------------------------------------------------------------------------- |
+|-------------|----------------------------------------------------------------------------------------------------------------------------------------------------------|
 | Symlink     | `/home/{you}/.config/godotenv/godot/bin`                                                                                                                 |
 | Actual Path | `/home/{you}/.config/godotenv/godot/versions/godot_dotnet_{version}/Godot_v{version}-stable_mono_linux_x86_64/Godot_v{version}-stable_mono_linux.x86_64` |
 
@@ -237,7 +233,7 @@ If you're using GodotEnv, Godot versions will automatically be installed in the 
   <TabItem value="Windows">
 
 | Location    | Path                                                                                                                                                      |
-| ----------- | --------------------------------------------------------------------------------------------------------------------------------------------------------- |
+|-------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------|
 | Symlink     | `C:\Users\{you}\AppData\Roaming\godotenv\godot\bin`                                                                                                       |
 | Actual Path | `C:\Users\{you}\AppData\Roaming\godotenv\godot\versions\godot_dotnet_{version}\Godot_v{version}-stable_mono_win64\Godot_v{version}-stable_mono_win64.exe` |
 
@@ -579,7 +575,6 @@ If you need to share code **and** other resource files like scenes, textures, mu
 
 [download-godot]: https://downloads.tuxfamily.org/godotengine/
 [vscode]: https://code.visualstudio.com
-[mono]: https://www.mono-project.com/download/stable/
 [vs-2022]: https://visualstudio.microsoft.com/downloads/
 [win-env-vars]: https://github.com/sindresorhus/guides/blob/main/set-environment-variables.md#windows-7-and-8
 [GodotEnv]: https://github.com/chickensoft-games/GodotEnv
@@ -602,3 +597,5 @@ If you need to share code **and** other resource files like scenes, textures, mu
 [vscode-recommended]: https://github.com/chickensoft-games/GodotGame/blob/main/.vscode/extensions.json
 [bad-csharp-dev-kit]: https://devblogs.microsoft.com/visualstudio/announcing-csharp-dev-kit-for-visual-studio-code/#getting-started-with-c-dev-kit
 [vscode-settings]: https://stackoverflow.com/a/65909052
+[OmniSharp]: http://www.omnisharp.net/
+[godot-sharp-version]: https://www.nuget.org/packages/GodotSharp/
