@@ -16,7 +16,11 @@ This guide is specific to **Godot 4** — all Chickensoft packages have official
 
 ## 📦 Installing the .NET SDK
 
-If you're wanting to use Godot 4, we recommend installing [.NET 8][net8].
+If you're wanting to use Godot 4, we recommend installing the [.NET 8 SDK][net8]. You will also need the [.NET 6 SDK][net6] to use GodotEnv, Chickensoft's CLI tool for managing Godot versions and addons. While you're at it, it doesn't hurt to install the [.NET 7 SDK][net7], either.
+
+:::tip
+You can install multiple versions of the .NET SDK. C# tooling is (generally) intelligent enough to pick the correct version based on the target framework of the project.
+:::
 
 :::info
 We often write file paths like `~/folder`. The `~` is a shortcut for your home folder. On Windows, `~` expands to something like `C:\Users\you`. On macOS, `~` expands to `/Users/you`. On Linux, `~` expands to `/home/you`. For example, `~/Documents` expands to `C:\Users\you\Documents` on Windows, `/Users/you/Documents` on macOS, and `/home/you/Documents` on Linux.
@@ -110,12 +114,14 @@ Add the following to your `~/.zshrc` file:
 ```sh
 # .NET SDK Configuration
 export DOTNET_CLI_TELEMETRY_OPTOUT=1 # Disable analytics
-export DOTNET_ROOT="/usr/local/share/dotnet/dotnet"
+export DOTNET_ROOT="/usr/local/share/dotnet"
 
 # Add the .NET SDK to the system paths so we can use the `dotnet` tool.
 export PATH="/usr/local/share/dotnet:$PATH"
 export PATH="/usr/local/share/dotnet/sdk:$PATH"
 export PATH="$HOME/.dotnet/tools:$PATH"
+# For .net 6:
+export PATH="/usr/local/share/dotnet:/usr/local/share/dotnet/sdk:$PATH"
 
 # Run this if you ever run into errors while doing a `dotnet restore`
 alias nugetclean="dotnet nuget locals --clear all"
@@ -129,7 +135,7 @@ If `~/.bashrc` doesn't exist, you'll need to create it. Add the following to the
 ```sh
 # .NET SDK Configuration
 export DOTNET_CLI_TELEMETRY_OPTOUT=1 # Disable analytics
-export DOTNET_ROOT="/usr/bin/dotnet/dotnet"
+export DOTNET_ROOT="/usr/bin/dotnet"
 
 # Add the .NET SDK to the system paths so we can use the `dotnet` tool.
 export PATH="/usr/bin/dotnet:$PATH"
@@ -205,6 +211,10 @@ You can install Godot automatically by specifying a Godot version the way it app
 godotenv godot install 4.0.1
 ```
 
+:::caution
+GodotEnv targets the [.NET 6 SDK][net6] for maximum compatibility, so you'll need to make sure you have it installed or you won't be able to run it.
+:::
+
 ### 😓 Installing Manually
 
 If you're not convinced, you can always [download Godot][download-godot] manually and install it wherever you'd like.
@@ -217,7 +227,7 @@ If you're using GodotEnv, Godot versions will automatically be installed in the 
   <TabItem value="macOS">
 
 | Location    | Path                                                                                                      |
-|-------------|-----------------------------------------------------------------------------------------------------------|
+| ----------- | --------------------------------------------------------------------------------------------------------- |
 | Symlink     | `/Users/{you}/.config/godotenv/godot/bin`                                                                 |
 | Actual Path | `/Users/{you}/.config/godotenv/godot/versions/godot_dotnet_{version}/Godot_mono.app/Contents/MacOS/Godot` |
 
@@ -225,7 +235,7 @@ If you're using GodotEnv, Godot versions will automatically be installed in the 
   <TabItem value="Linux">
 
 | Location    | Path                                                                                                                                                     |
-|-------------|----------------------------------------------------------------------------------------------------------------------------------------------------------|
+| ----------- | -------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | Symlink     | `/home/{you}/.config/godotenv/godot/bin`                                                                                                                 |
 | Actual Path | `/home/{you}/.config/godotenv/godot/versions/godot_dotnet_{version}/Godot_v{version}-stable_mono_linux_x86_64/Godot_v{version}-stable_mono_linux.x86_64` |
 
@@ -233,7 +243,7 @@ If you're using GodotEnv, Godot versions will automatically be installed in the 
   <TabItem value="Windows">
 
 | Location    | Path                                                                                                                                                      |
-|-------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------|
+| ----------- | --------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | Symlink     | `C:\Users\{you}\AppData\Roaming\godotenv\godot\bin`                                                                                                       |
 | Actual Path | `C:\Users\{you}\AppData\Roaming\godotenv\godot\versions\godot_dotnet_{version}\Godot_v{version}-stable_mono_win64\Godot_v{version}-stable_mono_win64.exe` |
 
@@ -579,7 +589,6 @@ If you need to share code **and** other resource files like scenes, textures, mu
 [win-env-vars]: https://github.com/sindresorhus/guides/blob/main/set-environment-variables.md#windows-7-and-8
 [GodotEnv]: https://github.com/chickensoft-games/GodotEnv
 [dotnet-sdk]: https://dotnet.microsoft.com/en-us/download/dotnet
-[net8]: https://dotnet.microsoft.com/en-us/download/dotnet/8.0
 [net8-release-notes]: https://github.com/dotnet/core/blob/main/release-notes/8.0/install-windows.md
 [TuxFamily]: https://downloads.tuxfamily.org/godotengine/
 [git]: https://git-scm.com/book/en/v2/Getting-Started-Installing-Git
@@ -599,3 +608,6 @@ If you need to share code **and** other resource files like scenes, textures, mu
 [vscode-settings]: https://stackoverflow.com/a/65909052
 [OmniSharp]: http://www.omnisharp.net/
 [godot-sharp-version]: https://www.nuget.org/packages/GodotSharp/
+[net6]: https://dotnet.microsoft.com/en-us/download/dotnet/6.0
+[net7]: https://dotnet.microsoft.com/en-us/download/dotnet/7.0
+[net8]: https://dotnet.microsoft.com/en-us/download/dotnet/8.0
