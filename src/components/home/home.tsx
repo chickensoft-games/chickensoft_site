@@ -47,31 +47,36 @@ function HomepageHeader() {
   const { siteConfig } = useDocusaurusContext();
   return (
     <header className={clsx('hero', styles.heroBanner)}>
-      <div className="container">
-        <span>
-          <img src={logo} height="128" />
-          <h1 className="hero__title inline">
-            {lookup(siteConfig, 'shortTitle')}
-          </h1>
-        </span>
-        <p className="hero__subtitle">{siteConfig.tagline}</p>
-        <p>
-          <a href={siteConfig.baseUrl} className={styles.badge}>
-            <img src="img/badges/chickensoft_badge.svg" height="20" />
-          </a>
-          <a href={github} className={styles.badge}>
-            <img src="img/badges/github_badge.svg" height="20" />
-          </a>
-          <a href={discord} className={styles.badge}>
-            <img src="img/badges/discord_badge.svg" height="20" />
-          </a>
-          <Link to="/docs/setup" className={styles.badge}>
-            <img src="img/badges/read_the_docs_badge.svg" height="20" />
-          </Link>
-        </p>
-        <HomepageCTA />
-        {/* <HomepageHeroImage /> */}
+      <div className={clsx(styles.heroBackground)}></div>
+      <div className={clsx(styles.heroBackgroundOverlay)}></div>
+      <div className={clsx(styles.heroBackgroundBlur)}></div>
+      <div className={clsx('container', styles.container)}>
+        <section className={clsx(styles.heroContents)}>
+          <span>
+            <img src={logo} height="128" />
+            <h1 className="hero__title inline">
+              {lookup(siteConfig, 'shortTitle')}
+            </h1>
+          </span>
+          <p className="hero__subtitle">{siteConfig.tagline}</p>
+          <p>
+            <a href={siteConfig.baseUrl} className={styles.badge}>
+              <img src="img/badges/chickensoft_badge.svg" height="20" />
+            </a>
+            <a href={github} className={styles.badge}>
+              <img src="img/badges/github_badge.svg" height="20" />
+            </a>
+            <a href={discord} className={styles.badge}>
+              <img src="img/badges/discord_badge.svg" height="20" />
+            </a>
+            <Link to="/docs/setup" className={styles.badge}>
+              <img src="img/badges/read_the_docs_badge.svg" height="20" />
+            </Link>
+          </p>
+          <HomepageCTAs />
+        </section>
       </div>
+      {/* <HomepageHeroImage /> */}
     </header>
   );
 }
@@ -112,14 +117,17 @@ export default function Home(props: HomeProps): JSX.Element {
   );
 }
 
-function HomepageCTA() {
+function HomepageCTAs() {
   return (
     <div className={styles.width}>
       <Link
-        className="button button--primary button--lg margin-top--lg"
+        className="button button--secondary button--md margin-right--sm"
         to="/docs"
       >
-        Get Started
+        Game Demo
+      </Link>
+      <Link className="button button--primary button--md" to="/docs">
+        Setup Guide
       </Link>
     </div>
   );
