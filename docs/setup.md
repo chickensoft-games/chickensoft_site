@@ -16,10 +16,10 @@ This guide is specific to **Godot 4** — all Chickensoft packages have official
 
 ## 📦 Installing the .NET SDK
 
-If you're wanting to use Godot 4, we recommend installing the [.NET 8 SDK][net8]. You will also need the [.NET 6 SDK][net6] to use GodotEnv, Chickensoft's CLI tool for managing Godot versions and addons. While you're at it, it doesn't hurt to install the [.NET 7 SDK][net7], either.
+If you're wanting to use Godot 4, we recommend installing the [.NET 8 SDK][net8]. You will also need the [.NET 6 SDK][net6] to use GodotEnv, Chickensoft's CLI tool for managing Godot versions and addons. While you're at it, you should install the [.NET 7 SDK][net7], too — having the .NET SDK 6, 7, and 8 will allow you to run a variety of C# projects with Godot.
 
 :::tip
-You can install multiple versions of the .NET SDK. C# tooling is (generally) intelligent enough to pick the correct version based on the target framework of the project.
+You can install multiple versions of the .NET SDK. C# tooling is (generally) intelligent enough to pick the correct version based on the target framework of the project, the `global.json` file, and other settings in Godot. If you're running into issues with SDK resolution, feel free to reach out in [Discord].
 :::
 
 :::info
@@ -115,6 +115,7 @@ Add the following to your `~/.zshrc` file:
 # .NET SDK Configuration
 export DOTNET_CLI_TELEMETRY_OPTOUT=1 # Disable analytics
 export DOTNET_ROOT="/usr/local/share/dotnet"
+export DOTNET_ROLL_FORWARD_TO_PRERELEASE=1
 
 # Add the .NET SDK to the system paths so we can use the `dotnet` tool.
 export PATH="/usr/local/share/dotnet:$PATH"
@@ -136,6 +137,7 @@ If `~/.bashrc` doesn't exist, you'll need to create it. Add the following to the
 # .NET SDK Configuration
 export DOTNET_CLI_TELEMETRY_OPTOUT=1 # Disable analytics
 export DOTNET_ROOT="/usr/bin/dotnet"
+export DOTNET_ROLL_FORWARD_TO_PRERELEASE=1
 
 # Add the .NET SDK to the system paths so we can use the `dotnet` tool.
 export PATH="/usr/bin/dotnet:$PATH"
@@ -155,6 +157,7 @@ In Windows, when using the bash shell that comes with Git (Git Bash), you can pl
 # .NET SDK Configuration
 export DOTNET_CLI_TELEMETRY_OPTOUT=1 # Disable analytics
 export DOTNET_ROOT="C:\\Program Files\\dotnet\\"
+export DOTNET_ROLL_FORWARD_TO_PRERELEASE=1
 
 # Add the .NET SDK to the system paths so we can use the `dotnet` tool.
 export PATH="C:\\Program Files\\dotnet:$PATH"
@@ -340,6 +343,9 @@ We need to turn OmniSharp back on — it should have never been turned off by de
 Open your [VSCode Settings as a JSON file][vscode-settings] and add the following settings:
 
 ```javascript
+// Omnisharp is required for using C# with Godot and VSCode.
+"dotnet.server.useOmnisharp": true,
+// This allows you to click into external code.
 "omnisharp.enableDecompilationSupport": true,
 // Respect .editorconfig files.
 "omnisharp.enableEditorConfigSupport": true,
