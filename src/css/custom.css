@@ -22,6 +22,10 @@
   --ifm-footer-background-color: #ffebcf;
   --tabs-background-color: var(--ifm-navbar-background-color);
   --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.1);
+  --ifm-hero-background-overlay-color: rgba(255, 245, 238, 0.6);
+
+  --special-surface-color: #e69150;
+  --special-surface-hover-color: #c9783c;
 
   /* Change tips from green to purple */
   --ifm-color-success-contrast-background: rgb(255, 240, 218) !important;
@@ -50,6 +54,7 @@
   --ifm-footer-background-color: #1c1715 !important;
   --tabs-background-color: var(--ifm-background-surface-color);
   --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.3);
+  --ifm-hero-background-overlay-color: rgba(0, 0, 0, 0.3);
 
   /* Change tips from green to something less jarring */
   --ifm-color-success-contrast-background: rgb(46, 36, 31) !important;

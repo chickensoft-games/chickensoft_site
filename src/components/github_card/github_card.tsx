@@ -3,12 +3,14 @@ import { languageColors } from '@site/src/components/github_card/github_language
 import GithubLogo from '@site/src/components/github_logo/github_logo';
 import React, { useEffect, useState } from 'react';
 
+import clsx from 'clsx';
 import css from './github_card.module.css';
 
 export type GithubCardProps = {
   profile: string;
   repo: string;
   logo: string;
+  special?: boolean;
 };
 
 const githubApiPrefix = 'https://api.github.com/repos';
@@ -71,8 +73,12 @@ export default function GithubCard(props: GithubCardProps): JSX.Element {
     }, []);
   }
 
+  var mainClasses = !props.special
+    ? clsx(css.ghCard)
+    : clsx(css.ghCard, css.ghCardSpecial);
+
   return (
-    <a href={url} className={css.ghCard}>
+    <a href={url} className={mainClasses}>
       <header className={css.header}>
         <div className={css.ghLogo}>
           <GithubLogo size={24} />
