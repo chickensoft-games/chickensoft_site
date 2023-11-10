@@ -24,6 +24,9 @@
   --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.1);
   --ifm-hero-background-overlay-color: rgba(255, 245, 238, 0.6);
 
+  --special-surface-color: #e69150;
+  --special-surface-hover-color: #c9783c;
+
   /* Change tips from green to purple */
   --ifm-color-success-contrast-background: rgb(255, 240, 218) !important;
   --ifm-color-success-dark: rgb(229, 204, 174) !important;

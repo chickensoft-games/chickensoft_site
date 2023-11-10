@@ -14,6 +14,13 @@
   color: var(--ifm-font-color-base);
 }
 
+.ghCardSpecial {
+  background-color: var(--special-surface-color);
+  color: #452915 !important;
+  min-height: 200px;
+  text-align: left;
+}
+
 .ghCard:hover,
 .ghCard:visited,
 .ghCard:link,
@@ -26,12 +33,13 @@
   background-color: var(--ifm-footer-background-color);
 }
 
-.ghCard:hover .headerTitle {
-  text-decoration: underline;
+.ghCardSpecial:hover {
+  background-color: var(--special-surface-hover-color);
+  color: #452915 !important;
 }
 
-.ghCard:hover .ghLogo {
-  color: var(--ifm-color-primary);
+.ghCard:hover .headerTitle {
+  text-decoration: underline;
 }
 
 .header {

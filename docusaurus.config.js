@@ -98,10 +98,10 @@ const config = {
         maxHeadingLevel: 4,
       },
       colorMode: {
-        // Respect user's system preferences for theme :)
         defaultMode: 'dark',
         disableSwitch: true,
-        respectPrefersColorScheme: true,
+        // Respect user's system preferences for theme :)
+        respectPrefersColorScheme: false,
       },
       navbar: {
         title: 'Chickensoft',

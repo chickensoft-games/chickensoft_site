@@ -23,128 +23,6 @@ const homepagePreview = lookup(config, 'homepagePreview');
 const homepagePreviewAbsolute = lookup(config, 'homepagePreviewAbsolute');
 const twitter = lookup(config, 'twitter');
 
-const senderNetEmailSignUpScript = `
-  (function (s, e, n, d, er) {
-    s['Sender'] = er;
-    s[er] = s[er] || function () {
-      (s[er].q = s[er].q || []).push(arguments)
-    }, s[er].l = 1 * new Date();
-    var a = e.createElement(n),
-        m = e.getElementsByTagName(n)[0];
-    a.async = 1;
-    a.src = d;
-    m.parentNode.insertBefore(a, m)
-  })(window, document, 'script', 'https://cdn.sender.net/accounts_resources/universal.js', 'sender');
-  sender('92c709a1255511')
-`;
-
-type RecentPosts = { content: Content }[];
-interface HomeProps {
-  recentPosts: RecentPosts;
-}
-
-function HomepageHeader() {
-  const { siteConfig } = useDocusaurusContext();
-  return (
-    <header className={clsx('hero', styles.heroBanner)}>
-      <div className={clsx(styles.heroBackground)}></div>
-      <div className={clsx(styles.heroBackgroundOverlay)}></div>
-      <div className={clsx(styles.heroBackgroundBlur)}></div>
-      <div className={clsx('container', styles.container)}>
-        <section className={clsx(styles.heroContents)}>
-          <span>
-            <img src={logo} height="128" />
-            <h1 className="hero__title inline">
-              {lookup(siteConfig, 'shortTitle')}
-            </h1>
-          </span>
-          <p className="hero__subtitle">{siteConfig.tagline}</p>
-          <p>
-            <a href={siteConfig.baseUrl} className={styles.badge}>
-              <img src="img/badges/chickensoft_badge.svg" height="20" />
-            </a>
-            <a href={github} className={styles.badge}>
-              <img src="img/badges/github_badge.svg" height="20" />
-            </a>
-            <a href={discord} className={styles.badge}>
-              <img src="img/badges/discord_badge.svg" height="20" />
-            </a>
-            <Link to="/docs/setup" className={styles.badge}>
-              <img src="img/badges/read_the_docs_badge.svg" height="20" />
-            </Link>
-          </p>
-          <HomepageCTAs />
-        </section>
-      </div>
-      {/* <HomepageHeroImage /> */}
-    </header>
-  );
-}
-
-export default function Home(props: HomeProps): JSX.Element {
-  const { siteConfig } = useDocusaurusContext();
-  useEffect(() => {
-    const body = document.querySelector('body');
-    const script = document.createElement('script');
-    script.innerHTML = senderNetEmailSignUpScript;
-    script.type = 'text/javascript';
-    body.appendChild(script);
-  }, [senderNetEmailSignUpScript]);
-
-  // noodp and noydir tell search engines not to use metadata from the Open
-  // Directory project or the Yahoo Directory, increasing the likelihood of
-  // using the metadata we provide.
-
-  return (
-    <Layout description={`${siteConfig.tagline}.`}>
-      <Head>
-        <meta name="robots" content="noodp,noydir" />
-        <meta name="og:description" content={siteConfig.tagline} />
-        <meta name="twitter:description" content={siteConfig.tagline} />
-        <meta name="og:image" content={homepagePreview} />
-        <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:image" content={homepagePreviewAbsolute} />
-        <meta name="twitter:image:alt" content={siteConfig.tagline} />
-        <meta name="twitter:creator" content={twitter} />
-        <meta name="twitter:site" content={twitter} />
-        <meta name="image" property="og:image" content={homepagePreview} />
-      </Head>
-      <HomepageHeader />
-      <main className="padding-horiz--md">
-        <HomepageFeatures recentPosts={props.recentPosts} />
-      </main>
-    </Layout>
-  );
-}
-
-function HomepageCTAs() {
-  return (
-    <div className={styles.width}>
-      <Link
-        className="button button--secondary button--md margin-right--sm"
-        to="/docs"
-      >
-        Game Demo
-      </Link>
-      <Link className="button button--primary button--md" to="/docs">
-        Setup Guide
-      </Link>
-    </div>
-  );
-}
-
-function HomepageHeroImage() {
-  const { colorMode } = useColorMode();
-  return (
-    <img
-      className={clsx(styles.heroImage)}
-      src={colorMode == 'dark' ? 'img/hero_dark.svg' : 'img/hero.svg'}
-      alt="Hero"
-      width="720"
-    />
-  );
-}
-
 const repos: Array<GithubCardProps> = [
   {
     profile: 'chickensoft-games',
@@ -217,6 +95,150 @@ const repos: Array<GithubCardProps> = [
     logo: 'img/chickensoft/editorconfig.svg',
   },
 ];
+
+const gameDemoRepo: GithubCardProps = {
+  profile: 'chickensoft-games',
+  repo: 'GameDemo',
+  logo: 'img/chickensoft/game_demo.png',
+};
+
+const senderNetEmailSignUpScript = `
+  (function (s, e, n, d, er) {
+    s['Sender'] = er;
+    s[er] = s[er] || function () {
+      (s[er].q = s[er].q || []).push(arguments)
+    }, s[er].l = 1 * new Date();
+    var a = e.createElement(n),
+        m = e.getElementsByTagName(n)[0];
+    a.async = 1;
+    a.src = d;
+    m.parentNode.insertBefore(a, m)
+  })(window, document, 'script', 'https://cdn.sender.net/accounts_resources/universal.js', 'sender');
+  sender('92c709a1255511')
+`;
+
+type RecentPosts = { content: Content }[];
+interface HomeProps {
+  recentPosts: RecentPosts;
+}
+
+function HomepageHeader() {
+  const { siteConfig } = useDocusaurusContext();
+  return (
+    <header className={clsx('hero', styles.heroBanner)}>
+      <div className={clsx(styles.heroBackground)}></div>
+      <div className={clsx(styles.heroBackgroundOverlay)}></div>
+      <div className={clsx(styles.heroBackgroundBlur)}></div>
+      <div className={clsx('container', styles.container)}>
+        <section className={clsx(styles.heroContents)}>
+          <span>
+            <img src={logo} height="128" />
+            <h1 className="hero__title inline">
+              {lookup(siteConfig, 'shortTitle')}
+            </h1>
+          </span>
+          <p className="hero__subtitle">{siteConfig.tagline}</p>
+          <p>
+            <a href={siteConfig.baseUrl} className={styles.badge}>
+              <img src="img/badges/chickensoft_badge.svg" height="20" />
+            </a>
+            <a href={github} className={styles.badge}>
+              <img src="img/badges/github_badge.svg" height="20" />
+            </a>
+            <a href={discord} className={styles.badge}>
+              <img src="img/badges/discord_badge.svg" height="20" />
+            </a>
+            <Link to="/docs/setup" className={styles.badge}>
+              <img src="img/badges/read_the_docs_badge.svg" height="20" />
+            </Link>
+          </p>
+          <HomepageCTAs />
+        </section>
+
+        <div className="row margin-bottom--lg" id="showcase_repo">
+          <div
+            key={gameDemoRepo.repo}
+            className={clsx('col col--6 col--offset-3 github-card-home')}
+          >
+            <GithubCard
+              key={gameDemoRepo.repo}
+              {...gameDemoRepo}
+              special={true}
+            />
+          </div>
+        </div>
+      </div>
+      {/* <HomepageHeroImage /> */}
+    </header>
+  );
+}
+
+export default function Home(props: HomeProps): JSX.Element {
+  const { siteConfig } = useDocusaurusContext();
+  useEffect(() => {
+    const body = document.querySelector('body');
+    const script = document.createElement('script');
+    script.innerHTML = senderNetEmailSignUpScript;
+    script.type = 'text/javascript';
+    body.appendChild(script);
+  }, [senderNetEmailSignUpScript]);
+
+  // noodp and noydir tell search engines not to use metadata from the Open
+  // Directory project or the Yahoo Directory, increasing the likelihood of
+  // using the metadata we provide.
+
+  return (
+    <Layout description={`${siteConfig.tagline}.`}>
+      <Head>
+        <meta name="robots" content="noodp,noydir" />
+        <meta name="og:description" content={siteConfig.tagline} />
+        <meta name="twitter:description" content={siteConfig.tagline} />
+        <meta name="og:image" content={homepagePreview} />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:image" content={homepagePreviewAbsolute} />
+        <meta name="twitter:image:alt" content={siteConfig.tagline} />
+        <meta name="twitter:creator" content={twitter} />
+        <meta name="twitter:site" content={twitter} />
+        <meta name="image" property="og:image" content={homepagePreview} />
+      </Head>
+      <HomepageHeader />
+      <main className="padding-horiz--md">
+        <HomepageFeatures recentPosts={props.recentPosts} />
+      </main>
+    </Layout>
+  );
+}
+
+function HomepageCTAs() {
+  return (
+    <div className={styles.width}>
+      <Link
+        className={clsx(
+          'button button--danger button--md margin-right--sm',
+          styles.glow
+        )}
+        to="https://github.com/chickensoft-games/GameDemo"
+      >
+        Game Demo
+      </Link>
+      <Link className="button button--primary button--md" to="/docs/setup">
+        Setup Guide
+      </Link>
+    </div>
+  );
+}
+
+function HomepageHeroImage() {
+  const { colorMode } = useColorMode();
+  return (
+    <img
+      className={clsx(styles.heroImage)}
+      src={colorMode == 'dark' ? 'img/hero_dark.svg' : 'img/hero.svg'}
+      alt="Hero"
+      width="720"
+    />
+  );
+}
 
 function HomepageFeatures(props: HomeProps): JSX.Element {
   return (
