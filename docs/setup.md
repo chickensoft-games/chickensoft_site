@@ -16,10 +16,12 @@ This guide is specific to **Godot 4** — all Chickensoft packages have official
 
 ## 📦 Installing the .NET SDK
 
-If you're wanting to use Godot 4, we recommend installing the [.NET 8 SDK][net8]. You will also need the [.NET 6 SDK][net6] to use GodotEnv, Chickensoft's CLI tool for managing Godot versions and addons. While you're at it, you should install the [.NET 7 SDK][net7], too — having the .NET SDK 6, 7, and 8 will allow you to run a variety of C# projects with Godot.
+To use Godot 4, we recommend installing the [.NET 8 SDK][net8].
 
 :::tip
 You can install multiple versions of the .NET SDK. C# tooling is (generally) intelligent enough to pick the correct version based on the target framework of the project, the `global.json` file, and other settings in Godot. If you're running into issues with SDK resolution, feel free to reach out in [Discord].
+
+It probably won't hurt to install the [.NET 6 SDK][net6] and/or [.NET 7 SDK][net7], too — having .NET 6, 7, and 8 will allow you to run a variety of C# projects and tools.
 :::
 
 :::info
@@ -213,10 +215,6 @@ You can install Godot automatically by specifying a Godot version the way it app
 ```sh
 godotenv godot install 4.0.1
 ```
-
-:::caution
-GodotEnv targets the [.NET 6 SDK][net6] for maximum compatibility, so you'll need to make sure you have it installed or you won't be able to run it.
-:::
 
 ### 😓 Installing Manually
 
