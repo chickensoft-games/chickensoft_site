@@ -531,7 +531,7 @@ Since there’s no interfaces, we have to create an actual node for every child.
 So, to get around this, I’ve created [GodotNodeInterfaces], which generates interfaces and adapters for every type of Godot node. It also provides alternative methods for accessing child nodes as their adapted interface, and works with a fake scene tree system for testing.
 
 <FancyImage src={require("./images/testing_abstractions.png").default} alt="Layers of Abstraction in Testing">
-Now you can be that annoying teammate that won't shut up about unit tests!
+Some things just can't be automated.
 </FancyImage>
 
 I haven't done extensive profiling with GodotNodeInterfaces, since I was getting hundreds of frames per second while using it. I imagine there’s a slight performance impact in cases where the compiler can’t inline everything.
