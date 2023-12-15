@@ -36,9 +36,9 @@ authors: [joanna]
 
 Game architecture, like all software architecture, tends to be neglected or forgotten as a project goes on. Scalable, enjoyable, production codebases are so rare they're almost mythical.
 
-It doesn't have to be this way: just because video game development is difficult doesn't mean it has to be painful. You can still achieve a robust software architecture that scales with your game — even as you rework core systems and make sweeping refactors. Since architecture is based on expert opinions and developer experiences, we'll borrow from the wisdom of other software architectures to create a game architecture that prioritizes an enjoyable developer experience.
-
 <!-- truncate -->
+
+It doesn't have to be this way: just because video game development is difficult doesn't mean it has to be painful. You can still achieve a robust software architecture that scales with your game — even as you rework core systems and make sweeping refactors. Since architecture is based on expert opinions and developer experiences, we'll borrow from the wisdom of other software architectures to create a game architecture that prioritizes an enjoyable developer experience.
 
 Over the last few years, I've been making and maintaining over a dozen open source packages for Godot and C#. While leveraging these packages and the opinionated architecture described in this article, I was able to build a 3D platformer demo in just a month or two of spare time. If you're willing to stick around, I'd love to share the methodology, the rationale, and even the demo itself with you.
 
