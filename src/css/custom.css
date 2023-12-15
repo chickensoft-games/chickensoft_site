@@ -63,6 +63,21 @@
   --ifm-color-success-contrast-foreground: #ecc9a2 !important;
 }
 
+blockquote {
+  border-left: 6px solid #dadde1;
+  background-color: transparent;
+  color: #5b626b;
+  font-size: 100%;
+  margin: 0 0 1rem;
+  padding: 1rem;
+  box-shadow: none;
+}
+
+html[data-theme='dark'] blockquote {
+  border-left: 6px solid #5c5d5f;
+  color: #bcc3cc;
+}
+
 /** Make normal tip alerts yellow-ish instead of green */
 .alert--success {
   --ifm-code-background: #ecddca !important;

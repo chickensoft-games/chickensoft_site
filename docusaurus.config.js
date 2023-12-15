@@ -101,7 +101,7 @@ const config = {
         defaultMode: 'dark',
         disableSwitch: true,
         // Respect user's system preferences for theme :)
-        respectPrefersColorScheme: false,
+        respectPrefersColorScheme: true,
       },
       navbar: {
         title: 'Chickensoft',
