@@ -15,6 +15,7 @@ import CodeBlock from '@theme/CodeBlock';
 import Details from '@theme/Details';
 import TabItem from '@theme/TabItem';
 import Tabs from '@theme/Tabs';
+import YoutubeEmbed from '../components/youtube_embed/youtube_embed';
 
 export default {
   // Re-use the default mapping
@@ -32,4 +33,5 @@ export default {
   Admonition,
   Details,
   CodeBlock,
+  YoutubeEmbed,
 };

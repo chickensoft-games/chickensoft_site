@@ -16,6 +16,7 @@
 
 .ghCardSpecial {
   background-color: var(--special-surface-color);
+  filter: brightness(1.25);
   color: #452915 !important;
   min-height: 200px;
   text-align: left;

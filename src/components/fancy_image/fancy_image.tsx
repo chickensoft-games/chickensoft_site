@@ -12,11 +12,13 @@ export default function FancyImage(props: FancyImageProps): JSX.Element {
     <figure
       style={{ margin: '0px 0px var(--ifm-leading)', textAlign: 'center' }}
     >
-      <img
-        src={props.src}
-        alt={props.alt}
-        style={{ width: props.widthOverride ? props.widthOverride : '100%' }}
-      />
+      <a href={props.src}>
+        <img
+          src={props.src}
+          alt={props.alt}
+          style={{ width: props.widthOverride ? props.widthOverride : '100%' }}
+        />
+      </a>
       <figcaption
         style={{
           fontSize: '0.8rem',
