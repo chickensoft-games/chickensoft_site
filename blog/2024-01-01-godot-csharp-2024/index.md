@@ -131,7 +131,7 @@ Chickensoft is a grassroots community and open source organization dedicated to 
 [GDQuest]: https://www.gdquest.com/
 [game-arch]: /blog/game-architecture
 [gdscript-vs-csharp]: /blog/gdscript-vs-csharp/
-[can-godot-deliver]: /blog/can-godot-deliver/
+[can-godot-deliver]: /blog/godot-delivers/
 [godot-arch-advice]: https://github.com/abmarnie/godot-architecture-organization-advice
 [Gamefromscratch]: https://www.youtube.com/watch?v=rQyEu1pkcTk
 [godot4]: https://godotengine.org/article/godot-4-0-sets-sail/
