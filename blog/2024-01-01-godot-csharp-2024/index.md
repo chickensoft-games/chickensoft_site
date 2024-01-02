@@ -110,7 +110,7 @@ If you are looking for more C# generators, take a look at the [GodotSharp.Source
 
 If you're looking to make your game a little more retro, check out Mark's [Arbitrary Color Reduction and Palette Ordered Dithering][dither] shader that was released recently. Here's a video of it applied to a pseudo-isometric 3D scene:
 
-<ReactPlayer width="100%" playing loop url="/media/dither.mp4" />
+<ReactPlayer width="100%" playing={true} loop={true} controls={true} url="/media/dither.mp4" />
 
 ### 🌉 Unidot Importer
 
