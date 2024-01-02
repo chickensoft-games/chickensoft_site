@@ -16,6 +16,7 @@ import Details from '@theme/Details';
 import TabItem from '@theme/TabItem';
 import Tabs from '@theme/Tabs';
 import YoutubeEmbed from '../components/youtube_embed/youtube_embed';
+import ReactPlayer from 'react-player';
 
 export default {
   // Re-use the default mapping
@@ -34,4 +35,5 @@ export default {
   Details,
   CodeBlock,
   YoutubeEmbed,
+  ReactPlayer,
 };
