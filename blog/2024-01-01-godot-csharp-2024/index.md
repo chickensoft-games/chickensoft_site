@@ -3,6 +3,7 @@ title: 'Using Godot with C# in 2024'
 description: |
   C# support in Godot has come a long way since its inception. Now that it's 2024, let's dive in and see what it's like.
 slug: godot-csharp-2024
+image: ./header.jpg
 keywords:
   - Godot
   - C#
