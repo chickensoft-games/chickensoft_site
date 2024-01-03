@@ -43,7 +43,7 @@ Now that it's 2024, let's take a look and see how far we've come.
 
 ## 🥳 A LOT has happened
 
-Throughout 2023, a a lot of things happened in the game development world. A lot of these changes were big news for game developers using C#, too:
+Throughout 2023, a lot of things happened in the game development world. Some of these changes were big news for game developers using C#, too:
 
 - [Godot 4][godot4] was released!
 - [Unity did things][can-godot-deliver] that game developers didn't like.
