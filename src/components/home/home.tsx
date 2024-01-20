@@ -66,6 +66,11 @@ const repos: Array<GithubCardProps> = [
   },
   {
     profile: 'chickensoft-games',
+    repo: 'GodotTestDriver',
+    logo: 'img/chickensoft/package.svg',
+  },
+  {
+    profile: 'chickensoft-games',
     repo: 'GodotPackage',
     logo: 'img/chickensoft/package.svg',
   },
