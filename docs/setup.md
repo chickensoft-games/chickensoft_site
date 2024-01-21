@@ -326,14 +326,6 @@ You can download [Visual Studio Code][vscode] here.
 
 At the very least, you'll need the [`ms-dotnettools.csharp`][vscode-csharp] extension. Chickensoft also [recommends a handful of other extensions][vscode-recommended] that make development easier.
 
-The VSCode C# extension contains a set of open source tools, editor integrations, and libraries collectively known as [OmniSharp] that enable a pleasant C# development experience in VSCode.
-
-:::danger
-Unfortunately, because Microsoft is trying to be evil, [they've turned off OmniSharp by default][bad-csharp-dev-kit] and started adding in their own closed-source tools to claw back control from the open source community. Shame on them!
-
-We actually need Omnisharp for Godot projects to work — I'm not sure why, but Microsoft's new, evil C# Development Kit doesn't even work as well. 😇
-:::
-
 ### 💾 VSCode Settings for Godot and C\#
 
 We need to turn OmniSharp back on — it should have never been turned off by default.
@@ -341,50 +333,23 @@ We need to turn OmniSharp back on — it should have never been turned off by de
 Open your [VSCode Settings as a JSON file][vscode-settings] and add the following settings:
 
 ```javascript
-// Omnisharp is required for using C# with Godot and VSCode.
-"dotnet.server.useOmnisharp": true,
-// This allows you to click into external code.
-"omnisharp.enableDecompilationSupport": true,
-// Respect .editorconfig files.
-"omnisharp.enableEditorConfigSupport": true,
-// Scan the entire project.
-"omnisharp.enableMsBuildLoadProjectsOnDemand": false,
-// Find all the symbols — or as many/few as your computer can handle.
-"omnisharp.maxFindSymbolsItems": 10000,
-// Keeps using statements nicely organized.
-"omnisharp.organizeImportsOnFormat": true,
-// Required for Godot C# development.
-"omnisharp.useModernNet": true,
-// ------------------------------------------------------------------- //
-// Uncomment these and adjust as necessary if you get OmniSharp output
-// errors in VSCode. It'll usually say if it needs a specific
-// version of the .NET SDK or something.
-//
-// "omnisharp.sdkPath": "/usr/local/share/dotnet/sdk/6.0.410",
-// "omnisharp.sdkVersion": "6.0.410",
+"dotnetAcquisitionExtension.enableTelemetry": false,
+// Increases project compatibility with the C# extension.
+"dotnet.preferCSharpExtension": true,
 ```
 
 Chickensoft also recommends the following additional settings for a pleasant C# development experience:
 
 ```javascript
-"csharp.inlayHints.enableInlayHintsForTypes": true,
-"csharp.maxProjectFileCountForDiagnosticAnalysis": 20000,
-"csharp.suppressDotnetRestoreNotification": true,
 "csharp.suppressHiddenDiagnostics": false,
-"csharp.semanticHighlighting.enabled": true,
-"dotnet.completion.showCompletionItemsFromUnimportedNamespaces": true,
-"editor.semanticHighlighting.enabled": true,
-
 // Draw a line between selected brackets so you can see blocks of code easier.
 "editor.guides.bracketPairs": "active",
-// Disable this since it conflicts with other C# formatters.
-"razor.format.enable": false,
 
 "[csharp]": {
   "editor.codeActionsOnSave": {
-    "source.addMissingImports": true,
-    "source.fixAll": true,
-    "source.organizeImports": true
+    "source.addMissingImports": "explicit",
+    "source.fixAll": "explicit",
+    "source.organizeImports": "explicit"
   },
   "editor.formatOnPaste": true,
   "editor.formatOnSave": true,
@@ -608,9 +573,7 @@ If you need to share code **and** other resource files like scenes, textures, mu
 [vscode-launch]: https://code.visualstudio.com/Docs/editor/debugging#_launch-configurations
 [vscode-csharp]: https://marketplace.visualstudio.com/items?itemName=ms-dotnettools.csharp
 [vscode-recommended]: https://github.com/chickensoft-games/GodotGame/blob/main/.vscode/extensions.json
-[bad-csharp-dev-kit]: https://devblogs.microsoft.com/visualstudio/announcing-csharp-dev-kit-for-visual-studio-code/#getting-started-with-c-dev-kit
 [vscode-settings]: https://stackoverflow.com/a/65909052
-[OmniSharp]: http://www.omnisharp.net/
 [godot-sharp-version]: https://www.nuget.org/packages/GodotSharp/
 [net6]: https://dotnet.microsoft.com/en-us/download/dotnet/6.0
 [net7]: https://dotnet.microsoft.com/en-us/download/dotnet/7.0
