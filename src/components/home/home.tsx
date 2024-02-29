@@ -264,6 +264,39 @@ function HomepageFeatures(props: HomeProps): JSX.Element {
         </div>
         <div className="row padding-top--lg">
           <div>
+            <h1>🐤 What is Chickensoft?</h1>
+            <p>
+              Chickensoft is an open source organization dedicated to supporting
+              game developers using{' '}
+              <a href="https://dotnet.microsoft.com/en-us/languages/csharp">
+                C#
+              </a>{' '}
+              and <a href="https://godotengine.org/">Godot</a>. Chickensoft
+              currently maintains 15+ open source projects. Chickensoft projects
+              will always be <a href="/license">free and open source</a> under
+              the MIT license. We welcome contributions, bug reports, and
+              suggestions!
+            </p>
+            <p>
+              Chickensoft's open source projects exist to make developing games
+              and applications with C# and Godot easier and faster, while
+              resulting in scalable game codebases that can be rapidly developed
+              and refactored by multiple developers working in a team — i.e.,
+              everything you'd expect if you were doing serious app or AA game
+              development.
+            </p>
+            <p>
+              Our Discord server has become the home of over 1,000 other C#
+              Godot developers, making it the unofficial Godot + C# grassroots
+              community. We'd love to see you there, hear about your projects,
+              and help (or be helped) in any way we can. We're fortunate to have
+              a lot of really experienced folks there, and we hope you'll decide
+              to join us!
+            </p>
+          </div>
+        </div>
+        <div className="row padding-top--lg">
+          <div>
             <h1>Our Community</h1>
             <p>
               Whether you're looking for help or just want to connect with other
