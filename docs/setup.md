@@ -86,7 +86,7 @@ Even if you're already using git, but you're not entirely comfortable with it, t
 
 ## 🖥 Shell Environment
 
-Let's setup the shell environment to contain environment variables that point to Godot and the .NET SDK. This will allow you to run Godot and the `dotnet` command line tool from anywhere, making Godot game development easier than ever.
+Let's setup the shell environment to contain environment variables that point to the .NET SDK. This will allow you to run `dotnet` command line tool from anywhere. We will be using it to install GodotEnv to manage ours Godot installation, making Godot game development easier than ever.
 
 :::info
 
@@ -174,7 +174,7 @@ alias nugetclean="dotnet nuget locals --clear all"
 :::info
 Depending on how you install the .NET SDK, you may or may not need to add them to your path in `~/.bashrc` (linux) or `~/.zshrc` (macOS). You can run `which dotnet` in a bash shell to see if they're already in your path. If they are, remove the `export PATH` lines for them added previously. If it is not the case, you should use `DOTNET_ROOT` to point to your `dotnet` root directory as showed above.
 
-Make sure the paths to the .NET SDK and Godot match where those tools were installed on your particular system, since it might be different if you installed them manually.
+Make sure the path to the .NET SDK matches where this tool was installed on your particular system, since it might be different if you installed it manually.
 :::
 
 ## 🤖 Installing Godot
@@ -192,7 +192,9 @@ Using GodotEnv to install and manage Godot on your system provides a number of a
 
   On Windows, maintaining symlinks requires administrator privileges, making it a hassle to manage by hand. GodotEnv integrates with Windows' User Access Control (UAC) to automatically request admin privileges when needed.
 
-- ✅ Adds a system `GODOT` environment variable that points to the symlink location, ensuring you can run Godot from anywhere on your system, in any shell.
+- ✅ Adds a system `GODOT` environment variable that points to the symlink location, facilitating its usage through scripts.
+
+- ✅ Adds the `GODOT` pointed path to the system's PATH. Making initializing the Godot binary a breeze, just run `godot` to open the version managed by GodotEnv.
 
 - ✅ Standardizes installation locations across platforms and machines, making it easier to collaborate with other teammates.
 
