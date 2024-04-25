@@ -128,11 +128,15 @@ const config = {
       footer: {
         links: [
           {
-            title: 'Docs',
+            title: 'Help',
             items: [
               {
-                label: 'Read the documentation!',
+                label: 'Documentation',
                 to: '/docs',
+              },
+              {
+                label: 'Chickensoft Development Philosophy',
+                href: '/philosophy',
               },
             ],
           },
@@ -146,7 +150,7 @@ const config = {
               {
                 label: 'Open Source License',
                 href: '/license',
-              },
+              }
             ],
           },
           {
