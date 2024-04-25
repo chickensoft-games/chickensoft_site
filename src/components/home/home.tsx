@@ -283,7 +283,8 @@ function HomepageFeatures(props: HomeProps): JSX.Element {
               resulting in scalable game codebases that can be rapidly developed
               and refactored by multiple developers working in a team — i.e.,
               everything you'd expect if you were doing serious app or AA game
-              development.
+              development. For more on how we approach building games and tools,
+              please see our <a href="/philosophy">development philosophy</a>.
             </p>
             <p>
               Our Discord server has become the home of over 1,000 other C#
