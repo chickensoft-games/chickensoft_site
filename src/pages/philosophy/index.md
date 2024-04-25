@@ -22,8 +22,6 @@ Chickensoft believes general purpose tools to construct quality software should 
 
 We believe code quality and developer happiness are core determiners of whether or not a project will be successfully completed on time. As a language, C# allows small teams to produce performant, well organized code, and is one of the [most loved programming languages](https://survey.stackoverflow.co/2022/#section-most-loved-dreaded-and-wanted-programming-scripting-and-markup-languages) of all time.
 
-Note: Larger studios tend to use systems languages to develop games (with C++ still being the dominant force in the industry), but there’s no reason they couldn’t leverage C#, too.
-
 C# has an [extensive ecosystem](https://www.nuget.org/) of enterprise-grade libraries and tooling available, and is frequently used to implement everything from simple console programs to complex, distributed systems.
 
 ## Dog-fooding
