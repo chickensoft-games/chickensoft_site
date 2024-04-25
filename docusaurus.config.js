@@ -150,7 +150,7 @@ const config = {
               {
                 label: 'Open Source License',
                 href: '/license',
-              }
+              },
             ],
           },
           {
