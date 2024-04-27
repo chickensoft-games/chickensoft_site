@@ -343,7 +343,7 @@ If all of this sounds familiar, it's probably because it's a [reactive](https://
 
 > I tend to think of reactive-style code like glue: it's extremely powerful, messy, and gets everywhere — so use sparingly! If you've ever tried to explain multiple chained event source transformers that zip elements together to a junior programmer, you know just how tricky it is to wrap your head around. It's also tricky for yourself, 6 months in the future.
 
-For the sake of convenience, I use a little reactive utility called [`AutoProp`](https://github.com/chickensoft-games/GoDotCollections#autoprop) inspired by C#'s built-in events and observers. It's more or less the same API as a C# observer, but with a few tweaks to be more ergonomic.
+For the sake of convenience, I use a little reactive utility called [`AutoProp`](https://github.com/chickensoft-games/Collections#autoprop) inspired by C#'s built-in events and observers. It's more or less the same API as a C# observer, but with a few tweaks to be more ergonomic.
 
 ```csharp
   public IAutoProp<bool> MyValue => _myValue; // expose read-only version
