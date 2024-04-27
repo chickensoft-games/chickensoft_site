@@ -91,7 +91,7 @@ const repos: Array<GithubCardProps> = [
   },
   {
     profile: 'chickensoft-games',
-    repo: 'Chickensoft Collections',
+    repo: 'Collections',
     logo: 'img/chickensoft/collections.png',
   },
   {
