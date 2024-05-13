@@ -532,7 +532,7 @@ If you want to share compiled source code between projects or allow others to us
 
 Using the GodotPackage template allows you to setup a package with continuous integration, auto-formatting, debugger profiles for VSCode, and a pre-configured unit test project.
 
-<Spacer><GithubCard profile='chickensoft-games' repo='GodotPackage' logo='/img/chickensoft/package.svg'/></Spacer>
+<Spacer><GithubCard profile='chickensoft-games' repo='GodotPackage' logo='/img/chickensoft/package.png'/></Spacer>
 
 ```sh
 dotnet new --install Chickensoft.GodotPackage

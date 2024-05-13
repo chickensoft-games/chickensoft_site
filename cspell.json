@@ -1,4 +1,16 @@
 {
+  "ignorePaths": [
+    "node_modules/**",
+    ".docusaurus/**"
+  ],
+  "files": [
+    "**/*.md",
+    "**/*.mdx",
+    "**/*.tsx",
+    "**/*.ts",
+    "**/*.json",
+    "!src/components/github_card/github_languages.ts"
+  ],
   "words": [
     "aniela",
     "asynchrony",
@@ -17,6 +29,7 @@
     "dompurify",
     "dotnettools",
     "endregion",
+    "favourites",
     "fooding",
     "foss",
     "frontmatter",
@@ -29,11 +42,13 @@
     "godotengine",
     "godotenv",
     "gtag",
+    "Infima",
     "joannanyana",
     "Kenna",
     "Killable",
     "Krita",
     "lewiji",
+    "lh11hwhxdw6ozbn5zfo",
     "lightmapping",
     "Linietsky",
     "metaprogramming",

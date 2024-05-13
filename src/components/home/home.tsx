@@ -72,12 +72,12 @@ const repos: Array<GithubCardProps> = [
   {
     profile: 'chickensoft-games',
     repo: 'GodotPackage',
-    logo: 'img/chickensoft/package.svg',
+    logo: 'img/chickensoft/package.png',
   },
   {
     profile: 'chickensoft-games',
     repo: 'GodotNodeInterfaces',
-    logo: 'img/chickensoft/package.svg',
+    logo: 'img/chickensoft/package.png',
   },
   {
     profile: 'chickensoft-games',
@@ -134,8 +134,8 @@ function HomepageHeader() {
       <div className={clsx(styles.heroBackground)}></div>
       <div className={clsx(styles.heroBackgroundOverlay)}></div>
       <div className={clsx(styles.heroBackgroundBlur)}></div>
-      <div className={clsx('container', styles.container)}>
-        <section className={clsx(styles.heroContents)}>
+      <div className={clsx('col', styles.container)}>
+        <section className={clsx(styles.heroContents, styles.whiteAlways)}>
           <span>
             <img src={logo} height="128" />
             <h1 className="hero__title inline">
@@ -158,18 +158,29 @@ function HomepageHeader() {
             </Link>
           </p>
           <HomepageCTAs />
+          <div className="container">
+            <div className="row margin-vert--lg" id="showcase_repo">
+              <div
+                key={gameDemoRepo.repo}
+                className={clsx('col col--6 col--offset-3 github-card-home')}
+              >
+                <GithubCard
+                  key={gameDemoRepo.repo}
+                  {...gameDemoRepo}
+                  special={true}
+                />
+              </div>
+            </div>
+          </div>
         </section>
 
-        <div className="row margin-bottom--lg" id="showcase_repo">
-          <div
-            key={gameDemoRepo.repo}
-            className={clsx('col col--6 col--offset-3 github-card-home')}
-          >
-            <GithubCard
-              key={gameDemoRepo.repo}
-              {...gameDemoRepo}
-              special={true}
-            />
+        <div className={clsx('row margin-top--sm', styles.whiteAlways)}>
+          <h3 className={clsx(styles.usedBy)}>Made with 💛. Trusted by the industry.</h3>
+        </div>
+        <div className={clsx(styles.logoBackdrop)}>
+          <div className={clsx(styles.logos)}>
+            <a target="_blank" rel="noopener noreferrer" href="https://www.megacrit.com/"><img className={clsx(styles.friend)} src='img/friends/mega_crit_logo.png' /></a>
+            <a target="_blank" rel="noopener noreferrer" href="https://dunderbeckgame.com/"><img className={clsx(styles.friend)} src='img/friends/rust_ltd_logo.png' /></a>
           </div>
         </div>
       </div>
@@ -293,6 +304,9 @@ function HomepageFeatures(props: HomeProps): JSX.Element {
               and help (or be helped) in any way we can. We're fortunate to have
               a lot of really experienced folks there, and we hope you'll decide
               to join us!
+            </p>
+            <p>
+              Is your studio using Chickensoft's packages? If so, <a href="https://forms.gle/CZLsupjR3GM4a85v9">please tell us about what you're doing!</a>
             </p>
           </div>
         </div>

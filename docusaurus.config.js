@@ -112,10 +112,15 @@ const config = {
         items: [
           { to: 'blog', label: 'Blog', position: 'left' },
           {
+            label: 'Docs',
             type: 'doc',
             docId: 'index',
             position: 'left',
-            label: 'Docs',
+          },
+          {
+            label: '🐤 Using our projects?',
+            to: 'https://forms.gle/CZLsupjR3GM4a85v9',
+            position: 'right'
           },
           {
             type: 'custom-ghIcon',
@@ -154,12 +159,16 @@ const config = {
             ],
           },
           {
-            title: 'More',
+            title: 'Organization',
             items: [
               {
                 label: 'GitHub',
                 href: 'https://github.com/chickensoft-games',
               },
+              {
+                label: '⭐️ Using Chickensoft packages? Let us know!',
+                href: 'https://forms.gle/CZLsupjR3GM4a85v9'
+              }
             ],
           },
         ],

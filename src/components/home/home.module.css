@@ -11,8 +11,12 @@
   overflow: hidden;
 }
 
+.whiteAlways {
+  color: white !important;
+}
+
 .heroContents {
-  padding: 3rem 1.5rem;
+  padding-top: 3rem;
 }
 
 .heroBackground {
@@ -30,7 +34,7 @@
 }
 
 .heroBackgroundOverlay {
-  background-color: var(--ifm-hero-background-overlay-color);
+  background-color: rgba(0, 0, 0, 0.33);
   z-index: 1;
   width: 100%;
   height: 100%;
@@ -102,4 +106,34 @@
   -webkit-box-shadow: 1px 1px 81px 28px rgba(255, 255, 255, 0.3);
   -moz-box-shadow: 1px 1px 81px 28px rgba(255, 255, 255, 0.3);
   text-shadow: 0px 0px 20px 30px currentColor;
+}
+
+.usedBy {
+  text-align: center;
+  flex-grow: 1;
+  font-weight: 500;
+}
+
+.logoBackdrop {
+  background-color: rgba(0, 0, 0, 0.33);
+  text-align: center;
+
+
+  /* Hack that Infima uses to enable this to span the whole width */
+  margin: 0 calc(var(--ifm-spacing-horizontal) * -1);
+}
+
+.logos {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  padding: 0.8rem;
+}
+
+.friend {
+  display: inline-block;
+  max-height: 100px;
+  max-width: 200px;
+  margin: 0.5rem;
 }
