@@ -120,7 +120,7 @@ const config = {
           {
             label: '🐤 Using our projects?',
             to: 'https://forms.gle/CZLsupjR3GM4a85v9',
-            position: 'right'
+            position: 'right',
           },
           {
             type: 'custom-ghIcon',
@@ -167,8 +167,8 @@ const config = {
               },
               {
                 label: '⭐️ Using Chickensoft packages? Let us know!',
-                href: 'https://forms.gle/CZLsupjR3GM4a85v9'
-              }
+                href: 'https://forms.gle/CZLsupjR3GM4a85v9',
+              },
             ],
           },
         ],

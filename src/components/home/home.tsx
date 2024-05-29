@@ -107,6 +107,21 @@ const gameDemoRepo: GithubCardProps = {
   logo: 'img/chickensoft/game_demo.png',
 };
 
+const logos: { url: string; logo: string }[] = [
+  {
+    url: 'https://www.megacrit.com/',
+    logo: 'img/friends/mega_crit_logo.png',
+  },
+  {
+    url: 'https://pineapple.works/',
+    logo: 'img/friends/pineapple_works.png',
+  },
+  {
+    url: 'https://dunderbeckgame.com/',
+    logo: 'img/friends/rust_ltd_logo.png',
+  },
+];
+
 const senderNetEmailSignUpScript = `
   (function (s, e, n, d, er) {
     s['Sender'] = er;
@@ -129,6 +144,13 @@ interface HomeProps {
 
 function HomepageHeader() {
   const { siteConfig } = useDocusaurusContext();
+
+  var logoComponents = logos.map((logo) => (
+    <a target="_blank" rel="noopener noreferrer" href={logo.url}>
+      <img className={clsx(styles.friend)} src={logo.logo} />
+    </a>
+  ));
+
   return (
     <header className={clsx('hero', styles.heroBanner)}>
       <div className={clsx(styles.heroBackground)}></div>
@@ -175,13 +197,12 @@ function HomepageHeader() {
         </section>
 
         <div className={clsx('row margin-top--sm', styles.whiteAlways)}>
-          <h3 className={clsx(styles.usedBy)}>Made with 💛. Trusted by the industry.</h3>
+          <h3 className={clsx(styles.usedBy)}>
+            Made with 💛. Trusted by the industry.
+          </h3>
         </div>
         <div className={clsx(styles.logoBackdrop)}>
-          <div className={clsx(styles.logos)}>
-            <a target="_blank" rel="noopener noreferrer" href="https://www.megacrit.com/"><img className={clsx(styles.friend)} src='img/friends/mega_crit_logo.png' /></a>
-            <a target="_blank" rel="noopener noreferrer" href="https://dunderbeckgame.com/"><img className={clsx(styles.friend)} src='img/friends/rust_ltd_logo.png' /></a>
-          </div>
+          <div className={clsx(styles.logos)}>{logoComponents}</div>
         </div>
       </div>
       {/* <HomepageHeroImage /> */}
@@ -306,7 +327,10 @@ function HomepageFeatures(props: HomeProps): JSX.Element {
               to join us!
             </p>
             <p>
-              Is your studio using Chickensoft's packages? If so, <a href="https://forms.gle/CZLsupjR3GM4a85v9">please tell us about what you're doing!</a>
+              Is your studio using Chickensoft's packages? If so,{' '}
+              <a href="https://forms.gle/CZLsupjR3GM4a85v9">
+                please tell us about what you're doing!
+              </a>
             </p>
           </div>
         </div>
