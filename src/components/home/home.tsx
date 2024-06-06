@@ -36,13 +36,23 @@ const repos: Array<GithubCardProps> = [
   },
   {
     profile: 'chickensoft-games',
-    repo: 'setup-godot',
-    logo: 'img/chickensoft/setup_godot.svg',
+    repo: 'LogicBlocks',
+    logo: 'img/chickensoft/logic_blocks.png',
   },
   {
     profile: 'chickensoft-games',
-    repo: 'LogicBlocks',
-    logo: 'img/chickensoft/logic_blocks.png',
+    repo: 'Serialization',
+    logo: 'img/chickensoft/serialization.png',
+  },
+  {
+    profile: 'chickensoft-games',
+    repo: 'Introspection',
+    logo: 'img/chickensoft/introspection.png',
+  },
+  {
+    profile: 'chickensoft-games',
+    repo: 'GodotTestDriver',
+    logo: 'img/chickensoft/godot_test_driver.png',
   },
   {
     profile: 'chickensoft-games',
@@ -51,8 +61,8 @@ const repos: Array<GithubCardProps> = [
   },
   {
     profile: 'chickensoft-games',
-    repo: 'SuperNodes',
-    logo: 'img/chickensoft/super_nodes.svg',
+    repo: 'setup-godot',
+    logo: 'img/chickensoft/setup_godot.svg',
   },
   {
     profile: 'chickensoft-games',
@@ -64,11 +74,7 @@ const repos: Array<GithubCardProps> = [
     repo: 'PowerUps',
     logo: 'img/chickensoft/power_ups.png',
   },
-  {
-    profile: 'chickensoft-games',
-    repo: 'GodotTestDriver',
-    logo: 'img/chickensoft/godot_test_driver.png',
-  },
+
   {
     profile: 'chickensoft-games',
     repo: 'GodotPackage',
