@@ -34,6 +34,6 @@ Finally, we're done!
 
 Now the only thing that remains is to [write tests] (and of course you love writing tests, or else you wouldn't have read several pages on state management with hierarchical state machines 🤠).
 
-[outputs]: ../04_basics/outputs
+[outputs]: ../basics/outputs
 [correct-lifecycles]: ../why#-correct-hierarchical-state-lifecycles
 [write tests]: ../testing
