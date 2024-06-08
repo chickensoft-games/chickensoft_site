@@ -18,9 +18,10 @@
     "lint": "eslint --cache --cache-location ./node_modules/.cache/eslint ."
   },
   "dependencies": {
-    "@docusaurus/core": "^2.3.1",
-    "@docusaurus/plugin-google-gtag": "^2.3.1",
-    "@docusaurus/preset-classic": "^2.3.1",
+    "@docusaurus/core": "^2.4.3",
+    "@docusaurus/plugin-google-gtag": "^2.4.3",
+    "@docusaurus/preset-classic": "^2.4.3",
+    "@docusaurus/theme-mermaid": "^2.4.3",
     "@mdx-js/react": "^1.6.22",
     "clsx": "^1.2.1",
     "dompurify": "^3.0.0",
@@ -32,8 +33,8 @@
   },
   "devDependencies": {
     "@babel/eslint-parser": "^7.19.1",
-    "@docusaurus/eslint-plugin": "^2.3.1",
-    "@docusaurus/module-type-aliases": "2.3.1",
+    "@docusaurus/eslint-plugin": "^2.4.3",
+    "@docusaurus/module-type-aliases": "2.4.3",
     "@octokit/rest": "^19.0.7",
     "@octokit/types": "^9.0.0",
     "@tsconfig/docusaurus": "^1.0.5",

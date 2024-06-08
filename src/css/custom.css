@@ -28,10 +28,8 @@
   --special-surface-hover-color: #c9783c;
 
   /* Change tips from green to purple */
-  --ifm-color-success-contrast-background: rgb(255, 240, 218) !important;
-  --ifm-color-success-dark: rgb(229, 204, 174) !important;
-  --ifm-alert-background-color-highlight: #a4570026 !important;
-  --ifm-color-success-contrast-foreground: #483e30 !important;
+  --ifm-color-success-contrast-background: rgb(240, 255, 205) !important;
+  --ifm-color-success-dark: rgb(196, 208, 145) !important;
 
   /* Custom sizings */
   --ifm-font-size-base: 18px;
@@ -57,10 +55,10 @@
   --ifm-hero-background-overlay-color: rgba(0, 0, 0, 0.3);
 
   /* Change tips from green to something less jarring */
-  --ifm-color-success-contrast-background: rgb(46, 36, 31) !important;
-  --ifm-color-success-dark: rgb(86, 66, 53) !important;
-  --ifm-alert-background-color-highlight: #a4570026 !important;
-  --ifm-color-success-contrast-foreground: #ecc9a2 !important;
+  --ifm-color-success-contrast-background: rgb(37, 67, 12) !important;
+  --ifm-color-success-dark: rgb(97, 146, 49) !important;
+  /* --ifm-alert-background-color-highlight: #a4570026 !important;
+  --ifm-color-success-contrast-foreground: #ecc9a2 !important; */
 }
 
 blockquote {

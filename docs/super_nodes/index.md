@@ -1,7 +1,7 @@
 ---
 title: 🔮 SuperNodes
 image: ./header.jpg
-sidebar_position: 3
+sidebar_position: 4
 ---
 
 [SuperNodes] is a C# source generator that gives superpowers to Godot node scripts.
