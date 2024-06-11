@@ -140,9 +140,9 @@ Real life isn't always so pretty, though: for performance reasons, it's often ad
 Below is a minimum example of a visual node script. For the sake of example, it is completely stateless. The only event that can happen — the main menu button being pressed — is forwarded via the use of a signal, allowing a stateful ancestor to manipulate this node.
 
 ```csharp
-[SuperNode(typeof(AutoNode))]
+[Meta(typeof(IAutoNode))]
 public partial class WinMenu : Control, IWinMenu {
-  public override partial void _Notification(int what);
+  public override void _Notification(int what) => this.Notify(what);
 
   #region Nodes
   [Node]
@@ -164,11 +164,11 @@ public partial class WinMenu : Control, IWinMenu {
 
 > You'll often find that many nodes can be stateless, simply signaling when something happens. Stripping as much logic out of the visual layer is beneficial because it allows stateful, parent nodes to manipulate the simpler, stateless nodes. For comparison, Google's cross platform app framework [Flutter](https://flutter.dev/) specifically forces you to distinguish between a [StatefulWidget](https://api.flutter.dev/flutter/widgets/StatefulWidget-class.html) and a [StatelessWidget](https://api.flutter.dev/flutter/widgets/StatelessWidget-class.html). This same distinction applies to Godot, since they both share a visual, tree-based composition structure.
 
-We'll be making extensive use of the [SuperNodes] source generator, which lets us "copy" code from one class and "paste" it into another class (i.e., compile-time [mixins](https://en.wikipedia.org/wiki/Mixin)).
+We'll be making extensive use of the [Introspection] source generator, which lets us inject code into our node classes via [mixins](https://en.wikipedia.org/wiki/Mixin).
 
-In the example above, the `AutoNode` mixin (called a `PowerUp` in `SuperNodes` terminology) automatically adds code into our `WinMenu` class at build-time that will connect the `MainMenuButton` property to its corresponding node with the same unique identifier, `%MainMenuButton` in the scene. Little tricks like that help save us a ton of error-prone typing.
+In the example above, the `IAutoNode` mixin enables the `WinMenu` class to connect the `MainMenuButton` property to its corresponding node with the same unique identifier, `%MainMenuButton` in the scene. Little tricks like that help save us a ton of error-prone typing.
 
-The AutoNode mixin comes from Chickensoft's [PowerUps] collection. We'll be using a few other PowerUps in this article, which we'll explain as we go.
+The `IAutoNode` mixin comes from [AutoInject], which provides a number of utilities in addition to dependency injection.
 
 ### 🤖 GameLogic Layer
 
@@ -247,7 +247,7 @@ Meanwhile, the actual Godot Node for the `InGameUI` binds to the state machine's
 
 ```csharp
 
-[SuperNode(typeof(AutoNode), typeof(Dependent))]
+[Meta(typeof(IAutoNode))]
 public partial class InGameUI : Control, IInGameUI {
 
   // ...
@@ -376,18 +376,18 @@ A godot node script can provide a value to its descendants. In our game demo, th
 
 To get this value for the first time, though, each descendant will need to search their ancestors to see if any of them provide the type of value they're looking for.
 
-> In most but the deepest trees, doing an ancestor walk is a very quick way to resolve a dependency provider. Deeper trees can re-provide the value to lower sections, reducing search distances.
+> In all but the deepest trees, doing an ancestor walk is a very quick way to resolve a dependency provider. Deeper trees can re-provide the value to lower sections, reducing search distances.
 
 There's another problem, though. In Godot, the deepest nodes are "readied" up before their ancestors. This means that the dependent nodes are asking their ancestor provider nodes for values that the providers haven't necessarily had a chance to initialize.
 
-We solve this problem using the [AutoInject](https://github.com/chickensoft-games/AutoInject) mixin, which itself leverages the [SuperNodes] source generator for compile-time mixins. Under the hood, AutoInject temporarily subscribes to providers for the values it needs. Once the providers have indicated all their dependencies are good to go, AutoInject will make sure the dependent nodes have a chance to set themselves up. If providers immediately provide their values as soon as they're ready (and they should), all of this can happen in the same frame, making everything nice and deterministic.
+We solve this problem using [AutoInject](https://github.com/chickensoft-games/AutoInject), which itself leverages the [Introspection] source generator. Under the hood, AutoInject temporarily subscribes to providers for the values it needs. Once the providers have indicated all their dependencies are good to go, AutoInject will make sure the dependent nodes have a chance to set themselves up. If providers immediately provide their values as soon as they're ready (and they should), all of this can happen in the same frame, making everything nice and deterministic.
 
 To provide a value using AutoInject, our Player node simply needs to implement `IProvide<T>` for all of the value types it wants to provide.
 
 ```csharp
-[SuperNode(typeof(Provider))]
+[Meta(typeof(IAutoNode))]
 public partial class Player : CharacterBody3D, IPlayer, IProvide<IPlayerLogic> {
-  public override partial void _Notification(int what);
+  public override void _Notification(int what) => this.Notify(what);
 
   #region Provisions
   IPlayerLogic IProvide<IPlayerLogic>.Value() => PlayerLogic;
@@ -404,14 +404,14 @@ public partial class Player : CharacterBody3D, IPlayer, IProvide<IPlayerLogic> {
 }
 ```
 
-A descendant can just as easily access a dependency from an ancestor node by leveraging the `Dependent` mixin.
+A descendant can just as easily access a dependency from an ancestor node by using the `[Dependency]` attribute on a property.
 
 The `PlayerModel` node, which is a descendant of the `Player` node, binds to the player state machine and triggers visual animations based on the state machine's outputs.
 
 ```csharp
-[SuperNode(typeof(Dependent), typeof(AutoNode))]
+[Meta(typeof(IAutoNode))]
 public partial class PlayerModel : Node3D {
-  public override partial void _Notification(int what);
+  public override void _Notification(int what) => this.Notify(what);
 
   #region Dependencies
   [Dependency]
@@ -584,9 +584,9 @@ We frequently need to **separate our script's initialization into two phases**: 
 In practice, here's what splitting our initialization into two-phases looks like.
 
 ```csharp
-[SuperNode(typeof(AutoNode), typeof(Dependent))]
+[Meta(typeof(IAutoNode))]
 public partial class InGameUI : Control, IInGameUI {
-  public override partial void _Notification(int what);
+  public override void _Notification(int what) => this.Notify(what);
 
   #region Dependencies
   [Dependency]
@@ -632,27 +632,6 @@ Since the script above uses [AutoInject] to resolve dependencies, we can leverag
 
 If you have a `Setup()` method on your script, that method will be called after dependencies are resolved, but right before `OnResolved()` is called — if, and only if — your script's `IsTesting` property is set to false. The `IsTesting` property isn't shown, though — it's tucked away in a generated file.
 
-```csharp
-// Contents of generated file GameDemo.InGameUI_Dependent.g.cs
-
-#pragma warning disable
-#nullable enable
-using System;
-// ...
-
-namespace GameDemo {
-  partial class InGameUI : global::Chickensoft.AutoInject.IDependent
-  {
-  #region SuperNodesStaticReflectionStubs
-    /// <summary>
-    /// True if the node is being unit-tested. When unit-tested, setup callbacks
-    /// will not be invoked.
-    /// </summary>
-    public bool IsTesting { get; set; } = false;
-
-    // ...
-```
-
 By utilizing two-phase initialization, we are able to test our game component easily within the scene tree.
 
 I won't show full tests here, but you can check out the tests for the [Player](https://github.com/chickensoft-games/GameDemo/blob/main/test/src/player/PlayerTest.cs) node. It takes advantage of the two-phase initialization by preventing the Player's `Setup()` method from ever being invoked when running in the actual test scene, ensuring our mocked values get injected instead.
@@ -667,9 +646,9 @@ If you find yourself needing to add a script to a non-root node in a Godot scene
 Likewise, if you you find yourself writing a Godot node script that manipulates its grandchildren, you may run into difficulty testing the script as a unit-test with a fake node tree. For best results, add a script to the child and ask it to manipulate its own children from your script. The general rule of thumb is "no script should manipulate nodes deeper than its children."
 :::
 
-Ensuring each scene only has one script on its root node allows you to make use of the fake scene tree system provided by [GodotNodeInterfaces] to easily test your scene. By referencing nodes as interfaces and automatically hooking them up with [AutoNode][PowerUps], we can easily test our scene in isolation without spinning up the entire subtree.
+Ensuring each scene only has one script on its root node allows you to make use of the fake scene tree system provided by [GodotNodeInterfaces] to easily test your scene. By referencing nodes as interfaces and automatically hooking them up with the [`IAutoConnect`][AutoInject] mixin, we can easily test our scene in isolation without spinning up the entire subtree.
 
-In the example below, taken from the game demo's [unit tests for the spinning gold coins](https://github.com/chickensoft-games/GameDemo/blob/main/test/src/coin/CoinTest.cs#L47-L50), we setup our tests by creating mock versions of the values the coin needs and then call the `FakeNodeTree` method generated by AutoNode to instruct our coin to use the mock objects for nodes at the provided paths instead of trying to connect to real children nodes.
+In the example below, taken from the game demo's [unit tests for the spinning gold coins](https://github.com/chickensoft-games/GameDemo/blob/main/test/src/coin/CoinTest.cs#L47-L50), we setup our tests by creating mock versions of the values the coin needs and then call the `FakeNodeTree` to instruct our coin to use the mock objects for nodes at the provided paths instead of trying to connect to real children nodes.
 
 ```csharp
   [Setup]
@@ -787,9 +766,8 @@ Thank you for reading my (excessively long) article on game architecture. There'
 <!-- Links -->
 
 [statechart]: https://statecharts.dev/
-[SuperNodes]: https://github.com/chickensoft-games/SuperNodes
+[Introspection]: https://github.com/chickensoft-games/Introspection
 [AutoInject]: https://github.com/chickensoft-games/AutoInject
 [GoDotTest]: https://github.com/chickensoft-games/GoDotTest
 [GodotTestDriver]: https://github.com/derkork/godot-test-driver
 [GodotNodeInterfaces]: https://github.com/chickensoft-games/GodotNodeInterfaces
-[PowerUps]: https://github.com/chickensoft-games/PowerUps
