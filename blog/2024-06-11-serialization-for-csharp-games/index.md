@@ -122,12 +122,12 @@ The generic form of `Activator.CreateInstance<T>` works well (and is performant)
 :::
 
 ```csharp
-[typeof(PartialModel)] = new IdentifiableTypeMetadata("PartialModel", (r) => r.Receive<PartialModel>(), () => System.Activator.CreateInstance<PartialModel>(), new PartialModel.MetatypeMetadata(), "multiple_partial_definitions", 1), 
-[typeof(PropertyModel)] = new AbstractIntrospectiveTypeMetadata("PropertyModel", (r) => r.Receive<PropertyModel>(), new PropertyModel.MetatypeMetadata()), 
-[typeof(SomeType)] = new IntrospectiveTypeMetadata("SomeType", (r) => r.Receive<SomeType>(), () => System.Activator.CreateInstance<SomeType>(), new SomeType.MetatypeMetadata(), 1), 
-[typeof(StaticPropertyIsSkipped)] = new IntrospectiveTypeMetadata("StaticPropertyIsSkipped", (r) => r.Receive<StaticPropertyIsSkipped>(), () => System.Activator.CreateInstance<StaticPropertyIsSkipped>(), new StaticPropertyIsSkipped.MetatypeMetadata(), 1), 
-[typeof(TraditionalNamespace.A)] = new ConcreteTypeMetadata("A", (r) => r.Receive<TraditionalNamespace.A>(), () => System.Activator.CreateInstance<TraditionalNamespace.A>()), 
-[typeof(TraditionalNamespace.A.AA)] = new ConcreteTypeMetadata("AA", (r) => r.Receive<TraditionalNamespace.A.AA>(), () => System.Activator.CreateInstance<TraditionalNamespace.A.AA>()), 
+[typeof(PartialModel)] = new IdentifiableTypeMetadata("PartialModel", (r) => r.Receive<PartialModel>(), () => System.Activator.CreateInstance<PartialModel>(), new PartialModel.MetatypeMetadata(), "multiple_partial_definitions", 1),
+[typeof(PropertyModel)] = new AbstractIntrospectiveTypeMetadata("PropertyModel", (r) => r.Receive<PropertyModel>(), new PropertyModel.MetatypeMetadata()),
+[typeof(SomeType)] = new IntrospectiveTypeMetadata("SomeType", (r) => r.Receive<SomeType>(), () => System.Activator.CreateInstance<SomeType>(), new SomeType.MetatypeMetadata(), 1),
+[typeof(StaticPropertyIsSkipped)] = new IntrospectiveTypeMetadata("StaticPropertyIsSkipped", (r) => r.Receive<StaticPropertyIsSkipped>(), () => System.Activator.CreateInstance<StaticPropertyIsSkipped>(), new StaticPropertyIsSkipped.MetatypeMetadata(), 1),
+[typeof(TraditionalNamespace.A)] = new ConcreteTypeMetadata("A", (r) => r.Receive<TraditionalNamespace.A>(), () => System.Activator.CreateInstance<TraditionalNamespace.A>()),
+[typeof(TraditionalNamespace.A.AA)] = new ConcreteTypeMetadata("AA", (r) => r.Receive<TraditionalNamespace.A.AA>(), () => System.Activator.CreateInstance<TraditionalNamespace.A.AA>()),
 ```
 
 </details>
@@ -145,16 +145,16 @@ An abbreviated version of the generated metadata for an introspective type.
 ```csharp
   [ExcludeFromCodeCoverage]
   public MixinBlackboard MixinState { get; } = new();
-  
+
   [ExcludeFromCodeCoverage]
   public IMetatype Metatype => ((IIntrospectiveTypeMetadata)Types.Graph.GetMetadata(typeof(IntrospectiveType))).Metatype;
-  
+
   public class MetatypeMetadata : IMetatype {
     [ExcludeFromCodeCoverage]
     public System.Type Type => typeof(IntrospectiveType);
     [ExcludeFromCodeCoverage]
     public bool HasInitProperties { get; } = true;
-    
+
     [ExcludeFromCodeCoverage]
     public IReadOnlyList<PropertyMetadata> Properties { get; } = new List<PropertyMetadata>() {
       new PropertyMetadata(
@@ -175,7 +175,7 @@ An abbreviated version of the generated metadata for an introspective type.
             new TagAttribute("address")
           }
         }
-      ), 
+      ),
       new PropertyMetadata(
         Name: "Age",
         IsInit: true,
@@ -194,7 +194,7 @@ An abbreviated version of the generated metadata for an introspective type.
             new TagAttribute("age")
           }
         }
-      ), 
+      ),
       new PropertyMetadata(
         Name: "Description",
         IsInit: true,
@@ -213,7 +213,7 @@ An abbreviated version of the generated metadata for an introspective type.
             new TagAttribute("description")
           }
         }
-      ), 
+      ),
       new PropertyMetadata(
         Name: "Name",
         IsInit: true,
@@ -234,33 +234,33 @@ An abbreviated version of the generated metadata for an introspective type.
         }
       )
     };
-    
+
     [ExcludeFromCodeCoverage]
     public IReadOnlyDictionary<System.Type, System.Attribute[]> Attributes { get; } = new Dictionary<System.Type, System.Attribute[]>() {
       [typeof(IdAttribute)] = new System.Attribute[] {
         new IdAttribute("init_args_model")
-      }, 
+      },
       [typeof(MetaAttribute)] = new System.Attribute[] {
         new MetaAttribute()
       }
     };
-    
+
     [ExcludeFromCodeCoverage]
     public IReadOnlyList<System.Type> Mixins { get; } = new List<System.Type>() {
     };
-    
+
     [ExcludeFromCodeCoverage]
     public IReadOnlyDictionary<System.Type, System.Action<object>> MixinHandlers { get; } = new Dictionary<System.Type, System.Action<object>>() {
     };
-    
-    
+
+
     [ExcludeFromCodeCoverage]
     public object Construct(IReadOnlyDictionary<string, object?>? args = null) {
       args = args ?? throw new System.ArgumentNullException(nameof(args), "Constructing IntrospectiveType requires init args.");
       return new IntrospectiveType() {
-        Address = args.ContainsKey("Address") ? (string)args["Address"] : default!, 
-        Age = args.ContainsKey("Age") ? (int)args["Age"] : default!, 
-        Description = args.ContainsKey("Description") ? (string)args["Description"] : default!, 
+        Address = args.ContainsKey("Address") ? (string)args["Address"] : default!,
+        Age = args.ContainsKey("Age") ? (int)args["Age"] : default!,
+        Description = args.ContainsKey("Description") ? (string)args["Description"] : default!,
         Name = args.ContainsKey("Name") ? (string)args["Name"] : default!
       };
     }
@@ -496,7 +496,7 @@ Oh — and LogicBlocks now has an [all new documentation site][logic-blocks-doc
 
 Previously, AutoInject was built on top of [SuperNodes]. Now that [SuperNodes] has been deprecated and replaced with the new [Introspection] generator, the [PowerUps] package (a set of mixins designed to work with AutoInject and SuperNodes) has also been deprecated. Fortunately, all of its functionality now lives inside AutoInject.
 
-Like before, you can use the new [Introspection] generator to apply mixins. But, it's even simpler now — *all* of the mixins available in AutoInject can be applied at once:
+Like before, you can use the new [Introspection] generator to apply mixins. But, it's even simpler now — _all_ of the mixins available in AutoInject can be applied at once:
 
 ```csharp
 // Apply all of the AutoInject mixins at once:
@@ -520,16 +520,16 @@ We'll close by celebrating the fact that Chickensoft has now reached a new layer
 
 <FancyImage src={require("./pyramid.jpg").default} alt="Maslow's hierarchy of game development" />
 
- If you made it this far, thanks for reading — and happy serializing!
+If you made it this far, thanks for reading — and happy serializing!
 
 <BlogDiscordInvite />
 
-[Introspection]: <https://github.com/chickensoft-games/Introspection>
-[Serialization]: <https://github.com/chickensoft-games/Serialization>
-[SuperNodes]: <https://github.com/chickensoft-games/SuperNodes>
-[PowerUps]: <https://github.com/chickensoft-games/PowerUps>
-[LogicBlocks]: <https://github.com/chickensoft-games/LogicBlocks>
+[Introspection]: https://github.com/chickensoft-games/Introspection
+[Serialization]: https://github.com/chickensoft-games/Serialization
+[SuperNodes]: https://github.com/chickensoft-games/SuperNodes
+[PowerUps]: https://github.com/chickensoft-games/PowerUps
+[LogicBlocks]: https://github.com/chickensoft-games/LogicBlocks
 [logic-blocks-docs]: /docs/logic_blocks/
-[AutoInject]: <https://github.com/chickensoft-games/AutoInject>
+[AutoInject]: https://github.com/chickensoft-games/AutoInject
 
 [^1]: It's actually too late. I've already made one.

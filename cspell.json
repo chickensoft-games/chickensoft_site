@@ -1,8 +1,5 @@
 {
-  "ignorePaths": [
-    "node_modules/**",
-    ".docusaurus/**"
-  ],
+  "ignorePaths": ["node_modules/**", ".docusaurus/**"],
   "files": [
     "**/*.md",
     "**/*.mdx",
