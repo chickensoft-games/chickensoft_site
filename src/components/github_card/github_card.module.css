@@ -15,9 +15,9 @@
 }
 
 .ghCardSpecial {
-  background-color: var(--special-surface-color);
-  filter: brightness(1.25);
-  color: #452915 !important;
+  background-color: #1c1a37;
+  /* filter: brightness(1.25); */
+  /* color: #452915 !important; */
   min-height: 200px;
   text-align: left;
 }
@@ -35,8 +35,8 @@
 }
 
 .ghCardSpecial:hover {
-  background-color: var(--special-surface-hover-color);
-  color: #452915 !important;
+  background-color: #1f1d43;
+  /* color: #452915 !important; */
 }
 
 .ghCard:hover .headerTitle {
