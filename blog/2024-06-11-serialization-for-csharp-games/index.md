@@ -304,7 +304,7 @@ public partial record PlayerData {
 ```
 
 :::tip
-The `[Id]` attribute tells the Introspection generator to generate additional metadata on to pof the additional introspection data specific to "identifiable" types. The Serialization system and Introspection generator were designed in tandem, so they work together seamlessly, even though the Introspection generator has no knowledge of serialization. It just generates metadata.
+The `[Id]` attribute tells the Introspection generator to generate additional metadata on top of the additional introspection data specific to "identifiable" types. The Serialization system and Introspection generator were designed in tandem, so they work together seamlessly, even though the Introspection generator has no knowledge of serialization. It just generates metadata.
 :::
 
 ✅ Note how the serialization system is opt-in: just add the `[Save]` attribute and specify a json key name for the properties you wish to persist!
