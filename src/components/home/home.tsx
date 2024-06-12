@@ -67,7 +67,7 @@ const repos: Array<GithubCardProps> = [
   {
     profile: 'chickensoft-games',
     repo: 'AutoInject',
-    logo: 'img/chickensoft/auto_inject.svg',
+    logo: 'img/chickensoft/auto_inject.png',
   },
   {
     profile: 'chickensoft-games',

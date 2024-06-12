@@ -1,5 +1,8 @@
 {
-  "ignorePaths": ["node_modules/**", ".docusaurus/**"],
+  "ignorePaths": [
+    "node_modules/**",
+    ".docusaurus/**"
+  ],
   "files": [
     "**/*.md",
     "**/*.mdx",
@@ -50,8 +53,11 @@
     "Lifecycles",
     "lightmapping",
     "Linietsky",
+    "Maslow's",
     "metaprogramming",
+    "Metatype",
     "Metaverse",
+    "Michal",
     "Monogame",
     "MPQPY",
     "nameof",
@@ -80,6 +86,7 @@
     "statechart",
     "statecharts",
     "Steamworks",
+    "Strehovský",
     "struct",
     "structs",
     "sublayers",
