@@ -18,6 +18,7 @@
   background-color: #1c1a37;
   /* filter: brightness(1.25); */
   /* color: #452915 !important; */
+  color: white !important;
   min-height: 200px;
   text-align: left;
 }
