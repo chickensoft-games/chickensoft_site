@@ -66,7 +66,7 @@ Whether or not those practices actually accomplish those goals is another matter
 
 I believe a good architecture is **opinionated**, **based on learnings from past projects** which met the same (or similar) goals, and **plays nicely with the development tools** for your particular stack: i.e., _a good architecture should provide structure, be based on experience, and be practical to implement_.
 
-If there's two equally good ways to do something, a good architecture will pick one as the reccomended approach. Good architectures embrace collectivism, not individualism. Each feature or component should be implemented similarly to the other features and components. Increasing code-similarity allows developers to ramp up quickly, switch between features with relative ease, and reduces the number of complex details they have to remember.
+If there's two equally good ways to do something, a good architecture will pick one as the recommended approach. Good architectures embrace collectivism, not individualism. Each feature or component should be implemented similarly to the other features and components. Increasing code-similarity allows developers to ramp up quickly, switch between features with relative ease, and reduces the number of complex details they have to remember.
 
 <FancyImage src={require("./images/architecture_sanity.png").default} alt="Architecture sanity test.">
 When loose coupling is eliminated, a good architecture should probably be a directed, acyclic graph.
