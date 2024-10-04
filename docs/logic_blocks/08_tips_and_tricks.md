@@ -82,8 +82,6 @@ public class MyGenericType<T> {
 
 Since C# doesn't like secret generic types, you have to be very specific when specifying the state type in the `[LogicBlock]` attribute.
 
-:::
-
 [Introspection]: https://github.com/chickensoft-games/Introspection
 [Serialization]: https://github.com/chickensoft-games/Serialization
 [open generic]: https://stackoverflow.com/a/2173115
