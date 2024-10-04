@@ -42,7 +42,7 @@ In C#, a type is generic if it accepts type parameters or is nested (however dee
 The `[LogicBlock]` attribute specifies the type to be used as the logic block's state and is read at build-time by the Logic Blocks Diagram Generator so it can resolve the state hierarchy for visualization purposes. The `[LogicBlock]` attribute is also used to find the state's type when [Introspection] is being used so that the logic block can look up derived states and their metadata at runtime to preallocate states.
 
 :::danger
-The following example results in a build error because `typeof` expressions inside an attribute are not allowed to *implicitly* reference generic types.
+The following example results in a build error because `typeof` expressions inside an attribute are not allowed to _implicitly_ reference generic types.
 
 ```csharp
 // Example: nesting a logic block in a generic type
@@ -67,7 +67,7 @@ One alternative is to move the state outside the generic type, but this isn't al
 
 ### ✅ Generic Logic Block Fix
 
-To declare a generic logic block, simply specify the state type as an *[open generic]* type and ensure your logic block and its states do *not* have the `[Meta]` attribute. The diagram generator (as of version 5.10.0) is smart enough to recognize open generic state types.
+To declare a generic logic block, simply specify the state type as an _[open generic]_ type and ensure your logic block and its states do _not_ have the `[Meta]` attribute. The diagram generator (as of version 5.10.0) is smart enough to recognize open generic state types.
 
 ```csharp
 public class MyGenericType<T> {
