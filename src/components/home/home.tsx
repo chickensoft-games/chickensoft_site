@@ -86,6 +86,11 @@ const repos: Array<GithubCardProps> = [
   },
   {
     profile: 'chickensoft-games',
+    repo: 'PalettePainter',
+    logo: 'img/chickensoft/palette_painter.png',
+  },
+  {
+    profile: 'chickensoft-games',
     repo: 'Collections',
     logo: 'img/chickensoft/collections.png',
   },
