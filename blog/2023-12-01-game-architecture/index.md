@@ -182,7 +182,7 @@ As mentioned, visual game logic is just code that's specific to a single visual 
 
 For visuals that do anything more than just appearing in game, they should probably have a reference to a [behavior tree](<https://en.wikipedia.org/wiki/Behavior_tree_(artificial_intelligence,_robotics_and_control)>), [state machine](https://en.wikipedia.org/wiki/Finite-state_machine), [statechart], or other such stateful mechanism that represents their state-of-being.
 
-Stateful mechanisms can have be loosely coupled to their owning components via an interface, enabling them to "drive" their visual components by calling methods on them or producing outputs that the visual game component binds to.
+Stateful mechanisms can be loosely coupled to their owning components via an interface, enabling them to "drive" their visual components by calling methods on them or producing outputs that the visual game component binds to.
 
 _The visual component's job is to shut up and look pretty_. The dumber it is, the better. An ideal visual component will just forward all inputs to its underlying state machine (or whatever it's using).
 
@@ -232,18 +232,18 @@ public partial class InGameUILogic {
     }
 
     public void OnNumCoinsCollected(int numCoinsCollected) {
-      Context.Output(new Output.NumCoinsCollectedChanged(numCoinsCollected));
+      Context.Output(new Output.NumCoinsChanged(numCoinsCollected, Get<IAppRepo>().NumCoinsAtStart.Value));
     }
 
     public void OnNumCoinsAtStart(int numCoinsAtStart) {
-      Context.Output(new Output.NumCoinsAtStartChanged(numCoinsAtStart));
+      Context.Output(new Output.NumCoinsChanged(Get<IAppRepo>().NumCoinsCollected.Value, numCoinsAtStart));
     }
 
   }
 }
 ```
 
-Meanwhile, the actual Godot Node for the `InGameUI` binds to the state machine's outputs, updating the UI whenever the number of coins changes.
+Meanwhile, the actual Godot node for the `InGameUI` binds to the state machine's outputs, updating the UI whenever the number of coins changes.
 
 ```csharp
 
@@ -256,14 +256,9 @@ public partial class InGameUI : Control, IInGameUI {
     InGameUIBinding = InGameUILogic.Bind();
 
     InGameUIBinding
-      .Handle<InGameUILogic.Output.NumCoinsCollectedChanged>(
+      .Handle<InGameUILogic.Output.NumCoinsChanged>(
         (output) => SetCoinsLabel(
-          output.NumCoinsCollected, AppRepo.NumCoinsAtStart.Value
-        )
-      )
-      .Handle<InGameUILogic.Output.NumCoinsAtStartChanged>(
-        (output) => SetCoinsLabel(
-          AppRepo.NumCoinsCollected.Value, output.NumCoinsAtStart
+          output.NumCoinsCollected, output.NumCoinsAtStart
         )
       );
 
@@ -372,7 +367,7 @@ In the real world, references to objects will trickle downward through each laye
 
 In reality, here's how it actually works.
 
-A godot node script can provide a value to its descendants. In our game demo, the `Player` node script provides the its logic block, `PlayerLogic`, to its descendant nodes, allowing them to bind to its state machine.
+A Godot node script can provide a value to its descendants. In our game demo, the `Player` node script provides its logic block, `PlayerLogic`, to its descendant nodes, allowing them to bind to its state machine.
 
 To get this value for the first time, though, each descendant will need to search their ancestors to see if any of them provide the type of value they're looking for.
 
@@ -476,7 +471,7 @@ Most people stop at this point, perfectly happy to be able to write tests for mo
 
 If you cannot quench your thirst for testing, and you find yourself wanting to measure code coverage accurately, the approach mentioned above won't quite work. You'll quickly realize that spinning up a scene means any of its child scenes get spun up, too. And if those child scenes have scripts, those get executed. That brings in a ton of other systems that you need to mock or swap in fake objects for, but there's no way to intercept the deserialization of the scene and swap everything out.
 
-By now, your simple "unit" test has gone supernova, and is crossing so many layers of abstractions that your test has exploded into an integration test. As a result, your test ends up testing everything else in your game, and your code coverage becomes meaningless.
+By now, your simple "unit" test has gone supernova, and is crossing so many layers of abstraction that your test has exploded into an integration test. As a result, your test ends up testing everything else in your game, and your code coverage becomes meaningless.
 
 <FancyImage src={require("./images/scene_explosion.png").default} alt="The scene explosion problem.">
 Testing a scene in isolation is very hard to do, since they directly deserialize child scenes and their scripts.
@@ -554,7 +549,7 @@ In this last section, we'll demonstrate how the architecture we've outlined abov
 
 To test visual components, we have to reason very carefully about them. As mentioned previously, there's two ways to instantiate a Godot node for testing.
 
-1. Instantiate the visual component's scene script directly. We avoid doing this in unit tests since it would pollute code coverage by executing more than one unit in a uni-test. For integration tests when we're not measuring code coverage, instantiating scenes directly works easily enough.
+1. Instantiate the visual component's scene script directly. We avoid doing this in unit tests since it would pollute code coverage by executing more than one unit in a unit-test. For integration tests or when we're not measuring code coverage, instantiating scenes directly works easily enough.
 
 2. Create a new instance of a scene script, without deserializing its scene. This breaks child relationships once added to a scene tree, since those children don't exist since we didn't deserialize a scene file. We can get around this by using a fake scene tree system, which is what GodotNodeInterfaces provides.
 
@@ -611,14 +606,9 @@ public partial class InGameUI : Control, IInGameUI {
     InGameUIBinding = InGameUILogic.Bind();
 
     InGameUIBinding
-      .Handle<InGameUILogic.Output.NumCoinsCollectedChanged>(
+      .Handle<InGameUILogic.Output.NumCoinsChanged>(
         (output) => SetCoinsLabel(
-          output.NumCoinsCollected, AppRepo.NumCoinsAtStart.Value
-        )
-      )
-      .Handle<InGameUILogic.Output.NumCoinsAtStartChanged>(
-        (output) => SetCoinsLabel(
-          AppRepo.NumCoinsCollected.Value, output.NumCoinsAtStart
+          output.NumCoinsCollected, output.NumCoinsAtStart
         )
       );
 
