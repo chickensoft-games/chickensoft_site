@@ -26,6 +26,11 @@ const twitter = lookup(config, 'twitter');
 const repos: Array<GithubCardProps> = [
   {
     profile: 'chickensoft-games',
+    repo: 'Chicken',
+    logo: 'img/chickensoft/chicken.png',
+  },
+  {
+    profile: 'chickensoft-games',
     repo: 'GodotEnv',
     logo: 'img/chickensoft/godot_env.png',
   },
