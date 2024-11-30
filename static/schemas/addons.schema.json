@@ -16,7 +16,7 @@
         "source": {
           "type": "string",
           "description": "Where the contents of the addon originate.",
-          "enum": ["remote", "local", "symlink"],
+          "enum": ["remote", "local", "symlink", "zip"],
           "default": "remote"
         },
         "checkout": {
