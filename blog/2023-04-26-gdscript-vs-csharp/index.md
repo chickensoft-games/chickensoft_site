@@ -55,10 +55,10 @@ On the other hand, here's some reasons why you might choose C#:
 - ✅ You prefer static typing.
 - ✅ You prefer curly braces over whitespace-delimited syntax.
 - ✅ You need access to mature developer tooling: linting, custom analyzers, and source generation.
-- ✅ You want additional performance without resorting to a systems language.
+- ✅ You want additional performance without resorting to a systems language like C++.
 - ✅ You need access to the vast library of .NET packages.
-- ⚠️ You don't need to export to iOS or web — yet. [While C# Android export is being tested][csharp-android-export] in the latest releases, support for exporting to iOS and web are still planned for future releases. You can [track the progress here][csharp-mobile].
-- ❌ You don't need to integrate with any GDExtensions. Currently, Godot does not generate C# bindings for GDExtensions, meaning you cannot call a GDExtension from C#. You can work around this by calling into GDScript from C# if you are willing to incur the performance penalty.
+- ⚠️ You don't need to export to the web — yet. You can [track the progress here][csharp-web].
+- ❌ You don't need to integrate with any GDExtensions. Currently, Godot does not generate C# bindings for GDExtensions, meaning you cannot call a GDExtension from C#. You can work around this by calling into GDScript from C# if you are willing to incur a slight performance penalty.
 
 :::
 
@@ -185,7 +185,7 @@ If you're interested in what I'm up to, you are more than welcome to [follow me 
 
 [gdscript-lambdas]: https://docs.godotengine.org/en/stable/tutorials/scripting/gdscript/gdscript_basics.html#lambda-functions
 [gdextension]: https://docs.godotengine.org/en/stable/tutorials/scripting/gdextension/what_is_gdextension.html
-[csharp-mobile]: https://github.com/godotengine/godot/issues/68153#issuecomment-1299672279
+[csharp-web]: https://github.com/godotengine/godot/issues/70796#issuecomment-2558573995
 [gdscript-type-hints]: https://godotengine.org/article/gdscript-progress-report-feature-complete-40/#typed-arrays
 [gdscript-whats-new]: https://gdscript.com/articles/godot-4-gdscript/
 [gdscript-performance]: https://godotengine.org/article/gdscript-progress-report-typed-instructions/#how-faster-is-it
@@ -212,4 +212,3 @@ If you're interested in what I'm up to, you are more than welcome to [follow me 
 [rider]: https://www.jetbrains.com/rider/
 [vscode]: https://code.visualstudio.com/
 [cross-lang-scripting]: https://docs.godotengine.org/en/stable/tutorials/scripting/cross_language_scripting.html
-[csharp-android-export]: https://godotengine.org/article/dev-snapshot-godot-4-2-dev-3/
