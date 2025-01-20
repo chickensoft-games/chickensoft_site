@@ -81,6 +81,11 @@ const repos: Array<GithubCardProps> = [
   },
   {
     profile: 'chickensoft-games',
+    repo: 'GameTools',
+    logo: 'img/chickensoft/package.png',
+  },
+  {
+    profile: 'chickensoft-games',
     repo: 'SaveFileBuilder',
     logo: 'img/chickensoft/save_file_builder.png',
   },
