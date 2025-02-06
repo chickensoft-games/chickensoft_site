@@ -3,6 +3,10 @@ title: 🕵️ Static Reflection
 image: ./header.jpg
 ---
 
+:::danger
+**SuperNodes has been deprecated** and superseded by Chickensoft's [Introspection](https://github.com/chickensoft-games/Introspection) system.
+:::
+
 At compile-time, SuperNodes will generate information about the properties and fields in a SuperNode script, as well as any properties or fields that have been added by PowerUps. These "static reflection" tables can be read by the SuperNode (or even an external assembly), allowing you to inspect the structure of a SuperNode at runtime _without_ using expensive C# reflection calls!
 
 ## 📊 Static Reflection Tables

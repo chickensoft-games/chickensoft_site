@@ -4,6 +4,10 @@ image: ./header.jpg
 sidebar_position: 4
 ---
 
+:::danger
+**SuperNodes has been deprecated** and superseded by Chickensoft's [Introspection](https://github.com/chickensoft-games/Introspection) system.
+:::
+
 [SuperNodes] is a C# source generator that gives superpowers to Godot node scripts.
 
 <FancyImage

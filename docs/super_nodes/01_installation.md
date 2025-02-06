@@ -3,6 +3,10 @@ title: 📦 Installation
 image: ./header.jpg
 ---
 
+:::danger
+**SuperNodes has been deprecated** and superseded by Chickensoft's [Introspection](https://github.com/chickensoft-games/Introspection) system.
+:::
+
 Simply add the following package references to your project's `.csproj` file (you can find the latest version on [Nuget][nuget]). Don't forget to include the `PrivateAssets="all"` and `OutputItemType="analyzer"` attributes on the SuperNodes package reference!
 
 ```xml

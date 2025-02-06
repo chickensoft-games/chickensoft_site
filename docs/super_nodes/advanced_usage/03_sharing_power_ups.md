@@ -3,6 +3,10 @@ title: ♻️ Sharing PowerUps
 image: https://chickensoft.games/assets/images/header-bbf251851f04eefa5fd63323124240f2.jpg
 ---
 
+:::danger
+**SuperNodes has been deprecated** and superseded by Chickensoft's [Introspection](https://github.com/chickensoft-games/Introspection) system.
+:::
+
 To share a PowerUp, we need to be able to share the code for it, not a compiled `.dll` of its contents. If we aren't able to share the source code for a PowerUp, the SuperNodes generator can't apply it to a SuperNode.
 
 Fortunately for us, Nuget can be used to make [source-only nuget packages][source-only-packages].

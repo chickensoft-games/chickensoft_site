@@ -3,6 +3,10 @@ title: 🤖 Source Generators
 image: ./header.jpg
 ---
 
+:::danger
+**SuperNodes has been deprecated** and superseded by Chickensoft's [Introspection](https://github.com/chickensoft-games/Introspection) system.
+:::
+
 ## 🔄 Lifecycle Hooks
 
 [Earlier][SuperNodes], we mentioned that you can declare lifecycle hooks on a SuperNode. In SuperNodes lingo, a "lifecycle hook" is just the name of a method that should be invoked whenever a node lifecycle event occurs, such as `Ready`, `Process`, `EnterTree`, etc.

@@ -3,6 +3,10 @@ title: 🔋 PowerUps & Interfaces
 image: https://chickensoft.games/assets/images/header-bbf251851f04eefa5fd63323124240f2.jpg
 ---
 
+:::danger
+**SuperNodes has been deprecated** and superseded by Chickensoft's [Introspection](https://github.com/chickensoft-games/Introspection) system.
+:::
+
 PowerUps can implement interfaces on behalf of a SuperNode.
 
 Whenever a SuperNode applies a PowerUp, the SuperNode implements any interfaces that the PowerUp had also implemented.

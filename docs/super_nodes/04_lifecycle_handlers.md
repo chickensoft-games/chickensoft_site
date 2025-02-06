@@ -4,6 +4,10 @@ slug: lifecycle-handlers
 image: ./header.jpg
 ---
 
+:::danger
+**SuperNodes has been deprecated** and superseded by Chickensoft's [Introspection](https://github.com/chickensoft-games/Introspection) system.
+:::
+
 SuperNodes allows you to implement methods that correspond to Godot node and object notifications, such as `OnReady` for `NotificationReady`, or `OnProcess` in place of `NotificationProcess`.
 
 Likewise, there is a special `OnNotification(int what)` method that can be called any time a notification is received. Since SuperNodes has to implement `_Notification(int what)` itself, this is the only way to receive ever notification at once in your script.

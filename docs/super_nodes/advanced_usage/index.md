@@ -4,6 +4,10 @@ sidebar_position: 4
 image: https://chickensoft.games/assets/images/header-bbf251851f04eefa5fd63323124240f2.jpg
 ---
 
+:::danger
+**SuperNodes has been deprecated** and superseded by Chickensoft's [Introspection](https://github.com/chickensoft-games/Introspection) system.
+:::
+
 In the [first section][super_nodes], we explained the basics of PowerUps and how to apply them to SuperNodes.
 
 PowerUps have a number of features that allow you to enhance a node script in a way that would have only been possible previously with a source generator. PowerUps are, in a sense, a lightweight static [metaprogramming] tool.
