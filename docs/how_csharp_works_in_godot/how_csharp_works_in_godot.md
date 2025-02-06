@@ -1,7 +1,7 @@
 ---
 title: '#️⃣ How C# Works in Godot'
 sidebar_position: 2
-# image: ./header.jpg
+image: ../header.jpg
 ---
 
 import FancyImage from '@site/src/components/fancy_image/fancy_image';
@@ -29,7 +29,7 @@ At this point, you are free to add as many C# scripts and code files as you like
 
 ## ✏️ Namespaces
 
-Godot does not care what namespaces you use (if any) in your code files, even for scene scripts. You are free to nest namespaces as much as you like, or not use them at all. For the sanity of your team, we typically recommend using a single namespace for the game's code as it keeps things flexible and facilitates future refactoring.
+Godot does not care what namespaces you use (if any) in your code files, even for scene scripts. You are free to nest namespaces as much as you like (or not use them at all).
 
 ## 🖼️ How Godot Hosts Managed Assemblies
 
@@ -108,7 +108,7 @@ You can also include source generator packages by including the additional tags 
 
 When creating a C# Godot project, it's helpful to devise terminology that allows us to classify the C# code in a game as falling into two potential "categories":
 
-- C# scripts assets (scripts added to a Godot scene or resource)
+- C# script assets (scripts added to a Godot scene or resource)
 - C# code files (plain C# code files not referenced directly by the engine)
 
 In general, a "script" is a code file which is referenced somewhere in the engine's other files (like Godot's `.tscn` scene files). When referenced from a scene or resource, the code file should be considered a script asset rather than just a loose C# file sitting somewhere in your project. Because Godot's references can be brittle at times, it's important to rename and move files in your project from within the Godot editor to avoid breaking references.
