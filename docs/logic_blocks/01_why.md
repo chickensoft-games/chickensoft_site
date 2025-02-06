@@ -81,5 +81,5 @@ For best results, place housekeeping operations in attach and detach callbacks, 
 [compound states]: https://statecharts.dev/glossary/compound-state.html
 [atomic]: https://statecharts.dev/glossary/atomic-state.html
 [reflection-free mode]: https://github.com/dotnet/corert/blob/master/Documentation/using-corert/reflection-free-mode.md
-[philosophy]: /philosophy
+[philosophy]: /docs/philosophy
 [attach-vs-entrance]: ./basics/states#-attach-and-detach-vs-entrance-and-exit

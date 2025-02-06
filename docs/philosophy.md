@@ -1,9 +1,9 @@
 ---
-title: Chickensoft Development Philosophy
+title: 🏛️ Philosophy
 description: Our game development philosophy.
+sidebar_position: 1
+image: ./header.jpg
 ---
-
-# Chickensoft Development Philosophy
 
 ## Purpose
 

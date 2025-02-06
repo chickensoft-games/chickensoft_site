@@ -1,6 +1,6 @@
 ---
 title: '#️⃣ How C# Works in Godot'
-sidebar_position: 2
+sidebar_position: 3
 image: ../header.jpg
 ---
 

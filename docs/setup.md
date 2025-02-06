@@ -1,6 +1,6 @@
 ---
 title: 🏁 Godot C# Setup Guide
-sidebar_position: 1
+sidebar_position: 2
 image: ./header.jpg
 ---
 

@@ -144,7 +144,7 @@ const config = {
               },
               {
                 label: 'Chickensoft Development Philosophy',
-                href: '/philosophy',
+                href: '/docs/philosophy',
               },
             ],
           },

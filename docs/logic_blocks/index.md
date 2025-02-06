@@ -1,7 +1,7 @@
 ---
 title: 💡 LogicBlocks
 image: ./header.jpg
-sidebar_position: 3
+sidebar_position: 4
 ---
 
 [![Chickensoft Badge][chickensoft-badge]][chickensoft-website] [![Discord][discord-badge]][discord] [![Read the docs][read-the-docs-badge]][docs] ![line coverage][line-coverage] ![branch coverage][branch-coverage]
