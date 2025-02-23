@@ -248,6 +248,10 @@ public override void _Ready() {
 }
 ```
 
+:::tip
+A **[demo Godot project is included with GameTools][demo]** that allows you to preview and experiment with the different high-level scaling behaviors.
+:::
+
 Better yet, when you're ready to enter full-screen, just call it again:
 
 ```csharp
@@ -346,3 +350,4 @@ Chickensoft has made a $200 USD donation to Doctors Without Borders. **We would 
 [SubViewport]: https://docs.godotengine.org/en/stable/classes/class_subviewport.html
 [Platform]: https://github.com/chickensoft-games/Platform
 [Discord]: https://discord.gg/MjA6HUzzAE
+[demo]: https://github.com/chickensoft-games/GameTools/tree/main/Chickensoft.GameTools.Demo
