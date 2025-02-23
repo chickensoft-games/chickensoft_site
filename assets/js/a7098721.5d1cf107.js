@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkchickensoft_site=self.webpackChunkchickensoft_site||[]).push([[1050],{6615:e=>{e.exports=JSON.parse('{"permalink":"/blog","page":1,"postsPerPage":10,"totalPages":1,"totalCount":8,"blogDescription":"Chickensoft News and Updates","blogTitle":"Chickensoft Blog"}')}}]);
