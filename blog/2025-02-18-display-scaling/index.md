@@ -105,7 +105,7 @@ Whenever you arrange your desktops virtually, you're positioning them in virtual
 
 Back when the iPhone came out, it wasn't uncommon to hardcode UI coordinates for its [`320x480`][ios-ref] screen. There was the one preordained screen size and we all accepted it.
 
-Later, the iPhone 4 introduced a retina screen that was twice as large (`640x960`) as the original screens. Rather than break everyone's hardcoded app, they made iOS tell apps that the screen was still `320x480`. Under the hood, iOS doubled the display back-buffer size. Such a pseudo-resolution that differs from the actual native resolution is an example of "logical resolution." At the time, it was a mercy — but now it might be considered criminal.
+Later, the iPhone 4 introduced a retina screen that had twice the amount of pixels in each dimension (`640x960`). Rather than break everyone's hardcoded app, they made iOS tell apps that the screen was still `320x480`. Under the hood, iOS doubled the display back-buffer size. Such a pseudo-resolution that differs from the actual native resolution is an example of "logical resolution." At the time, it was a mercy — but now it might be considered criminal.
 
 As phones kept coming out, developers soon realized that screen sizes would be changing constantly. Modern UI frameworks arose that were built around responsive design with horizontal and vertical container systems. Developers were told "not to worry" about actual native resolutions and just make their apps adaptable. Apps were (and still are) instructed to use multiple sizes of bitmap graphics to let the operating system pick the best one for the current screen size.
 
