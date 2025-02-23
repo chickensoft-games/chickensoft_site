@@ -153,7 +153,7 @@ If you're making an app with Godot or want to make a game that offers a high deg
 Back in the day, changing the user's resolution was common when starting a game, but is now considered outdated (and annoying). Fortunately, that's almost never necessary anymore.
 :::
 
-This isn't a silver bullet, but it's a good approach for most desktop games and will tend to work well on a wide variety of monitors, despite the fact that operating systems really don't want you to think about native resolutions. For applications with lots UI elements made out of raster graphics (like most games), knowing the actual pixel resolution is extremely helpful because it allows the application to make better decisions about rendering the UI in a way that preserves its crispness.
+This isn't a silver bullet, but it's a good approach for most desktop games and will tend to work well on a wide variety of monitors, despite the fact that operating systems really don't want you to think about native resolutions. For applications with lots of UI elements made out of raster graphics (like most games), knowing the actual pixel resolution is extremely helpful because it allows the application to make better decisions about rendering the UI in a way that preserves its crispness.
 
 Unfortunately, it's not possible to render independently of display scale factors without more information than what Godot is currently able to provide. To make those computations, you need the display's scale factor and native resolution.
 
@@ -163,7 +163,7 @@ On Windows, Godot allows you to get the DPI of a display — but it's often wron
 
 Likewise, whenever you ask Godot for the screen resolution on macOS or Windows, it returns the logical screen resolution in virtual desktop coordinates scaled by what it thinks the scale factor is, complicating matters further. On Windows, if you're on a secondary monitor with a different scale factor than the primary monitor, you end up a liminal coordinate space where none of the values make sense.
 
-Despite these limitations, Godot provides several easy-to-use "knobs" for adjusting scaling in a game: `window.ContentScaleFactor`, `window.Size`, project viewport and window size overrides, along with the various aspect and scale mode settings. It's still a bit of a hassle to get everything correctly setup, though.
+Despite these limitations, Godot provides several easy-to-use "knobs" for adjusting scaling in a game: `window.ContentScaleFactor`, `window.Size`, project viewport and window size overrides, along with the various aspect and scale mode settings. It's still a bit of a hassle to get everything configured correctly, though.
 
 <FancyImage src={require("./desk.jpg").default} alt="My desk with a bunch of monitors">
 The 4K, 3K, 2K, and HD monitor I've been using to develop display scaling utilities for macOS and Windows.
@@ -178,7 +178,7 @@ We can gather this accurate information on Windows 10+ and macOS by using Chicke
 <Spacer><GithubCard profile='chickensoft-games' repo='Platform' /></Spacer>
 
 :::caution
-Not-so-fun fact: platform actually uses an API that's only available on Windows 10+ to determine the monitor's _actual_ scale factor. It essentially allows us to temporarily turn-on "per-monitor DPI awareness" on our thread so we can get the real information we need.
+Not-so-fun fact: Platform actually uses an API that's only available on Windows 10+ to determine the monitor's _actual_ scale factor. It essentially allows us to temporarily turn-on "per-monitor DPI awareness" on our thread so we can get the real information we need.
 
 Unfortunately, this means we can really only solve display scaling on Windows versions `>=10` (which shouldn't be too much of an issue these days for new games being released). The macOS implementation just uses math and a few CoreGraphics API's which have been around for a long time, so it doesn't share this limitation.
 :::
@@ -231,13 +231,13 @@ theme/default_font_multichannel_signed_distance_field=true
 theme/default_font_generate_mipmaps=true
 ```
 
-If all this sounds like too much trouble, you can just spin up a new project with the Chickensoft GodotGame template. It's already got all this setup for you!
+If all this sounds like too much trouble, you can just spin up a new project with the Chickensoft GodotGame template. It's already got all this configured for you out-of-the-box!
 
 <Spacer><GithubCard profile='chickensoft-games' repo='GodotGame' /></Spacer>
 
 ### High-Level Scaling Behaviors
 
-Now that your project is setup, you can use Chickensoft's high-level scaling behaviors API from [GameTools]. It's just a single line of code that allows you to determine how your app or game should be presented and scaled.
+Now that your project is set up, you can use Chickensoft's high-level scaling behaviors API from [GameTools]. It's just a single line of code that allows you to determine how your app or game should be presented and scaled.
 
 ```csharp
 public override void _Ready() {
@@ -310,7 +310,7 @@ Display scaling is something you tend to think about twice: once at the start of
 
 Now that this is pretty well buttoned up, we plan on filing a proposal for Godot regarding access to the actual native resolution and scale factor to eliminate the need for packages like [Platform]. We hope that the native code in Platform can even serve as a helpful example for how it might be done. It will likely take some time to get all that done in the engine itself, though, since Godot has other display scaling issues that may need to be addressed first or as part of that effort. In the meantime, this gets you shipping your project _today_.
 
-We believe that providing opinionated solutions to weird, highly annoying technical issues like display scaling can really help AA game studios and indies get their games polished and ready to go in a lot less time. And we do that because we want to live in a world where those games are made in Godot.
+We believe that providing opinionated solutions to difficult, complex technical issues like display scaling can really help AA game studios and indies get their games polished and ready to go in a lot less time. And we do that because we want to live in a world where those games are made in Godot.
 
 :::important
 🇺🇦🇵🇸🏳️‍🌈 Speaking of living in a better world: if you like what Chickensoft is doing, we ask that you instead support a cause that will improve the world. **In a world where everyone looks and sounds the same, there would be no Chickensoft tools or helpful guides like this.**
