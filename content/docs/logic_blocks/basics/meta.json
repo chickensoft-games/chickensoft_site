@@ -1,0 +1,9 @@
+{
+  "pages": [
+    "inputs",
+    "states",
+    "outputs",
+    "errors",
+    "bindings"
+  ]
+}

@@ -1,0 +1,18 @@
+.githubCard:hover #name {
+  text-decoration: underline;
+}
+
+.githubCard:hover #starIcon {
+  position: relative;
+  transform: scale(1.25);
+  color: darkorange !important;
+}
+
+@media (prefers-color-scheme: dark) {
+  .githubCard:hover #starIcon {
+    position: relative;
+    transform: scale(1.25);
+    color: yellow !important;
+    filter: drop-shadow(0 0 8px yellow);
+  }
+}

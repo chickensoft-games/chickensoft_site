@@ -1,65 +1,44 @@
 {
-  "name": "chickensoft-site",
+  "name": "chickensoft_site",
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "docusaurus": "docusaurus",
-    "start": "docusaurus start",
-    "build": "docusaurus build",
-    "swizzle": "docusaurus swizzle",
-    "deploy": "docusaurus deploy",
-    "clear": "docusaurus clear",
-    "serve": "docusaurus serve",
-    "write-translations": "docusaurus write-translations",
-    "write-heading-ids": "docusaurus write-heading-ids",
-    "typecheck": "tsc",
-    "format": "prettier --write .",
-    "format:check": "prettier --check .",
-    "lint": "eslint --cache --cache-location ./node_modules/.cache/eslint ."
+    "build": "next build",
+    "dev": "next dev",
+    "start": "next start",
+    "postinstall": "fumadocs-mdx"
   },
   "dependencies": {
-    "@docusaurus/core": "^2.4.3",
-    "@docusaurus/plugin-google-gtag": "^2.4.3",
-    "@docusaurus/preset-classic": "^2.4.3",
-    "@docusaurus/theme-mermaid": "^2.4.3",
-    "@mdx-js/react": "^1.6.22",
-    "clsx": "^1.2.1",
-    "dompurify": "^3.0.0",
-    "dotenv": "^16.0.3",
-    "prism-react-renderer": "^1.3.5",
-    "react": "^17.0.2",
-    "react-dom": "^17.0.2",
-    "react-player": "^2.14.1"
+    "@next/third-parties": "^15.2.4",
+    "@octokit/rest": "^21.0.1",
+    "@theguild/remark-mermaid": "^0.3.0",
+    "fumadocs-core": "15.1.0",
+    "fumadocs-mdx": "11.5.6",
+    "fumadocs-ui": "15.1.0",
+    "next": "^15.2.4",
+    "react": "^19.1.0",
+    "react-dom": "^19.1.0",
+    "react-icons": "^5.5.0",
+    "react-markdown": "^10.1.0",
+    "server-only": "^0.0.1",
+    "sharp": "^0.34.1"
   },
   "devDependencies": {
-    "@babel/eslint-parser": "^7.19.1",
-    "@docusaurus/eslint-plugin": "^2.4.3",
-    "@docusaurus/module-type-aliases": "2.4.3",
-    "@octokit/rest": "^19.0.7",
-    "@octokit/types": "^9.0.0",
-    "@tsconfig/docusaurus": "^1.0.5",
-    "eslint": "^8.34.0",
-    "eslint-plugin-frontmatter": "^0.0.8",
-    "eslint-plugin-mdx": "^2.0.5",
-    "octokit": "^2.0.14",
-    "prettier": "^2.8.4",
-    "twemoji": "^14.0.2",
-    "twitter-api-sdk": "^1.2.1",
-    "typescript": "^4.9.5"
+    "@octokit/types": "^13.5.0",
+    "@tailwindcss/postcss": "^4.0.14",
+    "@types/mdx": "^2.0.13",
+    "@types/node": "22.13.10",
+    "@types/react": "^19.0.10",
+    "@types/react-dom": "^19.0.4",
+    "eslint": "9.22.0",
+    "eslint-config-next": "15.2.3",
+    "postcss": "^8.5.3",
+    "tailwindcss": "^4.0.14",
+    "typescript": "^5.8.2"
   },
-  "browserslist": {
-    "production": [
-      ">0.5%",
-      "not dead",
-      "not op_mini all"
-    ],
-    "development": [
-      "last 1 chrome version",
-      "last 1 firefox version",
-      "last 1 safari version"
-    ]
-  },
-  "engines": {
-    "node": ">=16.14"
+  "optionalDependencies": {
+    "@esbuild/linux-x64": "0.25.2",
+    "@tailwindcss/oxide-linux-x64-gnu": "^4.1.1",
+    "lightningcss-linux-x64-gnu": "^1.29.3"
   }
 }

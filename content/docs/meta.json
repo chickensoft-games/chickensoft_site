@@ -1,0 +1,10 @@
+{
+  "defaultOpen": true,
+  "root": true,
+  "pages": [
+    "index",
+    "how_csharp_works",
+    "setup",
+    "logic_blocks/"
+  ]
+}

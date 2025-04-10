@@ -1,48 +1,31 @@
-# Chickensoft Site
+# Chickensoft Website
 
-[![Chickensoft Badge][chickensoft-badge]][chickensoft-website] [![Discord][discord-badge]][discord] [![Read the docs][read-the-docs-badge]][docs]
+[![Netlify Status](https://api.netlify.com/api/v1/badges/4914b005-8ae0-4158-9735-0b4b10bd87e4/deploy-status)](https://app.netlify.com/sites/chickensoft/deploys)
 
-The official [Chickensoft Website][chickensoft-website]. Built using [Docusaurus 2](https://docusaurus.io/), a modern static website generator.
+The official [Chickensoft Website](https://chickensoft.games).
 
 ---
 
 <p align="center">
-<img alt="Chickensoft Site Logo" src="static/img/chickensoft/chickensoft_site.svg" width="200">
+<img alt="Chickensoft Site Logo" src="public/img/chickensoft/chickensoft_site.svg" width="200">
 </p>
 
-## ⚙️ Installation
+This is a Next.js application generated with
+[Create Fumadocs](https://github.com/fuma-nama/fumadocs).
 
-```sh
-npm install
+Run development server:
+
+```bash
+npm run dev
 ```
 
-## 🧑‍💻 Local Development
+Open <http://localhost:3000> with your browser to see the result.
 
-```sh
-npm run start
-```
+## Contributing
 
-This command starts a local development server and opens up a browser window. Most changes are reflected live without having to restart the server.
+If you're adding more than just documentation, it would help to be familiar with Next.js and Fumadocs:
 
-## 📦 Build
-
-```sh
-npm run build
-```
-
-This command generates static content into the `build` directory and can be served using any static contents hosting service.
-
-## ☁️ Deployment
-
-Deployment occurs every day and whenever the main branch is updated. 🪄
-
-<!-- Links -->
-
-<!-- Header -->
-
-[chickensoft-badge]: https://chickensoft.games/images/chickensoft/chickensoft_badge.svg
-[chickensoft-website]: https://chickensoft.games
-[read-the-docs-badge]: https://chickensoft.games/img/badges/read_the_docs_badge.svg
-[docs]: https://chickensoft.games/docs
-[discord-badge]: https://img.shields.io/badge/Chickensoft%20Discord-%237289DA.svg?style=flat&logo=discord&logoColor=white
-[discord]: https://discord.gg/gSjaPgMmYW
+- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js
+  features and API.
+- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+- [Fumadocs](https://fumadocs.vercel.app) - learn about Fumadocs

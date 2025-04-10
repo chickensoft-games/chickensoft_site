@@ -1,0 +1,8 @@
+{
+  "pages": [
+    "timer_logic_block",
+    "power",
+    "countdown",
+    "beeping"
+  ]
+}

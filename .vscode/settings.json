@@ -1,19 +1,9 @@
 {
-  "auto-close-tag.activationOnLanguage": [
-    "md",
-    "js",
-    "jsx",
-    "html",
-    "htm",
-    "ts",
-    "tsx",
-    "mdx"
-  ],
-  "editor.codeActionsOnSave": {
-    "source.fixAll.eslint": "explicit"
+  "files.associations": {
+    "*.css": "tailwindcss"
   },
-  "eslint.options": {
-    "extensions": [".js", ".jsx", ".ts", ".tsx"]
+  "workbench.editorAssociations": {
+    "*.svg": "default"
   },
   "eslint.validate": [
     "javascript",
@@ -21,14 +11,20 @@
     "typescript",
     "typescriptreact"
   ],
+  "[mdx]": {
+    "editor.rulers": [
+      100
+    ],
+    "editor.wordWrapColumn": 100,
+    "editor.wordWrap": "bounded"
+  },
   "files.exclude": {
     "**/node_modules": true
   },
+  "cSpell.words": [
+    "Cuda"
+  ],
   "markdownlint.config": {
-    // Allow a top level heading despite a yaml front matter "title" property.
-    "MD025": {
-      "front_matter_title": ""
-    },
     "MD033": false
   }
 }
