@@ -1,0 +1,577 @@
+---
+title: 🏁 Godot 4 C# Setup Guide
+description: "A guide to setting up your development environment for Godot 4 and C#."
+---
+
+If you have the .NET SDK installed, Godot 4 provides a pretty good out-of-the-box development experience — but you'll need to follow some additional steps if you want to configure your environment to simplify IDE integration and command-line usage.
+
+<Callout type="info">
+Because of Godot's rapid release cycle and the nature of various IDE extensions, you may encounter issues not mentioned in this guide. We invite you to join us in Discord for additional help or to inform us of outdated information.
+
+<DiscordInvite />
+</Callout>
+
+## 📦 Installing the .NET SDK
+
+To use Godot 4, we recommend installing the [.NET 8 SDK][net8].
+
+<Callout type="tip">
+You can install multiple versions of the .NET SDK. C# tooling is (generally) intelligent enough to pick the correct version based on the target framework of the project, the `global.json` file, and other settings in Godot. If you're running into issues with SDK resolution, feel free to reach out in [Discord].
+
+It probably won't hurt to install the [.NET 6 SDK][net6] and/or [.NET 7 SDK][net7], too — having .NET 6, 7, and 8 will allow you to run a variety of C# projects and tools.
+</Callout>
+
+<Callout type="info">
+We often write file paths like `~/folder`. The `~` is a shortcut for your home folder. On Windows, `~` expands to something like `C:\Users\you`. On macOS, `~` expands to `/Users/you`. On Linux, `~` expands to `/home/you`. For example, `~/Documents` expands to `C:\Users\you\Documents` on Windows, `/Users/you/Documents` on macOS, and `/home/you/Documents` on Linux.
+</Callout>
+
+<Tabs groupId="os" items={["macOS", "Linux", "Windows"]} persist>
+  <Tab>
+
+Use the [Microsoft provided
+installer][net8] to
+install the .NET SDK on macOS. For more information about installing the .NET SDK on Mac, see [Microsoft's article for
+Mac](https://learn.microsoft.com/en-us/dotnet/core/install/macos).
+
+  </Tab>
+  <Tab>
+
+There's a few gotchas to be aware of when installing the .NET SDK on
+Linux, so please see [Microsoft's article for
+Linux](https://learn.microsoft.com/en-us/dotnet/core/install/linux). The general rule of thumb is to check your distribution's package manager for the relevant versions of the .NET SDK first, as that will typically offer the happiest path to getting up and running with .NET.
+
+  </Tab>
+  <Tab>
+
+Open PowerShell as an administrator and use `winget` to install the .NET 8
+SDK: `winget install dotnet-sdk-8` (or `winget upgrade` to upgrade an existing installation). For more information about
+installing the .NET SDK on Windows, see [Microsoft's article for
+Windows](https://learn.microsoft.com/en-us/dotnet/core/install/windows) or the [release notes][net8-release-notes].
+
+You can also install the .NET SDK using the [Microsoft provided installer][net8], or through [Visual Studio 2022 Community Edition][vs-2022].
+
+  </Tab>
+</Tabs>
+
+If you want to install the .NET SDK manually, you can find [all available downloads here][dotnet-sdk].
+
+The .NET SDK installers and package managers tend to place it in a standard location on each platform — if you install it manually, make sure you make a note of where you installed it to. We'll need that later.
+
+## ⏳ Version Control with Git
+
+You should **absolutely** be using a version control system to track your game's code and assets: specifically, [git].
+
+<Callout type="danger">
+
+🔥🔥🔥 Mistakes get made, tools can accidentally clear out files, scene references can get broken — bad stuff happens during the chaos of development.
+
+**Git allows you to go back in time and undo unwanted changes**. Git also lets you collaborate with others easily and store your code in [GitHub], [GitLab], or other hosted git services.
+
+While learning git can seem daunting, it is absolutely your responsibility as a game developer to protect your valuable time and work. Using git is mandatory — you should not write a single line of code without first configuring git. **Game development is extremely hard — don't make it harder on yourself by leaving your work unprotected**. 🔥🔥🔥
+
+Be sure to bookmark the [Undoing Changes in Git][git-undo] section to prevent panic during your next crisis. Messing up is not a matter of **if**, it's a matter of **when** — so be prepared.
+
+</Callout>
+
+Properly learning and using git is a skill that gradually accrues over a lifetime of development. [The basics aren't too hard][git-started]. Using [Visual Studio Code][vscode] can allow you to leverage git without ever really having to touch a command-line (for the most part). If you do nothing else, use VSCode's built-in git support.
+
+<Callout type="info">
+
+If you're already using git but aren't entirely comfortable with it, take a look at the [git beginner guide][git-started] — this is the best guide, in my opinion, and the one I recommend to junior engineers all the time. You can jump straight into the [advanced tips][git-advanced] for anything you might be unsure about.
+
+</Callout>
+
+## 🖥 Shell Environment
+
+Let's setup the shell environment to contain environment variables that point to the .NET SDK. This will allow you to run `dotnet` command line tool from anywhere. We will be using it to install GodotEnv to manage ours Godot installation, making Godot game development easier than ever.
+
+<Callout type="info">
+
+### 👩‍💻 Which shell should I use?
+
+For the sake of consistency, Chickensoft officially recommends using a bash shell on every OS, _especially_ if you are developing your game to be cross-platform on macOS, Windows, and Linux — which is pretty easy to do with Godot, once your environments are setup correctly.
+
+Since a bash shell is not available on Windows by default, you can access one by installing [git], which includes the Git Bash for Windows application. You can also configure the Windows Terminal (there's an option to add a Windows Terminal profile in the git installer) and [VSCode to use bash][vscode-bash] by default.
+
+Bash is a bit esoteric, but you can [easily learn the basics of bash that you'll need][bash-beginners] pretty quickly. Or you can dive in and [read the whole book on bash][bash-thorough].
+
+</Callout>
+
+Once we do this, we'll be able to run Godot from a terminal and create the proper launch configurations for Visual Studio Code.
+
+<Tabs groupId="os" items={["macOS", "Linux", "Windows"]} persist>
+  <Tab>
+
+If `~/.zshrc` doesn't exist, you'll need to create it.
+
+<Callout type="tip">
+To toggle visibility of hidden files in the macOS Finder, press `Cmd + Shift + .` — it also works in file dialogs!
+</Callout>
+
+Add the following to your `~/.zshrc` file:
+
+```sh
+# .NET SDK Configuration
+export DOTNET_ROOT="/usr/local/share/dotnet"
+export DOTNET_CLI_TELEMETRY_OPTOUT=1 # Disable analytics
+export DOTNET_ROLL_FORWARD_TO_PRERELEASE=1
+
+# Add the .NET SDK to the system paths so we can use the `dotnet` tool.
+export PATH="$DOTNET_ROOT:$PATH"
+export PATH="$DOTNET_ROOT/sdk:$PATH"
+export PATH="$HOME/.dotnet/tools:$PATH"
+
+# Run this if you ever run into errors while doing a `dotnet restore`
+alias nugetclean="dotnet nuget locals --clear all"
+```
+
+  </Tab>
+  <Tab>
+
+If `~/.bashrc` doesn't exist, you'll need to create it. Add the following to the file:
+
+```sh
+# .NET SDK Configuration
+export DOTNET_ROOT="/usr/share/dotnet"
+export DOTNET_CLI_TELEMETRY_OPTOUT=1 # Disable analytics
+export DOTNET_ROLL_FORWARD_TO_PRERELEASE=1
+
+# Add the .NET SDK to the system paths so we can use the `dotnet` tool.
+export PATH="$DOTNET_ROOT:$PATH"
+export PATH="$DOTNET_ROOT/sdk:$PATH"
+export PATH="$HOME/.dotnet/tools:$PATH"
+
+# Run this if you ever run into errors while doing a `dotnet restore`
+alias nugetclean="dotnet nuget locals --clear all"
+```
+
+  </Tab>
+  <Tab>
+
+In Windows, when using the bash shell that comes with Git (Git Bash), you can place your shell configuration in `~/.bashrc`. In the file, add the following:
+
+```sh
+# .NET SDK Configuration
+export DOTNET_ROOT="C:\\Program Files\\dotnet"
+export DOTNET_CLI_TELEMETRY_OPTOUT=1 # Disable analytics
+export DOTNET_ROLL_FORWARD_TO_PRERELEASE=1
+
+# Add the .NET SDK to the system paths so we can use the `dotnet` tool.
+export PATH="$DOTNET_ROOT:$PATH"
+export PATH="$DOTNET_ROOT\\sdk:$PATH"
+export PATH="$HOME\\.dotnet\\tools:$PATH"
+
+# Run this if you ever run into errors while doing a `dotnet restore`
+alias nugetclean="dotnet nuget locals --clear all"
+```
+
+  </Tab>
+</Tabs>
+
+<Callout type="info">
+Depending on how you install the .NET SDK, you may or may not need to add them to your path in `~/.bashrc` (linux) or `~/.zshrc` (macOS). You can run `which dotnet` in a bash shell to see if they're already in your path. If they are, remove the `export PATH` lines for them added previously. If it is not the case, you should use `DOTNET_ROOT` to point to your `dotnet` root directory as showed above.
+
+Make sure the path to the .NET SDK matches where this tool was installed on your particular system, since it might be different if you installed it manually.
+</Callout>
+
+## 🤖 Installing Godot
+
+You can use Chickensoft's command-line tool, [GodotEnv], to manage Godot versions locally on your machine (as well as manage Godot asset library addons in your project).
+
+<GithubCard owner='chickensoft-games' repo='GodotEnv' logo='/img/chickensoft/godot_env.png'/>
+
+<Callout type="info">
+Using GodotEnv to install and manage Godot on your system provides a number of advantages:
+
+- ✅ Automatically download, extract, and install any requested Godot 4.x+ version (with or without .NET support) from the Godot [TuxFamily] downloads mirror.
+
+- ✅ Automatically manage symlink on your system that point to the version of Godot you'd like to use. The symlink path never changes — just the version it points to.
+
+  On Windows, maintaining symlinks requires administrator privileges, making it a hassle to manage by hand. GodotEnv integrates with Windows' User Access Control (UAC) to automatically request admin privileges when needed.
+
+- ✅ Adds a system `GODOT` environment variable that points to the symlink location, facilitating its usage through scripts.
+
+- ✅ Adds the `GODOT` pointed path to the system's PATH. Making initializing the Godot binary a breeze, just run `godot` to open the version managed by GodotEnv.
+
+- ✅ Standardizes installation locations across platforms and machines, making it easier to collaborate with other teammates.
+
+- ✅ Quickly change the system Godot version to any installed version, as well as listing all the installed versions.
+
+</Callout>
+
+To install GodotEnv, run the following:
+
+```sh
+dotnet tool install --global Chickensoft.GodotEnv
+```
+
+### 🦾 Installing with GodotEnv
+
+You can install Godot automatically by specifying a Godot version the way it appears [here][godot-sharp-version].
+
+```sh
+godotenv godot install 4.0.1
+```
+
+### 😓 Installing Manually
+
+If you're not convinced, you can always [download Godot][download-godot] manually and install it wherever you'd like.
+
+### 📍 Godot Installation Path
+
+If you're using GodotEnv, Godot versions will automatically be installed in the following locations:
+
+<Tabs groupId="os" items={["macOS", "Linux", "Windows"]} persist>
+  <Tab>
+
+| Location    | Path                                                                                                      |
+| ----------- | --------------------------------------------------------------------------------------------------------- |
+| Symlink     | `/Users/{you}/.config/godotenv/godot/bin`                                                                 |
+| Actual Path | `/Users/{you}/.config/godotenv/godot/versions/godot_dotnet_{version}/Godot_mono.app/Contents/MacOS/Godot` |
+
+  </Tab>
+  <Tab>
+
+| Location    | Path                                                                                                                                                     |
+| ----------- | -------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Symlink     | `/home/{you}/.config/godotenv/godot/bin`                                                                                                                 |
+| Actual Path | `/home/{you}/.config/godotenv/godot/versions/godot_dotnet_{version}/Godot_v{version}-stable_mono_linux_x86_64/Godot_v{version}-stable_mono_linux.x86_64` |
+
+  </Tab>
+  <Tab>
+
+| Location    | Path                                                                                                                                                      |
+| ----------- | --------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Symlink     | `C:\Users\{you}\AppData\Roaming\godotenv\godot\bin`                                                                                                       |
+| Actual Path | `C:\Users\{you}\AppData\Roaming\godotenv\godot\versions\godot_dotnet_{version}\Godot_v{version}-stable_mono_win64\Godot_v{version}-stable_mono_win64.exe` |
+
+  </Tab>
+</Tabs>
+
+<Callout type="caution">
+All Chickensoft templates and [VSCode launch configurations][vscode-launch] rely on an environment variable named `GODOT` that contains the path to the version of Godot you'd like to use.
+
+**GodotEnv will automatically update your environment variables** by updating the `~/.zshrc` file on macOS or the `~/.bashrc` file on Linux to point to its symlink which in turn points to the active version of Godot. On Windows, GodotEnv will automatically attempt to update the environment variable with the relevant command prompt commands with requested admin privileges.
+
+❗️ **You will have to logout and login again after environment variables have been updated for all applications to see the updated values.**
+
+If you're not using GodotEnv or want to double check that the variable exists, please make sure you've setup the environment variables as follows:
+<Tabs groupId="os" items={["macOS", "Linux", "Windows"]} persist>
+<Tab>
+
+In your `~/.zshrc` file, make sure something like the following exists.
+
+```sh
+# This should be added to your ~/.zshrc file by GodotEnv automatically, but
+# you can also add it manually and change the path of Godot to match
+# your system.
+export GODOT="/Users/{you}/.config/godotenv/godot/bin"
+```
+
+  </Tab>
+  <Tab>
+
+In your `~/.bashrc` file, make sure something like the following exists.
+
+```sh
+# This should be added to your ~/.zshrc file by GodotEnv automatically, but
+# you can also add it manually and change the path of Godot to match
+# your system.
+export GODOT="/home/{you}/.config/godotenv/godot/bin"
+```
+
+  </Tab>
+  <Tab>
+
+Windows has a visual editor for updating environment variables. See [this article][win-env-vars].
+
+  </Tab>
+</Tabs>
+</Callout>
+
+If you're installing manually, consider placing it in one of the following locations:
+
+<Tabs groupId="os" items={["macOS", "Linux", "Windows"]} persist>
+  <Tab>
+
+Move Godot to `/Applications/Godot_mono.app`. This is where all your other
+Mac apps are, anyways!
+
+  </Tab>
+  <Tab>
+
+If you're using Linux, you probably have your own opinion on where to put
+it. If you're not sure, you can place the Godot executable (and its
+supporting files) in its own folder inside your user folder: `/home/Godot`.
+
+  </Tab>
+  <Tab>
+
+On Windows, you can place Godot and any supporting files at `C:\Godot\Godot_mono.exe` or in its own
+folder in your user folder: `C:\Users\{you}\Godot`.
+
+  </Tab>
+</Tabs>
+
+## ⌨️ Visual Studio Code
+
+All of Chickensoft's packages and templates are designed to work well with Visual Studio Code (VSCode).
+
+You can download [Visual Studio Code][vscode] here.
+
+### 🔌 VSCode Extensions
+
+At the very least, you'll need the [`ms-dotnettools.csharp`][vscode-csharp] extension. Chickensoft also [recommends a handful of other extensions][vscode-recommended] that make development easier.
+
+### 💾 VSCode Settings for Godot and C\#
+
+We need to turn OmniSharp back on — it should have never been turned off by default.
+
+Open your [VSCode Settings as a JSON file][vscode-settings] and add the following settings:
+
+```javascript
+"dotnetAcquisitionExtension.enableTelemetry": false,
+// Increases project compatibility with the C# extension.
+"dotnet.preferCSharpExtension": true,
+```
+
+Chickensoft also recommends the following additional settings for a pleasant C# development experience:
+
+```javascript
+"csharp.suppressHiddenDiagnostics": false,
+// Draw a line between selected brackets so you can see blocks of code easier.
+"editor.guides.bracketPairs": "active",
+
+"[csharp]": {
+  "editor.codeActionsOnSave": {
+    "source.addMissingImports": "explicit",
+    "source.fixAll": "explicit",
+    "source.organizeImports": "explicit"
+  },
+  "editor.formatOnPaste": true,
+  "editor.formatOnSave": true,
+  "editor.formatOnType": true
+},
+
+// To make bash the default terminal on Windows, add these:
+"terminal.integrated.defaultProfile.windows": "Git Bash",
+"terminal.integrated.profiles.windows": {
+  "Command Prompt": {
+    "icon": "terminal-cmd",
+    "path": [
+      "${env:windir}\\Sysnative\\cmd.exe",
+      "${env:windir}\\System32\\cmd.exe"
+    ]
+  },
+  "Git Bash": {
+    "icon": "terminal",
+    "source": "Git Bash"
+  },
+  "PowerShell": {
+    "icon": "terminal-powershell",
+    "source": "PowerShell"
+  }
+}
+```
+
+Finally, C#'s semantic highlighting is a bit funky, so you can fix that by adding these color adjustments:
+
+<details>
+<summary>C# Semantic Syntax Highlighting Color Correction Settings</summary>
+
+```csharp
+"editor.tokenColorCustomizations": {
+  "[*Dark*]": {
+    // Themes that include the word "Dark" in them.
+    "textMateRules": [
+      {
+        "scope": "comment.documentation",
+        "settings": {
+          "foreground": "#608B4E"
+        }
+      },
+      {
+        "scope": "comment.documentation.attribute",
+        "settings": {
+          "foreground": "#C8C8C8"
+        }
+      },
+      {
+        "scope": "comment.documentation.cdata",
+        "settings": {
+          "foreground": "#E9D585"
+        }
+      },
+      {
+        "scope": "comment.documentation.delimiter",
+        "settings": {
+          "foreground": "#808080"
+        }
+      },
+      {
+        "scope": "comment.documentation.name",
+        "settings": {
+          "foreground": "#569CD6"
+        }
+      }
+    ]
+  },
+  "[*Light*]": {
+    // Themes that include the word "Light" in them.
+    "textMateRules": [
+      {
+        "scope": "comment.documentation",
+        "settings": {
+          "foreground": "#008000"
+        }
+      },
+      {
+        "scope": "comment.documentation.attribute",
+        "settings": {
+          "foreground": "#282828"
+        }
+      },
+      {
+        "scope": "comment.documentation.cdata",
+        "settings": {
+          "foreground": "#808080"
+        }
+      },
+      {
+        "scope": "comment.documentation.delimiter",
+        "settings": {
+          "foreground": "#808080"
+        }
+      },
+      {
+        "scope": "comment.documentation.name",
+        "settings": {
+          "foreground": "#808080"
+        }
+      }
+    ]
+  },
+  "[*]": {
+    // Themes that don't include the word "Dark" or "Light" in them.
+    // These are some bold colors that show up well against most dark and
+    // light themes.
+    //
+    // Change them to something that goes well with your preferred theme :)
+    "textMateRules": [
+      {
+        "scope": "comment.documentation",
+        "settings": {
+          "foreground": "#0091ff"
+        }
+      },
+      {
+        "scope": "comment.documentation.attribute",
+        "settings": {
+          "foreground": "#8480ff"
+        }
+      },
+      {
+        "scope": "comment.documentation.cdata",
+        "settings": {
+          "foreground": "#0091ff"
+        }
+      },
+      {
+        "scope": "comment.documentation.delimiter",
+        "settings": {
+          "foreground": "#aa00ff"
+        }
+      },
+      {
+        "scope": "comment.documentation.name",
+        "settings": {
+          "foreground": "#ef0074"
+        }
+      }
+    ]
+  }
+},
+```
+
+</details>
+
+## ✨ Creating Godot Projects
+
+Chickensoft provides a few `dotnet new` templates to help you quickly create a C# projects for use with Godot 4.
+
+Now that you've configured your environment (and hopefully rebooted since then), you should be able to use the `dotnet` tool from your terminal to be able to install Chickensoft's development templates.
+
+```sh
+dotnet new install Chickensoft.GodotGame
+dotnet new install Chickensoft.GodotPackage
+```
+
+### 🎮 Creating a Godot Game
+
+The GodotGame template allows you to quickly generate a game with debug launch configurations for VSCode, testing (locally and on CI/CD), code coverage, dependency update checks, and spell checking!
+
+<GithubCard owner='chickensoft-games' repo='GodotGame' logo='/img/chickensoft/godot_game.webp'/>
+
+To create a new game, simply run the following commands and open the resulting directory in Godot and VSCode.
+
+```sh
+dotnet new chickengame --name "MyGameName" --param:author "My Name"
+
+cd MyGameName
+dotnet restore
+```
+
+🥳 At last — you're finally ready to make a game!
+
+### 📦 Creating a Reusable Nuget Package
+
+If you want to share compiled source code between projects or allow others to use your code in their projects, you can release a Nuget package.
+
+Using the GodotPackage template allows you to setup a package with continuous integration, auto-formatting, debugger profiles for VSCode, and a pre-configured unit test project.
+
+<GithubCard owner='chickensoft-games' repo='GodotPackage' logo='/img/chickensoft/package.png'/>
+
+```sh
+dotnet new --install Chickensoft.GodotPackage
+
+dotnet new chickenpackage --name "MyPackageName" --param:author "My Name"
+
+cd MyPackageName
+/path/to/godot4 --headless --build-solutions --quit
+dotnet build
+```
+
+Open the new project in VSCode and use the provided launch configurations to debug your application.
+
+<Callout type="tip">
+If you need to share code **and** other resource files like scenes, textures, music, and anything else that isn't a C# source file, you should use a Godot Asset Library package instead. Chickensoft's [GodotEnv] CLI tool allows you to easily install and manage addons in your project.
+
+<GithubCard owner='chickensoft-games' repo='GodotEnv' logo='/img/chickensoft/godot_env.png'/>
+</Callout>
+
+[download-godot]: https://downloads.tuxfamily.org/godotengine/
+[vscode]: https://code.visualstudio.com
+[vs-2022]: https://visualstudio.microsoft.com/downloads/
+[win-env-vars]: https://github.com/sindresorhus/guides/blob/main/set-environment-variables.md#windows-7-and-8
+[GodotEnv]: https://github.com/chickensoft-games/GodotEnv
+[dotnet-sdk]: https://dotnet.microsoft.com/en-us/download/dotnet
+[net8-release-notes]: https://github.com/dotnet/core/blob/main/release-notes/8.0/install-windows.md
+[TuxFamily]: https://downloads.tuxfamily.org/godotengine/
+[git]: https://git-scm.com/book/en/v2/Getting-Started-Installing-Git
+[git-started]: https://www.atlassian.com/git/tutorials/what-is-version-control
+[GitHub]: https://github.com
+[GitLab]: https://gitlab.com
+[git-undo]: https://www.atlassian.com/git/tutorials/undoing-changes
+[git-advanced]: https://www.atlassian.com/git/tutorials/advanced-overview
+[bash-beginners]: https://linuxconfig.org/bash-scripting-tutorial-for-beginners
+[bash-thorough]: https://tldp.org/LDP/Bash-Beginners-Guide/html/index.html
+[vscode-bash]: https://stackoverflow.com/a/70407051
+[discord]: https://discord.gg/MjA6HUzzAE
+[vscode-launch]: https://code.visualstudio.com/Docs/editor/debugging#_launch-configurations
+[vscode-csharp]: https://marketplace.visualstudio.com/items?itemName=ms-dotnettools.csharp
+[vscode-recommended]: https://github.com/chickensoft-games/GodotGame/blob/main/.vscode/extensions.json
+[vscode-settings]: https://stackoverflow.com/a/65909052
+[godot-sharp-version]: https://www.nuget.org/packages/GodotSharp/
+[net6]: https://dotnet.microsoft.com/en-us/download/dotnet/6.0
+[net7]: https://dotnet.microsoft.com/en-us/download/dotnet/7.0
+[net8]: https://dotnet.microsoft.com/en-us/download/dotnet/8.0

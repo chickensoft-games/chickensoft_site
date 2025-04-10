@@ -1,0 +1,117 @@
+/* Customize fumadocs theme and tailwind */
+
+@theme {
+  --font-sans: ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji",
+    "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+  --font-serif: Georgia, ui-serif, Cambria, "Times New Roman", Times, serif;
+  --font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas,
+    "Liberation Mono", "Courier New", monospace;
+
+  --color--text: hsl(25, 55%, 17%);
+  --logo-text: hsl(24, 100%, 18%);
+  --logo-text-shimmer: hsl(24, 100%, 38%);
+
+  --color-fd-background: #f9f3ec;
+  --color-fd-background-dark: #e3d7c8;
+  --color-fd-primary: #3d94d2;
+  --color-fd-border: #dcccb7;
+  --color-fd-accent: #ffe9b2;
+  --color-fd-accent-foreground: var(--color-text);
+  --color-fd-muted: #efe3d8;
+  --color-fd-muted-foreground: #746c64;
+  --color-fd-foreground: var(--color-text);
+  --color-fd-secondary: hsl(53, 100%, 96%);
+  --color-fd-secondary-foreground: var(--color-text);
+  --color-fd-card: #fffcf6;
+  --color-fd-card-foreground: var(--color-text);
+  --color-fd-popover-foreground: var(--color-text);
+  --color-fd-popover: hsl(20, 60%, 96%);
+  --color-fd-primary-foreground: var(--color-text);
+  --color-fd-ring: hsl(270, 100%, 52%);
+
+  --shadow-color: 61, 46, 26;
+
+  --shadow-sm: 0 1px 2px 0 rgba(var(--shadow-color), 0.05);
+  --shadow: 0 1px 3px 0 rgba(var(--shadow-color), 0.1),
+    0 1px 2px 0 rgba(var(--shadow-color), 0.06);
+  --shadow-md: 0 4px 6px -1px rgba(var(--shadow-color), 0.1),
+    0 2px 4px -1px rgba(var(--shadow-color), 0.06);
+  --shadow-lg: 0 10px 15px -3px rgba(var(--shadow-color), 0.1),
+    0 4px 6px -2px rgba(var(--shadow-color), 0.05);
+  --shadow-xl: 0 20px 25px -5px rgba(var(--shadow-color), 0.1),
+    0 10px 10px -5px rgba(var(--shadow-color), 0.04);
+  --shadow-2xl: 0 25px 50px -12px rgba(var(--shadow-color), 0.25);
+  --shadow-3xl: 0 35px 60px -15px rgba(var(--shadow-color), 0.3);
+  --shadow-inner: inset 0 2px 4px 0 rgba(var(--shadow-color), 0.06);
+  --shadow-none: none;
+
+  --color-nav-link-accent: var(--color-fd-accent);
+
+  --tip-bg: rgb(222, 255, 222);
+  --tip-fg: rgb(0, 51, 0);
+  --tip-border: rgb(0, 128, 0);
+
+  --note-bg: rgb(245, 245, 245);
+  --note-fg: rgb(51, 51, 51);
+  --note-border: rgb(153, 153, 153);
+
+  --info-bg: rgb(222, 241, 255);
+  --info-fg: rgb(0, 38, 64);
+  --info-border: rgb(0, 102, 153);
+
+  --caution-bg: rgb(255, 245, 222);
+  --caution-fg: rgb(77, 51, 0);
+  --caution-border: rgb(204, 128, 0);
+
+  --danger-bg: rgb(255, 235, 235);
+  --danger-fg: rgb(102, 0, 0);
+  --danger-border: rgb(204, 0, 0);
+}
+
+.dark {
+  --color-text: #ddd4bc;
+  --logo-text: hsl(45, 100%, 85%);
+  --logo-text-shimmer: hsl(31, 53%, 63%);
+
+  --color-fd-background: #1e1816;
+  --color-fd-background-dark: #171313;
+  --color-fd-primary: #a1ccec;
+  --color-fd-border: #564539;
+  --color-fd-accent: #845d3a;
+  --color-fd-accent-foreground: var(--color-text);
+  --color-fd-muted: hsl(17, 19%, 14%);
+  --color-fd-muted-foreground: hsl(18, 14%, 54%);
+  --color-fd-foreground: var(--color-text);
+  --color-fd-secondary: hsl(21, 14%, 20%);
+  --color-fd-secondary-foreground: #fff0c8;
+  --color-fd-card: hsl(17, 17%, 20%);
+  --color-fd-card-foreground: #fff0c8;
+  --color-fd-popover-foreground: var(--color-text);
+  --color-fd-popover: hsl(30, 60%, 6%);
+  --color-fd-primary-foreground: var(--color-text);
+  --color-fd-ring: hsl(26, 100%, 86%);
+
+  --shadow-color: 143, 93, 37;
+
+  --color-nav-link-accent: var(--color-fd-accent);
+
+  --tip-bg: rgb(24, 66, 44);
+  --tip-fg: rgb(162, 255, 162);
+  --tip-border: rgb(55, 236, 55);
+
+  --note-bg: rgb(51, 51, 51);
+  --note-fg: rgb(199, 199, 199);
+  --note-border: rgb(119, 119, 119);
+
+  --info-bg: rgb(24, 44, 66);
+  --info-fg: rgb(162, 236, 255);
+  --info-border: rgb(55, 158, 236);
+
+  --caution-bg: rgb(66, 50, 24);
+  --caution-fg: rgb(255, 212, 157);
+  --caution-border: rgb(236, 158, 55);
+
+  --danger-bg: rgb(66, 24, 24);
+  --danger-fg: rgb(255, 212, 157);
+  --danger-border: rgb(236, 55, 55);
+}

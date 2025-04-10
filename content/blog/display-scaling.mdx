@@ -1,0 +1,338 @@
+---
+title: 'Display Scaling in Godot 4'
+description: |
+  Everything you shouldn't have to know about display scaling, including
+  fixes, workarounds, tools, theme design, window sizes, and logical vs native resolutions.
+author_id: joanna
+date: 2025-02-18
+image: /blogs/display-scaling/header.jpg
+keywords:
+  - Godot
+  - C#
+  - display
+  - scaling
+  - monitor
+  - ppi
+  - dpi
+  - high dpi
+  - per-monitor DPI awareness
+  - macOS
+  - Windows
+  - screen resolution
+  - logical resolution
+  - display scaling
+  - native resolution
+  - output resolution
+  - contentscalefactor
+  - scaling mode
+  - bug
+  - problems
+  - issues
+  - "2025"
+---
+
+Display scaling is extremely nuanced on modern, multi-monitor desktop environments. As it turns out, making your game or app scale consistently across various displays and operating system is non-trivial and can require additional information from the engine that Godot does not provide.
+
+{/* truncate */}
+
+Godot 4 actually provides a number of [helpful scaling features][multiple-resolutions] right out of the box which solve simple scaling issues and can be easily configured to work well for pixel art games. Unfortunately, if you want a high degree of customization over scaling in your project, you'll quickly run into some of Godot's limitations and known issues:
+
+- ❌ Inaccurate/unreliable display scale factor detection.
+- ❌ [Blurry rendering on a secondary monitor][windows-blurry] in Windows if the secondary monitor has a higher scale factor than the primary monitor (can't be worked around, unfortunately — just tell your players not to do this).
+- ❌ Theme scale [can't be configured at runtime][theme-scale-broken].
+
+A simple google search for _"godot 4 display scaling reddit"_ returns pages and pages of posts by developers asking for help with various scaling issues. The Godot team is _very aware_ of the open issues related to scaling, themes, and sizing. We've always been very optimistic about Godot's future and we expect that many of these issues will be fixed over the next year or two.
+
+**In the meantime**, we've built some tools that will help you workaround some of Godot's current limitations on macOS and Windows. This allows you to ship your project _today_ without having to wait for the larger issues to be addressed. Here's what we'll be focusing on:
+
+- ✅ Scaling UI so that it takes up the same amount of physical pixels, regardless of the user's display scale. This is generally desired for games, as you can always build a custom scale factor on top of that once you've corrected for the current display settings.
+
+Once you can do that, it's easy to offer different scaling behaviors that leverage the corrected display scale:
+
+- ✅ Make it easy to **scale the UI proportionally** to the window (useful for games that only run fullscreen, have very precise UI layout requirements, or are only intended to support a single resolution).
+- ✅ Make it easy to **keep the UI a fixed size** while scaling the game itself when the window is resized (useful for games and apps which want to run well when windowed).
+
+Both of these behaviors work well when running fullscreen or windowed. Neither uses Godot's `Viewport` scaling, either: they both render the UI directly to the final, scaled size, allowing mipmaps to be respected and enabling a crisp, beautiful user interface.
+
+<Callout type="tip">
+👾 About **pixel art games**...
+
+What follows is a little treatise on display scaling **which generally applies to non-pixel-art games and applications** made with Godot. If you're making a pixel art game, you may still find the tools and techniques outlined here useful, but you will likely want to disable fractional scaling.
+</Callout>
+
+## The Ideal Resolution
+
+If you've seen any posts asking for help about display scaling with Godot, you've probably read answers posted by [Calinou], a Godot contributor with extensive knowledge of how resolutions and scaling are handled. Calinou also wrote the [multiple resolutions][multiple-resolutions] guide.
+
+Calinou [generally recommends][base-resolution] defining a fairly high **base resolution** for your game, such as 4K, and then scaling it down for lower resolution screens. Developers should [enable mipmaps][mipmaps] when importing high resolution UI art to avoid rendering artifacts and improve rendering efficiency on various screen sizes.
+
+From now on, we'll assume that you're designing all of your UI art for such a maximum-supported resolution. You can refer to this as the `base resolution`, `theme design resolution`, or `ideal resolution` — you get the idea.
+
+When designing high resolution UI assets, make sure they appear large enough to be be understood and enjoyed by the player if the game were to run at your `base resolution`.
+
+<FancyImage src="/blogs/display-scaling/display_resolution.png" alt="display resolution abstraction layers">
+"Resolution" means different things to different people. It's important to clarify which resolution they're actually referring to.
+</FancyImage>
+
+## Virtual Desktop Coordinates
+
+When you call `DisplayServer.ScreenGetSize(GetWindow().CurrentScreen)` in Godot, you get Godot's understanding of the logical screen resolution, not necessarily the display's actual native resolution.
+
+To understand what's happening, it's important to understand what virtual desktop coordinates are. [Microsoft's Win32 developer documentation][virtual-screen] sums it up quite nicely:
+
+> The bounding rectangle of all the monitors is the virtual screen. — Microsoft
+
+<FancyImage src="/blogs/display-scaling/virtual_desktop.png" alt="macOS Arrange Displays settings menu">
+Whenever you arrange your desktops virtually, you're positioning them in virtual desktop coordinates.
+</FancyImage>
+
+### A Brief History
+
+Back when the iPhone came out, it wasn't uncommon to hardcode UI coordinates for its [`320x480`][ios-ref] screen. There was the one preordained screen size and we all accepted it.
+
+Later, the iPhone 4 introduced a retina screen that had twice the amount of pixels in each dimension (`640x960`). Rather than break everyone's hardcoded app, they made iOS tell apps that the screen was still `320x480`. Under the hood, iOS doubled the display back-buffer size. Such a pseudo-resolution that differs from the actual native resolution is an example of "logical resolution." At the time, it was a mercy — but now it might be considered criminal.
+
+As phones kept coming out, developers soon realized that screen sizes would be changing constantly. Modern UI frameworks arose that were built around responsive design with horizontal and vertical container systems. Developers were told "not to worry" about actual native resolutions and just make their apps adaptable. Apps were (and still are) instructed to use multiple sizes of bitmap graphics to let the operating system pick the best one for the current screen size.
+
+...and then, there's stuff made with game engines. Games and graphically intense applications are typically forced to work at a slightly lower level of abstraction than most apps for the sake of performance. Games also tend to be highly artistic and use a lot of raster graphics, making it harder to create adaptable user interfaces.
+
+So, given all these factors, you can imagine how frustrating it is as a game developer to have an operating system that _lies to you_ about the resolution of the screen, encourages you to make adaptable interfaces, and then won't give you the actual native screen resolution or scale factor. Chances are you don't have to imagine it if you're reading this.
+
+Today, operating systems use virtual desktop coordinates to position windows across monitors and operate independently of display scale factors. And they all do it differently, too.
+
+## Scale Factors
+
+Modern versions of macOS and Windows allow you to set a scale factor for each display. The scale factor determines how big UI elements appear on screen. On most systems and displays, this is typically between 100% and 300%. Before scale factors were well implemented in operating systems, we used to have to lower the screen resolution (the output signal from the operating system to the monitor) if we wanted to make everything bigger (which also made everything look blurry).
+
+### Windows Scaling
+
+Modern versions of Windows make scaling pretty simple. They give you a dropdown in under Display Settings that allow you to pick a percentage. It really is that simple.
+
+<FancyImage src="/blogs/display-scaling/windows_scaling.png" alt="Windows display scaling menu">
+Windows actually gets display scaling right.
+</FancyImage>
+
+### macOS Scaling
+
+macOS, on the other hand, likes to burden users with knowledge of past resolutions. Instead of just giving you a percentage like a sane, ordinary operating system, they tell you what your choice would _resemble_ if you were to still living in a world without modern screens packed full of pixels.
+
+<FancyImage src="/blogs/display-scaling/macos_scaling.png" alt="macOS display scaling menu">
+At least they give you little pictures to choose from.
+</FancyImage>
+
+Notice how it says using a scaled resolution can impact performance? That's only barely true: [they've done tests][macos-scaling-performance] and it only affects performance by about 1-3%. So scale away!
+
+You can see that I've selected the "More Space" option in the picture above, which indicates a resolution of `1800x1169`. But that's not actually the native resolution of the Macbook Pro I own. It's `3024x1964`. If you divide the native resolution by the scaled resolution, you get a scale factor of `1.68`, or 168%. This is the scale factor that macOS uses to determine how big to make UI elements on screen. Because it's not an integer, macOS is warning me that it might be a little more expensive to compute. But it's a non-issue on today's hardware.
+
+<Callout type="note">
+What Apple gets wrong in the user interface, they manage to make up for with their hardware. The default option has a logical resolution of `1512x982`, which is exactly half the native resolution on my machine, yielding that sweet, sweet `x2` integer scale factor. Better yet, it results in a very pleasant experience with readable UI elements that are just the right size for everyday use.
+
+That being said, Apple still calls their displays "retina", even though the days of having "twice as many pixels as other displays" have long past. Now, almost all computers which compete with Apple's offerings offer screens with just as many pixels, if not much more.
+</Callout>
+
+## Displaying Independent of Scaling
+
+If you're making an app with Godot or want to make a game that offers a high degree of flexibility or control over presentation, you'll likely want to display your game window so that it takes up the same amount of physical pixels _regardless of what the player has set their display scale to_.
+
+<Callout type="tip">
+Back in the day, changing the user's resolution was common when starting a game, but is now considered outdated (and annoying). Fortunately, that's almost never necessary anymore.
+</Callout>
+
+This isn't a silver bullet, but it's a good approach for most desktop games and will tend to work well on a wide variety of monitors, despite the fact that operating systems really don't want you to think about native resolutions. For applications with lots of UI elements made out of raster graphics (like most games), knowing the actual pixel resolution is extremely helpful because it allows the application to make better decisions about rendering the UI in a way that preserves its crispness.
+
+Unfortunately, it's not possible to render independently of display scale factors without more information than what Godot is currently able to provide. To make those computations, you need the display's scale factor and native resolution.
+
+Godot does provide the monitor's scale on macOS, but it is not the scale factor set by the user in the display preferences. Instead, it's the retina integer screen multiplier — which is useful, but not quite enough information by itself.
+
+On Windows, Godot allows you to get the DPI of a display — but it's often wrong in multi-monitor environments due to Godot not implementing per-monitor DPI awareness yet. This results in getting the DPI for whatever display is the primary display, regardless of which display you asked for.
+
+Likewise, whenever you ask Godot for the screen resolution on macOS or Windows, it returns the logical screen resolution in virtual desktop coordinates scaled by what it thinks the scale factor is, complicating matters further. On Windows, if you're on a secondary monitor with a different scale factor than the primary monitor, you end up a liminal coordinate space where none of the values make sense.
+
+Despite these limitations, Godot provides several easy-to-use "knobs" for adjusting scaling in a game: `window.ContentScaleFactor`, `window.Size`, project viewport and window size overrides, along with the various aspect and scale mode settings. It's still a bit of a hassle to get everything configured correctly, though.
+
+<FancyImage src="/blogs/display-scaling/desk.jpg" alt="My desk with a bunch of monitors">
+The 4K, 3K, 2K, and HD monitor I've been using to develop display scaling utilities for macOS and Windows.
+</FancyImage>
+
+### Finding the Native Resolution & Scale Factor
+
+For the last few months, I've been hard at work developing new utilities to make it possible to get a display's native resolution and the operating system's scale factor for that display, as set by the user. And yes, it took _months_ to figure all this out.
+
+We can gather this accurate information on Windows 10+ and macOS by using Chickensoft's new Platform package. Platform is a set of native extensions for Godot which invoke Win32 API's on Windows and CoreGraphics on macOS to determine the actual scale factor and native resolution of the monitor that a [Godot Window][window] is on.
+
+<GithubCard owner='chickensoft-games' repo='Platform' />
+
+<Callout type="caution">
+Not-so-fun fact: Platform actually uses an API that's only available on Windows 10+ to determine the monitor's _actual_ scale factor. It essentially allows us to temporarily turn-on "per-monitor DPI awareness" on our thread so we can get the real information we need.
+
+Unfortunately, this means we can really only solve display scaling on Windows versions `>=10` (which shouldn't be too much of an issue these days for new games being released). The macOS implementation just uses math and a few CoreGraphics API's which have been around for a long time, so it doesn't share this limitation.
+</Callout>
+
+But, you probably won't ever need to use Platform directly. It's used by the new, higher level GameTools package which will invoke it for you, help you collect the scaling information, and apply it to your game window.
+
+<GithubCard owner='chickensoft-games' repo='GameTools' />
+
+Interestingly enough, neither operating system makes it very easy to determine the native resolution and scale factor, resulting in [quite](https://github.com/chickensoft-games/Platform/blob/main/Chickensoft.PlatformExt/src/macOS/Displays.cs) [a lot](https://github.com/chickensoft-games/Platform/blob/main/Chickensoft.PlatformExt/src/windows/Monitors.cs) [of code](https://github.com/chickensoft-games/GameTools/blob/a070df52b70699c3aa68484591bd1eb3e44a24b9/Chickensoft.GameTools/src/displays/Display.cs).
+
+### Setting Up a Godot Project
+
+To take advantage of the new tools, we'll need to configure a few properties in our Godot project. Once you've decided on a base resolution for your game (hint: it should probably be 4K), you'll need to update the theme base scale in your Godot project settings.
+
+<FancyImage src="/blogs/display-scaling/project_settings.png" alt="Godot project theme settings" />
+
+Setting the "Default Theme Scale" isn't an exact science and will depend on the font used in your theme and other art assets. The general rule of thumb is to think in multiples of Full HD (`1920x1080`). Working from FHD results in a value of `baseResolution.Y / 1080`, where `baseResolution` is the highest maximum resolution your assets can support without being upscaled (i.e., that design resolution we discussed above).
+
+If your base resolution is `3840x2160`, the default theme scale should be `2160 / 1080`, or just `2`.
+
+<Callout type="caution">
+The theme scale must be set in the project settings. Changing it at runtime currently does not work and is a [known issue][theme-scale-broken].
+</Callout>
+
+Godot generates the theme at this scale when your program is executed.
+
+To ensure crisp font rendering, be sure to check the options for "Default Font Multichannel Signed Distance Field" and "Default Font Generate Mipmaps" located near the "Default Theme Scale" setting.
+
+You'll also want to set the viewport size and window width and height overrides. Once again, set the window size based on how large you would want it to show up if it was on a full HD `1920x1080` FHD monitor. The Chickensoft scaling tools will take this into account and resize your game so that it appears proportionally sized on other monitors with different resolutions.
+
+For everything to work, you also need to leave "Allow hiDPI" checked in the project settings (`display/window/dpi/allow_hidpi`). It's checked by default.
+
+Godot has a setting for which screen the game should start on. I like to set it to the screen with mouse focus, as it makes it easy to test on multiple monitors.
+
+When you're done, your `project.godot` file should have these settings set with whatever values you chose.
+
+```json
+[display]
+
+window/size/viewport_width=720
+window/size/viewport_height=720
+window/size/initial_position_type=3
+window/size/window_width_override=1280
+window/size/window_height_override=720
+
+[gui]
+
+theme/default_theme_scale=2.0
+theme/default_font_multichannel_signed_distance_field=true
+theme/default_font_generate_mipmaps=true
+```
+
+If all this sounds like too much trouble, you can just spin up a new project with the Chickensoft GodotGame template. It's already got all this configured for you out-of-the-box!
+
+<GithubCard owner='chickensoft-games' repo='GodotGame' />
+
+### High-Level Scaling Behaviors
+
+Now that your project is set up, you can use Chickensoft's high-level scaling behaviors API from [GameTools]. It's just a single line of code that allows you to determine how your app or game should be presented and scaled.
+
+```csharp
+public override void _Ready() {
+  GetWindow().LookGood(
+    WindowScaleBehavior.UIFixed, // or UIProportional
+    Display.UHD4k // your theme design resolution (such as 4K)
+  );
+}
+```
+
+<Callout type="tip">
+A **[demo Godot project is included with GameTools][demo]** that allows you to preview and experiment with the different high-level scaling behaviors.
+</Callout>
+
+Better yet, when you're ready to enter full-screen, just call it again:
+
+```csharp
+  GetWindow().LookGood(
+    WindowScaleBehavior.UIFixed,
+    Display.UHD4k,
+    isFullscreen: true
+  );
+```
+
+#### Fixed UI Scaling
+
+The Fixed UI scaling leaves your UI scale alone. Whether or not you scale the game behind it is up to you (you'll need to setup a [SubViewport] if you want to scale the game independently of the UI).
+
+UI is rendered at the proper physical pixel resolution in the framebuffer by using Godot's `Disabled` content scaling mode. This ensures crisp, clean UI at all sizes. (Except on Windows if _and only if_ the primary monitor has a lower scale factor than the monitor you're on — but there's nothing we can do about that.)
+
+<FancyImage src="https://github.com/chickensoft-games/GameTools/blob/main/docs/fixed_ui.gif?raw=true" alt="fixed ui scaling animation">
+Fixed UI scaling — note how the game contents shrink and grow with the window, while the UI remains the same size.
+</FancyImage>
+
+Fixed UI scaling determines the size the UI should be at full screen and then just leaves it that size. You can configure the minimum window size as a ratio of the screen to keep your window from getting too small.
+
+```csharp
+// Don't allow the window to be less than 50% of either screen dimension,
+// and try to make sure the resulting size uses the aspect ratio of the
+// window size set in the project settings.
+GetWindow().LookGood(
+  WindowScaleBehavior.UIFixed,
+  BaseResolution,
+  isFullscreen: _isFullscreen,
+  minWindowedSize: 0.5f,
+  useProjectAspectRatio: true
+);
+```
+
+Note that you can always take the resulting content scale factor applied by `LookGood` and multiply it by your own UI scaling factor to offer custom scaling which is only applied _after_ correcting for the display the window is on. Pretty nifty! This can allow you to offer a custom scale factor slider in your game so that users can further tune the UI size.
+
+```csharp
+var myScaleFactor = 1.25f;
+GetWindow().ContentScaleFactor *= myScaleFactor;
+```
+
+#### Proportional UI Scaling
+
+The Proportional UI scaling behavior mode scales your UI in proportion to the window.
+
+Proportional UI scaling first determines the size the UI should be at full screen by calculating the scale of the display that the window is on and scaling correctly based on your design resolution and the native resolution of the screen. It does this using a bunch of math that resembles what you do when you're first learning fractions.
+
+UI is rendered either with Godot's `Disabled` or `CanvasItems` scaling mode, depending on whether or not you're in full screen. This preserves UI crispness at all sizes, too.
+
+<FancyImage src="https://github.com/chickensoft-games/GameTools/blob/main/docs/proportional_ui.gif?raw=true" alt="proportional ui scaling animation">
+Proportional UI scaling — note how the UI shrinks and grows with the window and retains the same size relative to the game's contents.
+</FancyImage>
+
+## Sizing Things Up
+
+There's probably a whole lot more that can be said about display scaling, but this will have to do for now. It's already taken up months of free time.
+
+Display scaling is something you tend to think about twice: once at the start of your project, and once at the end when it's time to polish and ship.
+
+Now that this is pretty well buttoned up, we plan on filing a proposal for Godot regarding access to the actual native resolution and scale factor to eliminate the need for packages like [Platform]. We hope that the native code in Platform can even serve as a helpful example for how it might be done. It will likely take some time to get all that done in the engine itself, though, since Godot has other display scaling issues that may need to be addressed first or as part of that effort. In the meantime, this gets you shipping your project _today_.
+
+We believe that providing opinionated solutions to difficult, complex technical issues like display scaling can really help AA game studios and indies get their games polished and ready to go in a lot less time. And we do that because we want to live in a world where those games are made in Godot.
+
+<Callout type="info">
+🇺🇦🇵🇸🏳️‍🌈 Speaking of living in a better world: if you like what Chickensoft is doing, we ask that you instead support a cause that will improve the world. **In a world where everyone looks and sounds the same, there would be no Chickensoft tools or helpful guides like this.**
+
+As a US citizen, it's becoming increasingly clear that the world is on its own.
+
+When governments fail to act in the interest of people, people must act in the interest of others. _Anyone_ can do _something_ — _everyone_ can do _anything_.
+
+In the absence of effective government, it is up to us to effect change amongst our friends and the world at large. If you're reading this, you likely have access to more resources than most people.
+
+Please help support Ukraine as it defends against russian aggression and atrocities, support survivors and victims of the ongoing genocide in Gaza, and donate to communities which protect the rights of others.
+
+- **[United 24](https://u24.gov.ua/)** — The official, government-sanctioned fundraising platform for the defense and reconstruction of Ukraine. You can choose to donate towards defense, mine removal, medical aid, reconstruction, or education and science.
+
+- **[HEAL Palestine](https://www.healpalestine.org/)** — Urgent humanitarian relief for Gaza.
+
+- **[Doctors Without Borders](https://www.doctorswithoutborders.org/)** — they recently reached northern Gaza, _[only to find that there's nothing left](https://www.doctorswithoutborders.org/latest/north-gaza-health-system-has-been-reduced-ashes)_. The situation is extremely dire and demands the world's attention. People are starving. When you donate, your funds are distributed to the most urgent places in the world where it can do the most good.
+
+Chickensoft has made a $200 USD donation to Doctors Without Borders. **We would highly encourage any studios or successful indie developers who appreciate Chickensoft to match or exceed that donation to one of these organizations**. When you donate, post in our [Discord] and let us know — we'll give you a supporter role!
+</Callout>
+
+[multiple-resolutions]: https://docs.godotengine.org/en/stable/tutorials/rendering/multiple_resolutions.html
+[theme-scale-broken]: https://github.com/godotengine/godot/issues/83547
+[windows-blurry]: https://github.com/godotengine/godot/issues/45203
+[Calinou]: https://github.com/Calinou
+[base-resolution]: https://github.com/godotengine/godot/issues/83547#issuecomment-2576576580
+[mipmaps]: https://docs.godotengine.org/en/stable/tutorials/assets_pipeline/importing_images.html#mipmaps-generate
+[virtual-screen]: https://learn.microsoft.com/en-us/windows/win32/gdi/the-virtual-screen
+[ios-ref]: https://iosref.com/res
+[window]: https://docs.godotengine.org/en/stable/classes/class_window.html
+[macos-scaling-performance]: https://appleinsider.com/inside/macos/tips/what-is-display-scaling-on-mac-and-why-you-probably-shouldnt-worry-about-it
+[GameTools]: https://github.com/chickensoft-games/GameTools
+[SubViewport]: https://docs.godotengine.org/en/stable/classes/class_subviewport.html
+[Platform]: https://github.com/chickensoft-games/Platform
+[Discord]: https://discord.gg/MjA6HUzzAE
+[demo]: https://github.com/chickensoft-games/GameTools/tree/main/Chickensoft.GameTools.Demo

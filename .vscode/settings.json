@@ -1,0 +1,30 @@
+{
+  "files.associations": {
+    "*.css": "tailwindcss"
+  },
+  "workbench.editorAssociations": {
+    "*.svg": "default"
+  },
+  "eslint.validate": [
+    "javascript",
+    "javascriptreact",
+    "typescript",
+    "typescriptreact"
+  ],
+  "[mdx]": {
+    "editor.rulers": [
+      100
+    ],
+    "editor.wordWrapColumn": 100,
+    "editor.wordWrap": "bounded"
+  },
+  "files.exclude": {
+    "**/node_modules": true
+  },
+  "cSpell.words": [
+    "Cuda"
+  ],
+  "markdownlint.config": {
+    "MD033": false
+  }
+}

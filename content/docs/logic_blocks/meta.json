@@ -1,0 +1,12 @@
+{
+  "pages": [
+    "why",
+    "installation",
+    "quick_start",
+    "basics/",
+    "tutorial/",
+    "testing/",
+    "serialization",
+    "tips_and_tricks"
+  ]
+}

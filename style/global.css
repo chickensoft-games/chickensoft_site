@@ -1,0 +1,179 @@
+@import "tailwindcss";
+@import "fumadocs-ui/css/neutral.css";
+@import "fumadocs-ui/css/preset.css";
+@import "./theme.css";
+
+@source '../node_modules/fumadocs-ui/dist/**/*.js';
+
+:root {
+  --fd-nav-height: 100px !important;
+  font-size: 18px;
+}
+
+/* fix code blocks and prevent overflowing */
+pre {
+  white-space: pre-wrap;
+  word-break: break-all;
+}
+
+table {
+  overflow-x: auto;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: Catamaran !important;
+}
+
+h1 a,
+h2 a,
+h3 a,
+h4 a,
+h5 a,
+h6 a {
+  font-family: Catamaran !important;
+}
+
+#blog-content-frame #nd-toc .h-full {
+  height: auto !important;
+}
+
+#nd-toc {
+  height: min-content !important;
+}
+
+#blog-content-frame #nd-toc {
+  padding-top: 0px !important;
+}
+
+#nd-nav {
+  background-color: color-mix(
+    in oklab,
+    var(--color-fd-secondary) 80%,
+    transparent
+  ) !important;
+
+  border-color: var(--color-fd-border) !important;
+
+  overflow-y: hidden;
+}
+
+#nd-subnav {
+  overflow: hidden;
+}
+
+#nd-nav ul.flex > li > a {
+  border-radius: 8px;
+}
+
+#nd-nav ul.flex > li > a:hover {
+  color: var(--color-fd-secondary-foreground) !important;
+  background-color: var(--color-fd-accent) !important;
+  border-radius: 8px;
+}
+
+@media (min-width: 768px) and (prefers-reduced-motion: no-preference) {
+  .pop {
+    transition: all 0.05s ease-out;
+  }
+  .pop:hover {
+    transform: scale(1.05);
+    box-shadow: var(--shadow-lg);
+  }
+  .superpop {
+    transition: all 0.1s ease-out;
+  }
+  .superpop:hover {
+    transform: scale(1.1);
+  }
+
+  .text-pop:hover {
+    text-shadow: 0 4px 0.2rem rgba(var(--shadow-color), 0.3);
+  }
+
+  #chicken-text:hover {
+    background: linear-gradient(
+      90deg,
+      var(--logo-text),
+      var(--logo-text-shimmer),
+      var(--logo-text),
+      var(--logo-text-shimmer)
+    );
+    background-size: 300%;
+    background-clip: text;
+    color: transparent;
+    background-position-x: 100%;
+    animation: shimmer 1s infinite linear;
+  }
+  @keyframes shimmer {
+    to {
+      background-position-x: 0%;
+    }
+  }
+}
+
+@media (max-width: 1024px) {
+  #chicken {
+    bottom: -14px !important;
+    height: calc(var(--spacing) * 9.5);
+  }
+}
+
+#chicken {
+  background-image: url("/img/chickensoft_logo.svg");
+  z-index: 10;
+}
+
+#chicken:hover {
+  background-image: url("/img/chickensoft_logo_hover.svg");
+}
+
+/* Fixes an issue on the blog page when code blocks can be too large */
+
+details {
+  display: block;
+  position: relative;
+  max-width: calc(var(--container-xl) + 30px);
+}
+
+@media (max-width: 1024px) {
+  #blog-content-frame {
+    margin-top: 2rem !important;
+  }
+
+  #nd-docs-layout {
+    padding-inline-end: unset !important;
+    padding-inline-start: unset !important;
+    width: 100% !important;
+    max-width: 100vw !important;
+  }
+  #nd-page {
+    max-width: unset !important;
+    min-width: unset !important;
+    width: 100% !important;
+    padding-right: 0px !important;
+  }
+
+  #nd-page article {
+    margin: unset !important;
+    padding: unset !important;
+  }
+}
+
+@media (max-width: 1024px) {
+  #nd-page {
+    margin-top: 1rem !important;
+  }
+
+  #nd-page div.text-\[15px\] {
+    margin-left: 18px !important;
+  }
+}
+
+#blog-content-frame #nd-toc div div {
+  flex-grow: 1;
+}
