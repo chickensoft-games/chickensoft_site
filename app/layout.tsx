@@ -1,5 +1,5 @@
+import ClientGoogleAnalytics from "@/components/client_google_analytics/client_google_analytics";
 import "@/style/global.css";
-import { GoogleTagManager } from "@next/third-parties/google";
 import { RootProvider } from "fumadocs-ui/provider";
 import { Metadata } from "next";
 import { Catamaran } from "next/font/google";
@@ -33,9 +33,9 @@ const inter = Catamaran({
 export default function Layout({ children }: { children: ReactNode }) {
   return (
     <html lang="en" className={inter.className} suppressHydrationWarning>
-      <GoogleTagManager gtmId={site.gtag} />
       <body className="flex flex-col min-h-screen">
         <RootProvider>{children}</RootProvider>
+        <ClientGoogleAnalytics gtag={site.gtag} />
       </body>
     </html>
   );
