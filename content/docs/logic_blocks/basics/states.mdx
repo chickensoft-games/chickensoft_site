@@ -278,5 +278,15 @@ Likewise, **entrance and exit** callbacks _should not manage subscriptions_, as 
 In general, place instance-specific initialization or cleanup in `OnAttach` and `OnDetach`. Likewise, place game or business related logic in `this.OnEnter` and `this.OnExit`.
 </Callout>
 
+<Callout type="info">
+Lifecycle callbacks are called in the following order:
+* `OnDetach` callback
+* `OnExit` callback
+* `OnAttach` callback
+* `OnEnter` callback
+
+In compound states, the callbacks are invoked from the least-derived state to the most-derived state. However, `OnEnter` and `OnExit` callbacks will not be invoked in an ancestor state if the transition is to another state in its inheritance hierarchy.
+</Callout>
+
 [compound states]: https://statecharts.dev/glossary/compound-state.html
 [blackboard]: https://github.com/chickensoft-games/Collections?tab=readme-ov-file#blackboard
