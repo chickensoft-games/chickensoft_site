@@ -20,4 +20,9 @@ export const friends: Friend[] = [
     logo: "/img/friends/rust_ltd.png",
     url: "https://dunderbeckgame.com/",
   },
+  {
+    name: "Oddity Hollow",
+    logo: "/img/friends/oddity_hollow.png",
+    url: "https://oddityhollow.com/",
+  },
 ];
