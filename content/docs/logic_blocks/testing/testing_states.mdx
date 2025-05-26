@@ -98,8 +98,8 @@ var state = new Timer.State.PoweredOn.Idle();
 var context = state.CreateFakeContext();
 
 // Simulate the state being attached to a logic block.
-state.Attach();
+state.Attach(context);
 
 // Simulate the state being detached from a logic block.
-state.Detach();
+state.Detach(context);
 ```
