@@ -93,7 +93,7 @@ export default async function BlogPreview(
           <SiteImage
             src={blogPost.data.image}
             alt={blogPost.data.title}
-            className="w-full h-auto"
+            className="w-full h-auto rounded-none"
           />
         </div>
 
