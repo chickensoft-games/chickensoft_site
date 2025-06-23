@@ -178,11 +178,6 @@ export const site: SiteData = {
     },
     {
       owner: "chickensoft-games",
-      repo: "GodotTestDriver",
-      logo: "/img/chickensoft/godot_test_driver.png",
-    },
-    {
-      owner: "chickensoft-games",
       repo: "GoDotTest",
       logo: "/img/chickensoft/package.png",
     },
@@ -208,6 +203,11 @@ export const site: SiteData = {
     },
     {
       owner: "chickensoft-games",
+      repo: "UMLGenerator",
+      logo: "/img/chickensoft/uml_generator.png",
+    },
+    {
+      owner: "chickensoft-games",
       repo: "SaveFileBuilder",
       logo: "/img/chickensoft/save_file_builder.png",
     },
@@ -215,6 +215,26 @@ export const site: SiteData = {
       owner: "chickensoft-games",
       repo: "Serialization.Godot",
       logo: "/img/chickensoft/package.png",
+    },
+    {
+      owner: "chickensoft-games",
+      repo: "Log",
+      logo: "/img/chickensoft/log.png",
+    },
+    {
+      owner: "chickensoft-games",
+      repo: "Log.Godot",
+      logo: "/img/chickensoft/log_godot.png",
+    },
+    {
+      owner: "chickensoft-games",
+      repo: "Collections",
+      logo: "/img/chickensoft/collections.png",
+    },
+    {
+      owner: "chickensoft-games",
+      repo: "GodotTestDriver",
+      logo: "/img/chickensoft/godot_test_driver.png",
     },
     {
       owner: "chickensoft-games",
@@ -228,23 +248,8 @@ export const site: SiteData = {
     },
     {
       owner: "chickensoft-games",
-      repo: "Collections",
-      logo: "/img/chickensoft/collections.png",
-    },
-    {
-      owner: "chickensoft-games",
       repo: "GodotNodeInterfaces",
       logo: "/img/chickensoft/package.png",
-    },
-    {
-      owner: "chickensoft-games",
-      repo: "Log",
-      logo: "/img/chickensoft/log.png",
-    },
-    {
-      owner: "chickensoft-games",
-      repo: "Log.Godot",
-      logo: "/img/chickensoft/log_godot.png",
     },
     {
       owner: "chickensoft-games",
