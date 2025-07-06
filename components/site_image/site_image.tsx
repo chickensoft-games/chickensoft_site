@@ -5,7 +5,6 @@ import { cn } from "fumadocs-ui/components/api";
 import { ImageZoom } from "fumadocs-ui/components/image-zoom";
 import { getImageSize } from "next/dist/server/image-optimizer";
 import Image from "next/image";
-import { cwd } from "process";
 import { JSX } from "react";
 import "server-only";
 
@@ -19,12 +18,9 @@ interface SiteImageProps {
 export default async function SiteImage(
   props: SiteImageProps
 ): Promise<JSX.Element> {
-  const path = cwd() + "/public" + props.src;
+  const path = join(process.cwd(), "public", props.src);
 
-  const fileExists = await fs
-    .access(path)
-    .then(() => true)
-    .catch(() => false);
+  const fileExists = existsSync(path);
 
   if (!fileExists) {
     return (
