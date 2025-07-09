@@ -83,6 +83,17 @@ export default async function Page(props: {
               year: "numeric",
             })}{" "}
           </p>
+          {blogPost.data.last_updated &&
+            <p className="text-[var(--color-fd-muted-foreground)] text-sm font-serif italic">
+              {"Last updated: "}
+              {/* humanizer for date */}
+              {blogPost.data.last_updated.toLocaleString("default", {
+                month: "long",
+                day: "2-digit",
+                year: "numeric",
+              })}{" "}
+            </p>
+          }
           <FancyImage
             src={blogPost.data.image}
             alt={blogPost.data.title}
