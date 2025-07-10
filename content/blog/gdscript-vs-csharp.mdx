@@ -4,6 +4,7 @@ description: Deep-dive into the advantages and disadvantages of GDScript and C#,
 image: /blogs/gdscript-vs-csharp/header.jpg
 author_id: joanna
 date: 2023-04-26
+last_updated: 2025-07-09
 keywords:
   - godot
   - gdscript vs c#
@@ -68,7 +69,7 @@ If you're not sold yet, there probably isn't anything else I can say to get you 
 - 🥳 Supports every platform Godot supports.
 - ✨ Always up-to-date with the latest Godot features.
 - 🔌 Perfect native extension integration.
-- 🪛 Tooling support — you can write GDScript directly inside the Godot Engine's editor, or use the [official VSCode extension][gdscript-vscode]. You can even get a [VSCode extension for formatting][gdscript-formatter] your GDScript files, too.
+- 🪛 Tooling support — you can write GDScript directly inside the Godot Engine's editor, or use the [official VSCode extension][gdscript-vscode].
 
 ### 🌧 GDScript Cons
 
@@ -85,7 +86,7 @@ Still not convinced? Let's talk about C#.
 
 ## #️⃣ C\#
 
-While not as popular as GDScript, [C# support in Godot has come a long ways][csharp-whats-new]. Out of the approximately 5,000 surveyed users, [only about 13%][godot-2022-poll] said they were using C# to build Godot games.
+While not as popular as GDScript, [C# support in Godot has come a long ways][csharp-whats-new]. Out of approximately 9,600 surveyed users in 2025, [only about 16%][godot-2025-poll] said they were using C# to build Godot games.
 
 <FancyImage src="/blogs/gdscript-vs-csharp/csharp.jpg" alt="C# script for a Godot node.">
 C# code for an editor tool that helps visualize a <code>RayCast3D</code>.
@@ -95,7 +96,7 @@ C# code for an editor tool that helps visualize a <code>RayCast3D</code>.
 
 Before we get too far, it's worth reiterating a couple of points:
 
-- ❌ Godot can't export C# games for iOS or web.
+- ❌ Godot can't export C# games for web (although that capability is [under development][dotnet-web]).
 - ❌ You cannot call GDExtensions directly from C#.
 
 If either of those are an immediate must-have for your project, you should **not** use C#. Unless you are optimistic and believe those shortcomings will be addressed by the time your project requires them, you should use GDScript or a third party language integration instead.
@@ -123,13 +124,13 @@ While there aren't many Godot addons created with C#, [Chickensoft] provides a n
 
 Want to quickly create a Godot game with basic CI/CD and unit testing already setup? Use our [`dotnet new` template][godot-game] for creating a game. We have [a package template][godot-package] for creating nuget packages for use with Godot, too.
 
-Need to inject code into lifecycle methods in your scripts automatically? We have a [source generator][super-nodes] for that. How about automatic, [node-based dependency injection][auto-inject]?
+Want to automatically get dependencies injected into your scripts? We have a [node-based injection tool][auto-inject] for that.
 
 We even have our own command line tool, [GodotEnv][godotenv], that will automatically manage Godot addons for your project based on an `addons.json` file and let you symlink addons locally while they're in development. No more git submodules for addons!
 
 If you'd like to use Godot from a GitHub actions workflow, you can use [setup-godot] to run Godot directly on a macOS, Windows, or Linux runner.
 
-We also have packages for [running tests inside Godot][go-dot-test], creating basic [state machines][go-dot-net] in C#, [logging][go-dot-log], and a handful of other things.
+We also have packages for [running tests inside Godot][go-dot-test], creating [state machines][logic-blocks] in C#, [logging][log-godot], and many other things.
 
 <Callout type="tip">
 Chickensoft is an open source organization — all of our offerings are _free_. We welcome contributions and feedback from the community!
@@ -166,22 +167,22 @@ Ultimately, if you decide to embark on an adventure and use C# for your next God
 [gdscript-cyclic-dependencies]: https://godotengine.org/article/dev-snapshot-godot-4-0-beta-6/
 [gdscript-vscode]: https://marketplace.visualstudio.com/items?itemName=geequlim.godot-tools
 [gdscript-formatter]: https://marketplace.visualstudio.com/items?itemName=Razoric.gdscript-toolkit-formatter
-[godot-2022-poll]: https://docs.google.com/forms/d/e/1FAIpQLSe-OIpxXqou9cDnPXEAjxzpICbf8_YZB3jUizdECXRydtB8cA/viewanalytics
+[godot-2025-poll]: https://docs.google.com/forms/d/e/1FAIpQLScKWGJoLEeNW1qrsDfZRfk7gHultapacH5ZhQmo9XRZADW1IQ/viewanalytics
 [csharp-whats-new]: https://godotengine.org/article/whats-new-in-csharp-for-godot-4-0/
-[godot-discord]: https://discord.gg/4JBkykG
+[godot-discord]: https://discord.gg/godotengine
 [discord]: https://discord.gg/gSjaPgMmYW
 [Chickensoft]: /
 [godot-game]: https://github.com/chickensoft-games/GodotGame
 [godot-package]: https://github.com/chickensoft-games/GodotPackage
-[super-nodes]: https://github.com/chickensoft-games/SuperNodes
 [auto-inject]: https://github.com/chickensoft-games/AutoInject
 [setup-godot]: https://github.com/chickensoft-games/setup-godot
 [go-dot-test]: https://github.com/chickensoft-games/GoDotTest
-[go-dot-net]: https://github.com/chickensoft-games/GoDotNet
-[go-dot-log]: https://github.com/chickensoft-games/GoDotLog
+[logic-blocks]: https://github.com/chickensoft-games/LogicBlocks
+[log-godot]: https://github.com/chickensoft-games/Log.Godot
 [godotenv]: https://github.com/chickensoft-games/GodotEnv
 [mastodon]: https://mastodon.online/@jolexxa
 [discord-personal]: https://discordapp.com/users/jolexxa#4292
+[dotnet-web]: https://godotengine.org/article/live-from-godotcon-boston-web-dotnet-prototype/
 [vs]: https://visualstudio.microsoft.com/
 [rider]: https://www.jetbrains.com/rider/
 [vscode]: https://code.visualstudio.com/

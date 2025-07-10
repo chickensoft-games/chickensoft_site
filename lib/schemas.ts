@@ -17,6 +17,7 @@ export const teamSchema = frontmatterSchema.extend({
 export const blogSchema = frontmatterSchema.extend({
   author_id: z.string(),
   date: z.date(),
+  last_updated: z.date().optional(),
   image: z.string(),
   keywords: z.string().array(),
 });
