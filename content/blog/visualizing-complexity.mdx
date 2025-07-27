@@ -29,6 +29,8 @@ One of the things I always look for when being first introduced to a project is 
 
 I'd use tools in JetBrains to generate dependency diagrams, and I'd try looking for solutions online, but it would always end up being too complicated, or not exactly giving me the results that I want.
 
+<FancyImage src={"/blogs/visualizing-complexity/rider_diagram.png"} alt="Example of Jetbrains Rider Type Dependency Diagram" />
+
 While working on my project (Utopia ~ still under development), I use a lot of Chickensoft packages, and I was always fascinated with how the LogicBlocks package generated its own diagrams to show how the state machine functioned. It made me think, how come this sort of thing doesn't exist for the project itself? The whole Godot hierarchy could be represented by a `.puml` diagram, and I wouldn't have to keep running through different scene files trying to remind myself how I set things up again.
 
 That's when the idea of UMLGenerator came! I quickly came to the Chickensoft community, asking around if my this has ever been done before? Was there any reasons not to? Was there was any interest in a project like this? Sure enough, it looked like this was a good idea and off I went researching on how to accomplish this!
@@ -38,7 +40,9 @@ First of all, If I was going to visualize a hierarchy, we needed to know what ch
 With that out of the way, all that was left was to understand how source generators work. I hadn't built a source generator before, but I sort of had an idea.. Let me start by breaking down the entire process.
 
 1. We first need a way to pull all the data. We essentially need all the C# and .tscn files which are core to our game project. The way I accomplished this is by having the user define all the `.tscn` files we want parsed as an AdditionalFile in the `.csproj` files. The `.cs` files are then imported by ensuring that the SyntaxTree file path contains the project directory.
-- I did consider also having all the `.tscn` files in the project directory be imported, but then I ran into some parsing problems with some godot addons, so ultimately I decided against it
+<Callout type="info">
+    I did consider also having all the `.tscn` files in the project directory be imported, but then I ran into some parsing problems with some godot addons, so ultimately I decided against it
+</Callout>
 2. Afterwards we link everything together as parent child relationships. `.cs` files with the \[ClassDiagram] attribute are used as the root of the hierarchy. `.tscn` files which have a root `.cs` script are paired together. Then everything is given a assigned a relationship based on the hierarchy of the `.tscn` or the properties that the `.cs` file has.
 3. Once everything is linked together it's just a matter of recursively going down the hierarchy and returning the diagram output string of each child and concatenating everything together.
 
@@ -51,9 +55,11 @@ classDiagram
   Game --> GameLogic
 
   class Game {
-      void StartGame()
-      void LoadGame()
-      void SaveGame()
+    obj GameRepo
+    obj GameLogic
+    void StartGame()
+    void LoadGame()
+    void SaveGame()
   }
 
   class GameRepo {
@@ -72,6 +78,8 @@ Then we would call the method to generate the diagram for the Game class, which 
 
 GameRepo and GameLogic would return their respective diagrams, be concatenated with each other, and then be nested under the diagram for the Game class.
 
+<details>
+<summary><code>Game.g.puml</code> Example</summary>
 ```PlantUML
 package Game-Scene [[../../TestCases/BaseProject_Rider/Game.tscn]] {
 
@@ -105,6 +113,7 @@ Game::GameLogic --> GameLogic
 
 }
 ```
+</details>
 
 As your project grows, so does your diagram. What starts off as a basic visualization becomes a full-blown map of your application, one that evolves with every new class, every scene change, every feature.
 
@@ -117,6 +126,7 @@ UMLGenerator is still in active development, and there’s plenty more I want to
 
 But even in its current form, it’s already made my life easier — and if you’re working on a Godot + C# project, I think it could do the same for you.
 
-👉 Check it out here: [github.com/chickensoft-games/UMLGenerator](https://github.com/chickensoft-games/UMLGenerator)
+👉 Check it out here:
+<GithubCard owner='chickensoft-games' repo='UMLGenerator' />
 
 If you’ve got ideas, feedback, or want to contribute, don’t hesitate to jump in!
