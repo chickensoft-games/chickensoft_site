@@ -3,7 +3,7 @@ title: 'Visualizing Complexity'
 description: |
     Automating Project Diagrams with UMLGenerator for Godot + C#"!
 author_id: bastani
-date: 2025-07-22
+date: 2025-07-30
 image: /blogs/visualizing-complexity/header.webp
 keywords:
   - class diagram
@@ -33,9 +33,9 @@ I have tried using tools in JetBrains to generate dependency diagrams or look fo
 
 While working on my own game project (_Utopia_ ~ still under development), I have been using a lot of Chickensoft packages. I was always fascinated with how the [LogicBlocks](/docs/logic-blocks) package generates its own diagrams to show how the state machine functioned. It made me think "how come this sort of thing doesn't exist for the project itself? The whole Godot hierarchy could be represented by a `.puml` diagram, and I wouldn't have to keep running through different scene files trying to remind myself how I set things up."
 
-That's how the idea for UMLGenerator came to me! I asked the Chickensoft community if anyone had done this before or if there there were any reasons not to. I wanted to know if there was any interest in an architecture diagram generator. Sure enough, folks showed interest and I went researching on how to accomplish it!
+That's how the idea for UMLGenerator came to me! I asked the Chickensoft community if anyone had done this before or if there were any reasons not to. I wanted to know if there was any interest in an architecture diagram generator. Sure enough, folks showed interest and I started researching how to accomplish it!
 
-First of all, If I was going to visualize a hierarchy, I needed to know what children a scene had. The best way to accomplish this was to check to parse the `.tscn` files. Luckily there was already a project to parse Godot scene files: [godot-tscn-parser](https://github.com/MihaMarkic/godot-tscn-parser).
+First of all, if I was going to visualize a hierarchy, I needed to know what children a scene had. The best way to accomplish this was to check to parse the `.tscn` files. Luckily there was already a project to parse Godot scene files: [godot-tscn-parser](https://github.com/MihaMarkic/godot-tscn-parser).
 
 With that out of the way, I simply needed to understand how source generators worked. I hadn't built a source generator before, but I had a vague idea. Let me explain.
 
