@@ -78,7 +78,7 @@ The generator would then call the method to generate the diagram for the `Game` 
 `GameRepo` and `GameLogic` would return their respective diagrams, be concatenated with each other, and then be nested under the diagram for the `Game` class.
 
 <details>
-<summary><code>Game.g.puml</code> Example</summary>
+<summary><code>Game.g.puml</code> code Example</summary>
 ```PlantUML
 package Game-Scene [[../../TestCases/BaseProject_Rider/Game.tscn]] {
 
@@ -115,6 +115,9 @@ Game::GameLogic --> GameLogic
 </details>
 
 As your project grows, so too does your diagram. What starts off as a basic visualization becomes a full-blown map of your application that evolves with every new class, scene change, and feature.
+
+<code>App.g.puml</code> Example from [GameDemo](https://github.com/chickensoft-games/GameDemo) Project:
+<FancyImage src={"/blogs/visualizing-complexity/App.g.png"} alt="Example of diagram from Game Demo project" />
 
 We’ve added logic to simplify output by avoiding rendering child nodes unless they also have children, keeping things clean and readable. **You no longer have to memorize your codebase’s architecture.** It’s right there, clickable and up-to-date.
 
