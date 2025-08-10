@@ -191,7 +191,7 @@ public partial class ExerciseLogic : LogicBlock<ExerciseLogic.State> {
 
     public record Standing : Inactive {
       public Standing() {
-        this.OnEnter(() => Console.WriteLine("Inactive"));
+        this.OnEnter(() => Console.WriteLine("Standing"));
       }
     }
   }
