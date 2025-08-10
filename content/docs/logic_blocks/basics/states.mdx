@@ -262,7 +262,7 @@ public record MyState : State, IGet<Input.SomethingHappened> {
 }
 ```
 
-We add an input to the logic block we are attached to from the handler of the event we subscribed to using the `Input<T>()` method provided by the state. We also implement the input handler for that event, which allows us to return a new state — effectively forcing the logic block to change states when something happens. This pattern is commonly leveraged with logic blocks to create complex reactive behaviors.
+We provide an input to the attached logic block, sourced from the handler of our subscribed event, by utilizing the state's `Input<T>()` method. We also implement the input handler for that event, which allows us to return a new state — effectively forcing the logic block to change states when something happens. This pattern is commonly leveraged with logic blocks to create complex reactive behaviors.
 
 ### 🥊 Attach and Detach vs Entrance and Exit
 
