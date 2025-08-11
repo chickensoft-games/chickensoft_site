@@ -38,7 +38,7 @@ Only one instance of a state is ever active at once. When a state instance is ac
 
 ### 📥 Handling Inputs & State Changes
 
-States define input handlers which allow them to receive inputs and return the next state th e
+States define input handlers which allow them to receive inputs and return the next state.
 States indicate which inputs they handle by implementing `IGet<TInputType>` for each type of input they want to handle.
 
 ```csharp
@@ -191,7 +191,7 @@ public partial class ExerciseLogic : LogicBlock<ExerciseLogic.State> {
 
     public record Standing : Inactive {
       public Standing() {
-        this.OnEnter(() => Console.WriteLine("Inactive"));
+        this.OnEnter(() => Console.WriteLine("Standing"));
       }
     }
   }
@@ -242,7 +242,7 @@ LogicBlocks determines which entrance/exit callbacks to run when changing states
 Attach and detach callbacks are especially useful for subscribing to services and disposing of subscriptions.
 
 <Callout type="caution">
-For best results, don't add inputs during lifecycle callbacks. Instead, use them in handlers for services you're subscribed to, as shown above.
+For best results, don't add inputs during lifecycle callbacks. Instead, use them in handlers for services you're subscribed to, as shown below.
 </Callout>
 
 ```csharp
@@ -262,7 +262,7 @@ public record MyState : State, IGet<Input.SomethingHappened> {
 }
 ```
 
-We add an input to the logic block we are attached to from the handler of the event we subscribed to using the `Input<T>()` method provided by the state. We also implement the input handler for that event, which allows us to return a new state — effectively forcing the logic block to change states when something happens. This pattern is commonly leveraged with logic blocks to create complex reactive behaviors.
+Here, `MyState`'s `OnDataReceived()` event handler uses the built-in `Input<T>()` method to add a `SomethingHappened` input to the logic block the state is attached to. `MyState` also implements the input handler for `SomethingHappened`, which allows us to return a new state — effectively forcing the logic block to change states when the `DataReceived` event occurs. This pattern is commonly leveraged with logic blocks to create complex reactive behaviors.
 
 ### 🥊 Attach and Detach vs Entrance and Exit
 
