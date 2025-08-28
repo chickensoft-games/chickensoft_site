@@ -122,7 +122,7 @@ export const site: SiteData = {
         },
         {
           url: "/license",
-          title: "Open Source Licenses",
+          title: "Licenses",
         },
       ],
     },

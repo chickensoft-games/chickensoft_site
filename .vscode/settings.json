@@ -16,7 +16,8 @@
       100
     ],
     "editor.wordWrapColumn": 100,
-    "editor.wordWrap": "bounded"
+    "editor.wordWrap": "bounded",
+    "files.trimTrailingWhitespace": false
   },
   "files.exclude": {
     "**/node_modules": true
