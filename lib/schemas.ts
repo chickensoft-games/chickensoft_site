@@ -12,6 +12,7 @@ export const teamSchema = frontmatterSchema.extend({
   discord_user: z.string().optional(),
   github_user: z.string().optional(),
   linked_in_url: z.string().optional(),
+  twitch_url: z.string().optional(),
 });
 
 export const blogSchema = frontmatterSchema.extend({

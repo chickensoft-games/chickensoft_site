@@ -2,6 +2,7 @@ import BlogPreview from "@/components/blog_preview/blog_preview";
 import ChickenContainer from "@/components/chicken_container/chicken_container";
 import DiscordInvite from "@/components/discord_invite/discord_invite";
 import GithubCard from "@/components/github_card/github_card";
+import { getStats } from "@/components/github_card/github_client";
 import Hero from "@/components/hero/hero";
 import SiteFooter from "@/components/site_footer/site_footer";
 import SiteImage from "@/components/site_image/site_image";
@@ -9,12 +10,15 @@ import { friends } from "@/data/friends";
 import GameDemoInGame from "@/public/img/game_demo/in_game.webp";
 import { getBlogs } from "@/utils/get_blogs";
 import { cn } from "fumadocs-ui/components/api";
+import millify from "millify";
 import Image from "next/image";
 import Link from "next/link";
 import { JSX } from "react";
 import { site } from "../global";
 
-export default function HomePage(): JSX.Element {
+export default async function HomePage(): Promise<JSX.Element> {
+  const stats = await getStats(site.githubPackages);
+
   return (
     <main className="flex flex-1 flex-col justify-start text-center px-0 overflow-x-clip">
       <Hero
@@ -308,6 +312,117 @@ export default function HomePage(): JSX.Element {
         <RecentBlogs numBlogs={3} />
       </ChickenContainer>
 
+      <ChickenContainer fade="both">
+        <section className="mt-16 py-4 border-t border-b border-[var(--color-fd-border)] bg-[var(--color-fd-muted)]">
+          <h1 className="text-2xl md:text-3xl lg:text-4xl">
+            Building a better <Emphasized>future</Emphasized>
+          </h1>
+        </section>
+
+        <div className="grid w-[100%] grid-cols-12 mt-2">
+          <div className="order-2 lg:order-1 col-span-12 lg:col-span-6 mx-4 md:ml-16">
+            <FeatureText className="max-w-full">
+              <p>
+                Chickensoft is a <Emphasized>volunteer organization</Emphasized>
+                .
+              </p>
+              <br />
+              <p>
+                We believe that open source game engines like{" "}
+                <EmphasizedLink href="https://godotengine.org">
+                  Godot
+                </EmphasizedLink>{" "}
+                are the future of game development. That&apos;s why we&apos;ve
+                built over twenty open source projects to help facilitate Godot
+                + C# development.
+              </p>
+              <br />
+              <p>
+                If you&apos;d like to show your support for Chickensoft, please
+                feel free to{" "}
+                <EmphasizedLink href={site.github.url}>
+                  star our packages on GitHub
+                </EmphasizedLink>
+                ,{" "}
+                <EmphasizedLink href={site.discord.inviteUrl}>
+                  help others in the Discord community
+                </EmphasizedLink>
+                ,{" "}
+                <EmphasizedLink href={"/team"}>
+                  follow us on socials
+                </EmphasizedLink>
+                , or{" "}
+                <EmphasizedLink href={"/philosophy"}>
+                  contribute to our projects
+                </EmphasizedLink>
+                !
+              </p>
+              <br />
+              <p>
+                We&apos;re extremely grateful for all the help we&apos;ve
+                received from the wider Godot community, and we can&apos;t wait
+                to meet you, too!
+              </p>
+            </FeatureText>
+          </div>
+          <div className="order-1 lg:order-2 xl:order-2 col-span-12 lg:col-span-6 -mt-15">
+            <section className="mx-auto w-full max-w-screen-xl">
+              <div className="relative mx-auto w-full max-w-[520px] md:max-w-[70%] lg:max-w-[520px] xl:max-w-[640px]">
+                <SiteImage
+                  src="/img/splash/star.webp"
+                  alt="Chickensoft star"
+                  className="w-full object-contain pr-4"
+                  quality={100}
+                />
+
+                <div className="absolute inset-0 grid place-items-center">
+                  <div className="text-center lg:text-left z-10 px-4">
+                    <p className="sr-only">
+                      Total GitHub stars and number of projects
+                    </p>
+
+                    <div
+                      className="
+                    font-black leading-none tracking-tight
+                    text-transparent bg-clip-text bg-gradient-to-br
+                    from-yellow-200 via-amber-400 to-yellow-700
+                    drop-shadow-2xl
+                    [text-shadow:_0_1px_0_rgba(255,255,255,.35),_0_8px_30px_rgba(0,0,0,.55)]
+                    saturate-150 contrast-125
+                    select-text
+                  "
+                    >
+                      <dl className="inline-grid grid-cols-1 gap-6 text-center">
+                        <div>
+                          <dd className="text-[clamp(4rem,8vw,6rem)] leading-none">
+                            {millify(stats?.stars ?? 0, {
+                              precision: 1,
+                              lowercase: true,
+                            })}
+                          </dd>
+                          <dt className="uppercase opacity-90 tracking-wider text-[clamp(0.9rem,1.6vw,1.1rem)]">
+                            Stars
+                          </dt>
+                        </div>
+
+                        <div>
+                          <dd className="text-[clamp(4rem,8vw,6rem)] leading-none">
+                            {stats?.repoCount ?? site.githubPackages.length}
+                          </dd>
+                          <dt className="uppercase opacity-90 tracking-wider text-[clamp(0.9rem,1.6vw,1.1rem)]">
+                            Projects
+                          </dt>
+                        </div>
+                      </dl>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </section>
+          </div>
+        </div>
+      </ChickenContainer>
+
       <SiteFooter className="mt-32" />
     </main>
   );
@@ -364,6 +479,37 @@ function Emphasized(props: {
     >
       {props.children}
     </strong>
+  );
+}
+
+function EmphasizedLink(props: {
+  href: string;
+  children: string | JSX.Element | JSX.Element[];
+  className?: string;
+}): JSX.Element {
+  const isExternal = /^https?:\/\//.test(props.href);
+
+  return (
+    <Link
+      href={props.href}
+      target={isExternal ? "_blank" : undefined}
+      rel={isExternal ? "noreferrer noopener" : undefined}
+      className={cn(
+        "inline-flex items-baseline font-semibold transition-colors",
+        "bg-clip-text text-transparent bg-gradient-to-r",
+        "from-yellow-500 via-amber-500 to-yellow-600",
+        "dark:from-amber-300 dark:via-yellow-300 dark:to-amber-400",
+        "underline underline-offset-4",
+        "decoration-amber-600 dark:decoration-amber-300",
+        "hover:brightness-110 focus-visible:outline-none",
+        "focus-visible:ring-2 focus-visible:ring-amber-500 dark:focus-visible:ring-amber-300",
+        "rounded-[2px]",
+        isExternal ? "after:ml-1 after:content-['↗']" : "",
+        props.className
+      )}
+    >
+      {props.children}
+    </Link>
   );
 }
 

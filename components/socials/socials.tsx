@@ -1,7 +1,13 @@
 import { TeamMember } from "@/lib/schemas";
 import { cn } from "fumadocs-ui/components/api";
 import { JSX } from "react";
-import { FaDiscord, FaGithub, FaLinkedin, FaMastodon } from "react-icons/fa";
+import {
+  FaDiscord,
+  FaGithub,
+  FaLinkedin,
+  FaMastodon,
+  FaTwitch,
+} from "react-icons/fa";
 import { SiBluesky } from "react-icons/si";
 
 export type SocialsProps = {
@@ -43,6 +49,11 @@ export default function Socials(props: SocialsProps): JSX.Element {
         `https://discord.com/users/${teamMember.discord_user}`,
       icon: <FaDiscord size={size} />,
       label: "Discord",
+    },
+    {
+      url: teamMember.twitch_url,
+      icon: <FaTwitch size={size} />,
+      label: "Twitch",
     },
   ].filter((social) => social.url);
 
