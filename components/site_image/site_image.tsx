@@ -1,10 +1,10 @@
-import fs from "fs/promises";
 import { existsSync } from "fs";
-import { join } from "path";
+import fs from "fs/promises";
 import { cn } from "fumadocs-ui/components/api";
 import { ImageZoom } from "fumadocs-ui/components/image-zoom";
 import { getImageSize } from "next/dist/server/image-optimizer";
 import Image from "next/image";
+import { join } from "path";
 import { JSX } from "react";
 import "server-only";
 
@@ -13,6 +13,7 @@ interface SiteImageProps {
   alt: string;
   className?: string;
   style?: React.CSSProperties;
+  quality?: number;
 }
 
 export default async function SiteImage(
@@ -75,6 +76,7 @@ export async function SiteImageZoom(
       width={size.width}
       height={size.height}
       style={props.style}
+      quality={props.quality}
       className={cn("rounded-lg", props.className)}
     />
   );
