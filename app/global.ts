@@ -193,6 +193,11 @@ export const site: SiteData = {
     },
     {
       owner: "chickensoft-games",
+      repo: "Sync",
+      logo: "/img/chickensoft/sync.png",
+    },
+    {
+      owner: "chickensoft-games",
       repo: "Platform",
       logo: "/img/chickensoft/platform.png",
     },
