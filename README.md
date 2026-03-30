@@ -16,6 +16,7 @@ This is a Next.js application generated with
 Run development server:
 
 ```bash
+npm install # first-time only
 npm run dev
 ```
 
