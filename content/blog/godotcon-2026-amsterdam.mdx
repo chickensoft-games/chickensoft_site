@@ -1,0 +1,85 @@
+---
+title: 'GodotCon 2026: an Exciting Overview!'
+description: |
+  I heard great talks and made amazing connections at GodotCon, now I'm bringing home the cookies!
+author_id: caseyhofland
+date: 2026-04-25
+image: /blogs/godotcon-2026-amsterdam/header.webp
+keywords:
+  - Godot
+  - '2026'
+  - GodotCon
+  - C#
+  - Casey
+  - Cubusky
+  - Chickensoft
+  - Amsterdam
+---
+
+Did you know: [Casey](/team/casey-cubusky-hofland), better known as "Cubusky" in the community, is a native Dutchman! So when GodotCon 2026 was coming to Amsterdam, they simply had to go. We even submitted an entire presentation to talk about Chickensoft Architecture; sadly, it didn't get picked up. Nevertheless, GodotCon was an amazing time, and we'd love to tell you all about it!
+
+## 🌍 Overall thoughts
+
+What really impressed me was that the convention had a wide range of speakers! There were sponsored talks, by giants like W4 and JetBrains... and after that, a small indie making narrative games! There was also an upstairs-area where people could showcase their games. I'm never that interested in the games I confess, but I had a great time talking to some of the developers! I talked to someone who used to engineer wind turbines saying they had to adjust to receiving death threats... kinda puts into perspective how wildly different our industry can be 😳
+
+Speaking of our industry: through no-one's fault, the convention was very male-dominated. It reminds us why it is so important to support efforts that aim to bring more diversity into programming- and game development jobs. If games are for everyone, they ought to be made by anyone.
+
+## 🌐 networking
+
+I ain't call myself Cubusky for nothin'. Just like the noble polar dogs, I too crave company :3 luckily, of company there was no shortage! I saw some old friends from my bachelors study, made loads of new connections, and even met 2 people who share Chickensoft's passion and ideals, BUT... they think it could be better, and after talking with them I agree!
+
+- Dimitrios Makridis, cofounder of [Not Just Games](https://www.notjustgames.org/), wants our [GodotNodeInterfaces](https://github.com/chickensoft-games/GodotNodeInterfaces) to work in standalone projects. That way, you could write all of your state machines, tests and systems in a standalone C# project. He goes by `dimitri.os` on discord and I encouraged him to ask around in our community what's possible. But why is this important? Well, the next person could provide an answer to that.
+
+- Moritz Voss, or `tiger tiger tiger` on discord, is working on something truly amazing. [2dog](https://2dog.dev/) (godot backwards) is a .NET front-end that lets you control Godot as a library. What you can build out of that is unit- and component tests that you can run - inside of - the test runner! That's right, no more text files for us, it's testing like you're used to! The project is open-source, and I encourage you to go give it some love. At time of writing, Moritz is still figuring out how to support running tests in parallel, and 2dog needs a clean way of switching between Godot versions.
+
+I'm seeing a lot of potential for both of us to grow! We can learn from each others lessons and help pave the way for a painless testing process. Imagine that we could do what 2dog does through our [GodotNodeInterfaces](https://github.com/chickensoft-games/GodotNodeInterfaces)... a developer would hardly have to open Godot at all. The potential here is huge. And I gotta say... as a husky, I like 2dog :3
+
+# 📢 Talks
+
+There were some great talks at the converence! You can watch them all on Youtube once Godot publishes them, but here's the stuff that stuck with me!
+
+## 🍃 Energy efficiency
+
+*Did you know* that there is very little you have to do to make your game more energy efficient?!
+
+Here's how:
+- Set an FPS limit
+- Reduce FPS to 30 / 24 in menus or after 2 minutes of controller-inactivity
+- Pause when the game is minimized
+- Pause when the controller disconnects
+
+Watch "Introduction to Energy Efficieny" once it releases, but the above should take a few hours to implement for some low-hanging fruit!
+
+## 🪡 Real-time version control
+
+[Backstitch](https://backstitch.dev/) was here to showcase their real-time version control system running seamlessly with Godot! The idea is that among artists, sound engineers, game designers and John from marketing, the whole team uses backstitch, then one dev pushes all changes to git as if they were one person. No more merge conflicts!
+
+They've currently been working with schools and game jams, but feel ready to expand into small teams and studios. Contact them if you're interested, and tell 'em Chickensoft sent you!
+
+## ⭐ Rokojori Action Library
+
+The [Rokojori Action Library](https://rokojori.com/en/labs/rokojori-action-library/overview) is a framework for creating games... and looks absolutely insane. It's a tool for chaining small actions together that you can order however you like and is, apparently, turing-complete! The speaker showed how it could be used for VFX Artists, but there's also tools for produceral artists and level designers in there! It supports both C# and GDScript, so it should integrate nicely with Chickensoft.
+
+The developer said it relies a lot on singletons which I'm not a fan of, but the whole project is open-source so you're always free to fork it and replace it with our [dependency injection](https://github.com/chickensoft-games/AutoInject)!
+
+## 💻 Porting Painlessly
+
+I also watched a talk about porting titles. The main takeaway: it is MUCH harder than you'd think!
+
+I'll just give a rundown of what to think about:
+- Target the lowest CPU you need to support.
+- Carefully consider rendering target (Forward + / Mobile / Compatibility) early.
+- Think of memory restrictions & load times.
+- Think of compatible input early: you can't just port a controller scheme to phone.
+- Localize platform-specific content: "controller" on Playstation = "joycon" on Switch.
+- Some platforms don't allow synchronous save / load.
+- Audio mixes differently on different platforms (music louder than dialogue).
+- UI: is responsitivity enough, or does it need a redesign?
+- Is your programming language supported on all target platforms? Are there workarounds?
+- Does your networking need to work cross-platform?
+
+I understand now why there are entire studios focussing _just_ on porting.
+
+---
+
+Would I go to GodotCon again? That's a resounding yes! I got inspired, I got stickers, and most importantly ~I got stickers~ I made some friends along the way. Keep GodotCon affordable and keep Godot for everyone, and I think we'll be alright 💖
