@@ -4,15 +4,15 @@ description: Observing and responding to logic blocks.
 image: /docs/logic_blocks/header.jpg
 ---
 
-LogicBlocks provides a binding system that allows objects to listen to a particular logic block. Bindings allow you to observe inputs, outputs, errors, and state changes declaratively.
+LogicBlocks provides a binding system that allows objects to listen to a particular logic block. Bindings allow you to observe inputs, outputs, state changes, and lifecycle events declaratively.
 
 ## 📥 Observing Inputs
 
 ```csharp
 using var binding = logic.Bind();
 
-binding.Watch((in MyLogicBlock.Input.SomeInput input) => {
-  // Watch for a particular input.
+binding.OnInput((in MyLogicBlock.Input.SomeInput input) => {
+  // Observe a particular input.
 });
 ```
 
@@ -21,7 +21,7 @@ binding.Watch((in MyLogicBlock.Input.SomeInput input) => {
 ```csharp
 using var binding = logic.Bind();
 
-binding.Handle((in MyLogicBlock.Output.SomeOutput output) => {
+binding.OnOutput((in MyLogicBlock.Output.SomeOutput output) => {
   // Handle a particular output.
 });
 ```
@@ -31,18 +31,38 @@ binding.Handle((in MyLogicBlock.Output.SomeOutput output) => {
 ```csharp
 using var binding = logic.Bind();
 
-binding.When<MyLogicBlock.State.SomeState>(state => {
-  // Respond to a state change. This is only called when changing from a state
-  // that is not the type specified.
+binding.OnState((MyLogicBlockState.SomeState state) => {
+  // Respond to a state change. This is only called when the logic block
+  // transitions to the specified state type.
 });
 ```
 
-## 🚨 Observing Errors
+## 🔁 Observing Lifecycle Events
 
 ```csharp
 using var binding = logic.Bind();
 
-binding.Catch<System.Exception>(e => {
-  // Catch an error.
+binding.OnStart(() => {
+  // Called when the logic block is started.
 });
+
+binding.OnStop(() => {
+  // Called when the logic block is stopped.
+});
+
+binding.OnLoad(() => {
+  // Called when the logic block is started with a LogicBlockData type.
+});
+```
+
+## 🔗 Chaining
+
+All binding methods return the binding itself, so you can chain them together.
+
+```csharp
+using var binding = logic.Bind()
+  .OnOutput((in MyLogicBlock.Output.SomeOutput output) => HandleOutput(output))
+  .OnState((MyLogicBlockState.SomeState state) => HandleState(state))
+  .OnStart(() => HandleStart())
+  .OnStop(() => HandleStop());
 ```

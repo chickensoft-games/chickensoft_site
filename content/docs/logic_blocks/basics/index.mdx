@@ -16,7 +16,7 @@ _A logic block is a class that **receives inputs**, **maintains a single state i
 
 An **input** is simply an object containing any relevant information that is given to the current state to process. Inputs are processed one at a time and in the order they were received by whatever state is active at the time the input is processed.
 
-A **state** is an object with "lifecycle hooks" that allow it to observe when it has been attached to the logic block that owns it, detached, entered, or exited. Only one state object instance is ever active at once. The active state is considered the logic block's current `Value`.
+A **state** is an object with "lifecycle hooks" that allow it to observe when it has been entered or exited. Only one state instance is ever active at once. The active state is available via the logic block's `State` property.
 
 A state can implement input handlers for each type of input it wishes to handle, returning the next state the logic block should transition to.
 

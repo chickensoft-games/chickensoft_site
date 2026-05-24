@@ -6,60 +6,64 @@ image: /docs/logic_blocks/header.jpg
 
 **State** refers to the value maintained by a logic block.
 
-States can receive inputs, read values from the shared blackboard, and produce outputs and errors. Logic blocks don't actually do very much by themselves — the current state determines what inputs get handled.
+States can receive inputs, read values from the shared blackboard, and produce outputs. Logic blocks don't actually do very much by themselves — the current state determines what inputs get handled.
 
-States are always `record class` reference types that are derived from `StateLogic<TState>`, a type provided by LogicBlocks.
+States are always `record` types that derive from `LogicBlockState`, a type provided by LogicBlocks.
 
 ```csharp
-using Chickensoft.Introspection;
+public class LightSwitch : LogicBlock {
+  public LightSwitch() {
+    Set(new LightSwitchState.PoweredOff());
+    Set(new LightSwitchState.PoweredOn());
+  }
+}
 
-[Meta, LogicBlock(typeof(State), Diagram = true)]
-public partial class LightSwitch : LogicBlock<LightSwitch.State> {
-
-  // Define the state. By convention, this is placed inside the logic block.
-  public abstract record State : StateLogic<State> {
-    // On state.
-    public record PoweredOn : State, IGet<Input.Toggle> {}
-
-    // Off state.
-    public record PoweredOff : State, IGet<Input.Toggle> {
-      public Transition On(in Input.Toggle input) => To<PoweredOn>();
-    }
+// Define the state. By convention, this is placed near the logic block.
+// The [StateDiagram] attribute enables diagram generation.
+[StateDiagram]
+public abstract record LightSwitchState : LogicBlockState {
+  // On state.
+  public record PoweredOn : LightSwitchState, IGet<Input.Toggle> {
+    public Type On(in Input.Toggle input) => To<PoweredOff>();
   }
 
-  // Define your initial state here.
-  public override Transition GetInitialState() => To<State.PoweredOff>();
+  // Off state.
+  public record PoweredOff : LightSwitchState, IGet<Input.Toggle> {
+    public Type On(in Input.Toggle input) => To<PoweredOn>();
+  }
 }
 ```
 
 Each state type can extend other state types using traditional C# inheritance, representing the idea of [compound states] from statechart theory.
 
-Only one instance of a state is ever active at once. When a state instance is active, we say it is `attached`. When a state change occurs, the previous state instance is `detached`.
+State instances are pre-allocated and stored on the blackboard. Only one state is ever active at once. When a state is the active state of the logic block, we say it is `attached`. When a state change occurs, the previous state is `detached`.
 
 ### 📥 Handling Inputs & State Changes
 
 States define input handlers which allow them to receive inputs and return the next state.
+
 States indicate which inputs they handle by implementing `IGet<TInputType>` for each type of input they want to handle.
 
 ```csharp
-public record MyState : State, IGet<Input.A>, IGet<Input.B>, IGet<Input.C> {
+public record MyState : LightSwitchState, IGet<Input.A>, IGet<Input.B>, IGet<Input.C> {
   // Don't change states on A
-  public Transition On(in Input.A input) => ToSelf();
+  public Type On(in Input.A input) => ToSelf();
+
+  // Handle B — just stay in this state
+  public Type On(in Input.B input) => ToSelf();
 
   // Go to StateC on C
-  public Transition On(in Input.C input) => To<StateC>();
+  public Type On(in Input.C input) => To<StateC>();
 }
 ```
 
-Input handlers are processed synchronously and always return a transition to the next state. We use `To<TState>()` method to define a transition to another state. If you don't want to change states, simply return `ToSelf()`.
-
-States are stored on the blackboard.
+Input handlers are processed synchronously and always return a `Type` indicating the next state. We use `To<TState>()` to transition to another state, or `ToSelf()` to remain in the current state.
 
 ### 🧑‍🏫 Blackboard
 
 The **[blackboard]** is a type of dictionary collection that allows the logic block and its states to access shared data. States look up values stored in the blackboard by their system type.
 
-The logic block keeps a blackboard internally, but doesn't expose it. Instead, it implements the `IBlackboard` interface, allowing you to treat it as if it were the blackboard.
+The logic block keeps a blackboard internally, but doesn't expose it directly. Instead, it implements the `IBlackboard` interface, allowing you to treat it as if it were the blackboard.
 
 ```csharp
 var logic = new MyLogicBlock();
@@ -70,54 +74,39 @@ logic.Set<IService>(new MyRelatedService());
 var service = logic.Get<IService>();
 ```
 
-Each state instance has an internal context that allows it to interact with the logic block while it is attached. The base `StateLogic<TState>` class that every state derives from provides a `Get<T>()` method that allow the state to read values from the logic block's blackboard.
+Each state has access to the blackboard through its built-in `Get<T>()` method.
 
 ```csharp
-[Meta, LogicBlock(typeof(State), Diagram = true)]
-public partial class LightSwitch : LogicBlock<LightSwitch.State> {
+[Meta]
+public partial class LightSwitch : LogicBlock {
+  public LightSwitch() {
+    Set(new MyRelatedService()); // Add to blackboard
+    Set(new LightSwitchState.PoweredOn());
+  }
+}
 
-  public abstract record State : StateLogic<State> {
-
-    public record PoweredOn : State, IGet<Input.Toggle> {
-      public PoweredOn() {
-        OnAttach(() => {
-          Get<MyRelatedService>().StartDoingSomething()
-        });
-      }
+public abstract record LightSwitchState : LogicBlockState {
+  public record PoweredOn : LightSwitchState {
+    public PoweredOn() {
+      this.OnEnter(() => {
+        Get<MyRelatedService>().StartDoingSomething();
+      });
     }
-
-  ...
+  }
+  // ...
+}
 ```
 
 ### 🌱 Lifecycle Callbacks
 
-#### 👩‍❤️‍👨 Attachment
-
-When a state change occurs, the current state instance is `detached` and the next state instance is `attached`. Only one state instance is ever `attached` at once.
-
-States can register callbacks that allow them to know when they become attached and detached.
-
-```csharp
-public MyState() {
-  OnAttach(() => System.Console.WriteLine("MyState attached."))
-  OnDetach(() => System.Console.WriteLine("MyState detached."))
-}
-```
-
-<Callout type="info">
-For the sake of sanity, registering lifecycle callbacks should only be done in the state's constructor.
-</Callout>
-
 #### 🚪 Entrance and Exits
 
-States can also observe when they are `entered` and `exited`.
-
-Unlike attachment, which is called every time a state instance is swapped for the active state of the logic block, entrance and exit callbacks are only invoked when the state's type hierarchy changes.
+States can observe when they are `entered` and `exited`. These callbacks are only invoked when the relevant part of the state's type hierarchy changes.
 
 ```csharp
 public MyState() {
-  this.OnEnter(() => System.Console.WriteLine("MyState entered."))
-  this.OnExit(() => System.Console.WriteLine("MyState exited."))
+  this.OnEnter(() => System.Console.WriteLine("MyState entered."));
+  this.OnExit(() => System.Console.WriteLine("MyState exited."));
 }
 ```
 
@@ -126,31 +115,38 @@ public MyState() {
 If you transition between two states that extend a common parent state, the common parent state will not have any of its exit callbacks invoked, since you are still in that _type_ of state.
 
 <Callout type="info">
-Unlike `OnAttach` and `OnDetach`, you have to invoke `OnEnter` and `OnExit` as `this.OnEnter` and `this.OnExit`, respectively. LogicBlocks has to implement `this.OnEnter` and `this.OnExit` as extension methods to properly capture the generic context. Unlike in previous versions, you don't have to specify which type of state you are entering — it just knows.
+`OnEnter` and `OnExit` must be invoked as `this.OnEnter` and `this.OnExit`, respectively. LogicBlocks implements these as extension methods to properly capture the generic type context.
+</Callout>
+
+<Callout type="tip">
+Use `OnEnter` and `OnExit` for subscribing and unsubscribing to events or services when entering/exiting a specific state. Because these callbacks respect the type hierarchy, they will only fire when the type of state actually changes, preventing unwanted resubscription when transitioning between sibling states.
 </Callout>
 
 ### 🏎️ Stopping and Starting
 
-By default, a logic block will not create the first state until it is read, explicitly started, or receives an input. Lazily initializing state allows you to determine when the initial state should actually be attached and entered, guaranteeing that any _side effects_ don't occur until you're ready.
+By default, a logic block will not activate the first state until it is explicitly started, receives an input, or its state is read.
 
 ```csharp
 var logic = new MyLogicBlock();
 
-// Make sure the initial state is attached and entered.
+// Start in the state returned by GetInitialState().
 logic.Start();
+
+// Or start in a specific state type:
+logic.Start<MyState>();
 
 // Exit and detach the current state.
 logic.Stop();
 ```
 
-Starting and stopping a logic block triggers the relevant attach/detach and entrance/exit callbacks.
+Starting and stopping a logic block triggers the relevant entrance and exit callbacks.
 
 ### ⠛ Compound / Composite States
 
 LogicBlocks supports the concept of [compound states] (also known as composite states) as defined by statecharts. A compound state is simply a state which contains more than one state inside it.
 
 <Callout type="info">
-States can define themselves in terms of other existing states, only accounting for the changes between them. Coding-by-difference like this helps prevents duplicate logic and ensure correctness.
+States can define themselves in terms of other existing states, only accounting for the changes between them. Coding-by-difference like this helps prevent duplicate logic and ensure correctness.
 </Callout>
 
 <FancyImage src="/docs/logic_blocks/basics/compound.png" alt="Logic block visual diagram" widthOverride="380px" />
@@ -160,13 +156,20 @@ To create a compound state with LogicBlocks, simply create a state record that i
 Below is an example of a logic block that defines a few compound states.
 
 ```csharp
-[Meta, LogicBlock(typeof(State))]
-public partial class ExerciseLogic : LogicBlock<ExerciseLogic.State> {
-  public override Transition GetInitialState() => To<Standing>();
+[Meta]
+public partial class ExerciseLogic : LogicBlock {
+  public ExerciseLogic() {
+    Set(new ExerciseState.Active.Walking());
+    Set(new ExerciseState.Active.Running());
+    Set(new ExerciseState.Inactive.Standing());
+  }
 
-  public abstract record State : StateLogic<State>;
+  public override Type GetInitialState() => typeof(ExerciseState.Inactive.Standing);
+}
 
-  public abstract record Active : State {
+[StateDiagram]
+public abstract record ExerciseState : LogicBlockState {
+  public abstract record Active : ExerciseState {
     public Active() {
       this.OnEnter(() => Console.WriteLine("Active"));
     }
@@ -184,7 +187,7 @@ public partial class ExerciseLogic : LogicBlock<ExerciseLogic.State> {
     }
   }
 
-  public abstract record Inactive : State {
+  public abstract record Inactive : ExerciseState {
     public Inactive() {
       this.OnEnter(() => Console.WriteLine("Inactive"));
     }
@@ -198,25 +201,23 @@ public partial class ExerciseLogic : LogicBlock<ExerciseLogic.State> {
 }
 ```
 
-Note how `Walking` and `Running` are inherit from the same parent state, `Active`. Likewise, `Standing` inherits from the `Inactive` state. The parent states `Active` and `InActive` are both compound states.
-
-We have chosen to make the `Active` and `Inactive` states abstract since we plan to always be in one of the concrete states that inherit from them. You can decide whether or not to make a state abstract or not based on your desired behavior for your logic block.
+Note how `Walking` and `Running` inherit from the same parent state, `Active`. Likewise, `Standing` inherits from the `Inactive` state.
 
 <FancyImage src="/docs/logic_blocks/basics/call_order.png" alt="Logic block visual diagram" widthOverride="380px" />
 
-States that inherit from other states will register their attach/detach and enter/exit callbacks in the order that the C# constructors are executed: from base type to most derived type. Internally, LogicBlocks exploits this C# constructor call order to infer the type hierarchy of a given state.
+States that inherit from other states will register their enter/exit callbacks in the order that the C# constructors are executed: from base type to most derived type.
 
-When the example state machine shown above is started, the initial state is `Standing`, which inherits from the `Inactive` state. When entered, each of the entrance callbacks registered by the base type `Inactive` and the derived type `Standing` will be invoked.
+When the example state machine shown above is started with `Standing`, the entrance callbacks registered by `Inactive` and `Standing` will both be invoked.
 
 ```csharp
-logic.Start();
+logic.Start<ExerciseState.Inactive.Standing>();
 
 // Prints:
 // Inactive
 // Standing
 ```
 
-If the `Standing` state were to receive an input that causes it to transition to `Walking`, the entire state hierarchy would change and all of the entrance callbacks for `Walking` would execute:
+If the `Standing` state transitions to `Walking`, all the entrance callbacks for `Walking` would execute:
 
 ```text
 Active
@@ -237,56 +238,27 @@ LogicBlocks determines which entrance/exit callbacks to run when changing states
 > When a substate transitions to another substate, both “inside” the compound state, the compound state does not exit or enter; it remains active.
 </Callout>
 
-### ⚙️ Adding Inputs to Force a State Change
+### ⚙️ Adding Inputs from Callbacks
 
-Attach and detach callbacks are especially useful for subscribing to services and disposing of subscriptions.
-
-<Callout type="caution">
-For best results, don't add inputs during lifecycle callbacks. Instead, use them in handlers for services you're subscribed to, as shown below.
-</Callout>
+Entrance and exit callbacks (and event subscriptions) are great places to add inputs that force state changes.
 
 ```csharp
-public record MyState : State, IGet<Input.SomethingHappened> {
+public record MyState : ExerciseState, IGet<Input.SomethingHappened> {
   public MyState() {
-    OnAttach(() => Get<ISomeService>().DataReceived += OnDataReceived)
-    OnDetach(() => Get<ISomeService>().DataReceived -= OnDataReceived)
+    this.OnEnter(() => Get<ISomeService>().DataReceived += OnDataReceived);
+    this.OnExit(() => Get<ISomeService>().DataReceived -= OnDataReceived);
   }
 
   private void OnDataReceived(int data) {
-    // Trigger an input on the logic block that owns us — this can force a
-    // state change reactively if we know we can handle this type of input.
+    // Trigger an input on the logic block that owns us.
     Input(new Input.SomethingHappened(data));
   }
 
-  public Transition On(in Input.SomethingHappened input) => To<OtherState>();
+  public Type On(in Input.SomethingHappened input) => To<OtherState>();
 }
 ```
 
-Here, `MyState`'s `OnDataReceived()` event handler uses the built-in `Input<T>()` method to add a `SomethingHappened` input to the logic block the state is attached to. `MyState` also implements the input handler for `SomethingHappened`, which allows us to return a new state — effectively forcing the logic block to change states when the `DataReceived` event occurs. This pattern is commonly leveraged with logic blocks to create complex reactive behaviors.
-
-### 🥊 Attach and Detach vs Entrance and Exit
-
-<Callout type="caution">
-Unlike entrance and exit callbacks, attach and detach callbacks **always** run for _each state instance_ that the logic block transitions to.
-</Callout>
-
-Because **attach and detach** callbacks are invoked for each state instance, _they should only be used for housekeeping_: i.e., subscribing and unsubscribing from events, notifications or other observables.
-
-Likewise, **entrance and exit** callbacks _should not manage subscriptions_, as the type hierarchy can remain mostly unchanged but the actual state instance can be different.
-
-<Callout type="tip">
-In general, place instance-specific initialization or cleanup in `OnAttach` and `OnDetach`. Likewise, place game or business related logic in `this.OnEnter` and `this.OnExit`.
-</Callout>
-
-<Callout type="info">
-Lifecycle callbacks are called in the following order:
-* `OnDetach` callback
-* `OnExit` callback
-* `OnAttach` callback
-* `OnEnter` callback
-
-In compound states, the callbacks are invoked from the least-derived state to the most-derived state. However, `OnEnter` and `OnExit` callbacks will not be invoked in an ancestor state if the transition is to another state in its inheritance hierarchy.
-</Callout>
+We subscribe to a service when entering the state and unsubscribe when exiting. When the service fires an event, we add an input to the logic block — effectively forcing a state change reactively.
 
 [compound states]: https://statecharts.dev/glossary/compound-state.html
 [blackboard]: https://github.com/chickensoft-games/Collections?tab=readme-ov-file#blackboard

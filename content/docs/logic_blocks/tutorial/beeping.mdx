@@ -22,14 +22,27 @@ public record Beeping : PoweredOn, IGet<Input.StartStopButtonPressed> {
     this.OnExit(() => Output(new Output.StopBeepingSound()));
   }
 
-  public Transition On(in Input.StartStopButtonPressed input) =>
+  public Type On(in Input.StartStopButtonPressed input) =>
     To<Idle>();
 }
 ```
 
-Outputs are just objects that are sent to the logic block's bindings. They can be used to communicate with anything that is interested in the logic block without the logic block states' having to know about them directly.
+Don't forget to register `Beeping` in the logic block constructor:
 
-We use the state's `this.OnEnter` and `this.OnExit` extension methods to define callbacks that should be invoked whenever the state is entered and exited, respectively. These entrance and exit callbacks are different than attach and detach callbacks since they are only invoked if the relevant portions of the type hierarchy changes. For more on that, see the ["Correct Hierarchical State Lifecycles"][correct-lifecycles] section.
+```csharp
+public TimerLogic() {
+  Set(new TimerLogic.Data() { Duration = 30.0d });
+  Set(new TimerState.PoweredOff());
+  Set(new TimerState.PoweredOn.Idle());
+  Set(new TimerState.PoweredOn.Countdown());
+  Set(new TimerState.PoweredOn.Beeping()); // add this
+  Set<IClock>(new MyClock());
+}
+```
+
+Outputs are just objects that are sent to the logic block's bindings. They can be used to communicate with anything that is interested in the logic block without the logic block states having to know about them directly.
+
+We use the state's `this.OnEnter` and `this.OnExit` extension methods to define callbacks that should be invoked whenever the state is entered and exited, respectively. These entrance and exit callbacks are only invoked if the relevant portions of the type hierarchy changes. For more on that, see the ["Correct Hierarchical State Lifecycles"][correct-lifecycles] section.
 
 Finally, we're done!
 
