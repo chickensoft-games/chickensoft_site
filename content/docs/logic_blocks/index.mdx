@@ -53,8 +53,6 @@ public class LightSwitch : LogicBlock {
     Set(new LightSwitchState.PoweredOff());
     Set(new LightSwitchState.PoweredOn());
   }
-
-  public override Type GetInitialState() => typeof(LightSwitchState.PoweredOff);
 }
 
 [StateDiagram]

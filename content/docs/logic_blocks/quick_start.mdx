@@ -15,9 +15,6 @@ public partial class LightSwitch : LogicBlock {
     Set(new LightSwitchState.PoweredOff());
     Set(new LightSwitchState.PoweredOn());
   }
-
-  // Optionally override GetInitialState to specify the starting state.
-  public override Type GetInitialState() => typeof(LightSwitchState.PoweredOff);
 }
 
 // The [StateDiagram] attribute on the base state type enables diagram generation.
@@ -70,8 +67,8 @@ LogicBlocks includes a simple binding system to enable you to write declarative 
 ```csharp
 var logic = new LightSwitch();
 
-// Start the logic block to activate the initial state.
-logic.Start();
+// Start the logic block with its initial state.
+logic.Start<LightSwitchState.PoweredOff>();
 
 // Add an input to turn our light switch on.
 logic.Input(new LightSwitchState.Input.Toggle());

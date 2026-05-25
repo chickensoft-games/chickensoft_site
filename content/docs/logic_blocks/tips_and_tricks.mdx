@@ -23,8 +23,6 @@ public class MyGenericType<T> {
     public record StateOne : State;
     public record StateTwo : State;
 
-    public override Type GetInitialState() => typeof(StateOne);
-
     public MyLogicBlock() {
       Set(new StateOne());
       Set(new StateTwo());

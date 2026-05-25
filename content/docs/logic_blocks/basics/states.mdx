@@ -129,10 +129,7 @@ By default, a logic block will not activate the first state until it is explicit
 ```csharp
 var logic = new MyLogicBlock();
 
-// Start in the state returned by GetInitialState().
-logic.Start();
-
-// Or start in a specific state type:
+// Start the logic block in a specific state type:
 logic.Start<MyState>();
 
 // Exit and detach the current state.
@@ -163,8 +160,6 @@ public partial class ExerciseLogic : LogicBlock {
     Set(new ExerciseState.Active.Running());
     Set(new ExerciseState.Inactive.Standing());
   }
-
-  public override Type GetInitialState() => typeof(ExerciseState.Inactive.Standing);
 }
 
 [StateDiagram]

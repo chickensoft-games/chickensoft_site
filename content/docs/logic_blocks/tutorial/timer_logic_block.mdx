@@ -26,9 +26,6 @@ public partial class TimerLogic : LogicBlock {
     // Register all possible state instances on the blackboard.
     Set(new TimerState.PoweredOff());
   }
-
-  // Define the starting state.
-  public override Type GetInitialState() => typeof(TimerState.PoweredOff);
 }
 
 [StateDiagram]
@@ -42,7 +39,7 @@ public abstract record TimerState : LogicBlockState {
 }
 ```
 
-We've created an empty abstract base state, a starting state `PoweredOff`, and two empty static classes which will store our input and output types. We've also specified that our initial state should be `PoweredOff` by overriding `GetInitialState()`.
+We've created an empty abstract base state, a starting state `PoweredOff`, and two empty static classes which will store our input and output types. The starting state will be specified when calling `Start<T>()` on the logic block.
 
 <Callout type="note">
 Each state must be registered on the blackboard using `Set()` in the logic block's constructor. This pre-allocates state instances so the logic block doesn't need to create them during transitions, preventing heap allocations at runtime.

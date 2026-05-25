@@ -14,8 +14,6 @@ public class TimerLogic : LogicBlock {
     Set(new TimerState.PoweredOff());
     Set(new TimerState.PoweredOn.Idle());
   }
-
-  public override Type GetInitialState() => typeof(TimerState.PoweredOff);
 }
 
 [StateDiagram]
@@ -71,8 +69,6 @@ public class TimerLogic : LogicBlock {
     Set(new TimerState.PoweredOff());
     Set(new TimerState.PoweredOn.Idle());
   }
-
-  public override Type GetInitialState() => typeof(TimerState.PoweredOff);
 }
 ```
 

@@ -32,8 +32,6 @@ using Chickensoft.LogicBlocks.Auto;
 [Meta, Id("my_logic")]
 public partial class MyLogic : AutoBlock
 {
-  public override Type GetInitialState() => typeof(MyState.Off);
-
   public MyLogic()
   {
     Preallocate<MyState>();
@@ -77,7 +75,7 @@ Use `logic.Save()` to get a snapshot of the current state, blackboard, and histo
 
 ```csharp
 var logic = new MyLogic();
-logic.Start();
+logic.Start<MyState.Off>();
 
 // Get save data (can be serialized to JSON)
 var saveData = logic.Save();

@@ -21,7 +21,6 @@ public interface ITimer : ILogicBlock;
 
 [Meta]
 public partial class Timer : LogicBlock, ITimer {
-  public override Type GetInitialState() => typeof(TimerState.PoweredOff);
   // ...
 }
 ```
@@ -69,9 +68,8 @@ public void Initializes() {
   // Add the mocked dependency to the blackboard.
   timer.Set(clock.Object);
 
-  // Start the timer and check the initial state.
-  var state = timer.Start();
-  state.ShouldBeOfType<TimerState.PoweredOff>();
+  // Start the timer
+  var state = timer.Start<TimerState.PoweredOff>();
 
   // Verify the timer has set its blackboard data correctly.
   timer.Has<TimerState.Data>().ShouldBeTrue();
