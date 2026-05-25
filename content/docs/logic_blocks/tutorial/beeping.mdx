@@ -31,7 +31,7 @@ Don't forget to register `Beeping` in the logic block constructor:
 
 ```csharp
 public TimerLogic() {
-  Set(new TimerLogic.Data() { Duration = 30.0d });
+  Set(new TimerState.Data() { Duration = 30.0d });
   Set(new TimerState.PoweredOff());
   Set(new TimerState.PoweredOn.Idle());
   Set(new TimerState.PoweredOn.Countdown());
@@ -40,7 +40,9 @@ public TimerLogic() {
 }
 ```
 
-Outputs are just objects that are sent to the logic block's bindings. They can be used to communicate with anything that is interested in the logic block without the logic block states having to know about them directly.
+Outputs are structs that are sent through the logic block's bindings. Outputs allow logic block states to drive external systems without awareness of them (i.e., outputs are a side-effect mechanism).
+
+Outputs must be structs to avoid unnecessary heap allocations.
 
 We use the state's `this.OnEnter` and `this.OnExit` extension methods to define callbacks that should be invoked whenever the state is entered and exited, respectively. These entrance and exit callbacks are only invoked if the relevant portions of the type hierarchy changes. For more on that, see the ["Correct Hierarchical State Lifecycles"][correct-lifecycles] section.
 

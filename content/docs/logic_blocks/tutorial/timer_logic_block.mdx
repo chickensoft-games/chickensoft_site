@@ -12,7 +12,7 @@ This tutorial assumes a high degree of familiarity with state machines and C#. I
 
 ### 📦 Environment Setup
 
-If you haven't already, make sure you've [installed everything]. You'll need LogicBlocks. Feel free to install the optional diagram generator so you can [see your code as a state diagram][state diagram].
+If you haven't already, make sure you've [installed everything]. Feel free to install the optional diagram generator so you can [see your code as a state diagram][state diagram].
 
 ### 📝 Creating a Logic Block
 
@@ -49,7 +49,7 @@ Each state must be registered on the blackboard using `Set()` in the logic block
 </Callout>
 
 <Callout type="tip">
-If you use the [Chickensoft Introspection] generator and the `AutoBlock` base class (from `Chickensoft.LogicBlocks.Auto`), states can be preallocated automatically using `Preallocate<TBaseState>()`. This prevents human error from forgetting to register a state, especially as you refactor.
+If you use the [Chickensoft Introspection] generator and the `AutoBlock` base class (from [Chickensoft.LogicBlocks.Auto]), states can be preallocated automatically using `Preallocate<TBaseState>()`. This prevents human error from forgetting to register a state, especially as you refactor.
 </Callout>
 
 [installed everything]: /docs/logic_blocks/installation
@@ -57,3 +57,4 @@ If you use the [Chickensoft Introspection] generator and the `AutoBlock` base cl
 [learn csharp]: http://rbwhitaker.wikidot.com/c-sharp-tutorials
 [statecharts]: /docs/logic_blocks/#-what-to-read-next
 [Chickensoft Introspection]: https://github.com/chickensoft-games/Introspection
+[Chickensoft.LogicBlocks.Auto]: https://www.nuget.org/packages/Chickensoft.LogicBlocks.Auto

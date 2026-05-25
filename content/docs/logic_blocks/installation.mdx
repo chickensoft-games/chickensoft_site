@@ -15,9 +15,11 @@ Find the latest version number of LogicBlocks and its diagram generator on nuget
 <PackageReference Include="Chickensoft.LogicBlocks.DiagramGenerator" Version="#.#.#" PrivateAssets="all" OutputItemType="analyzer" />
 ```
 
-## 🤖 AutoBlock (Optional)
+## 🤖 AutoBlock
 
 If you want automatic state pre-allocation and built-in serialization support, install the `Chickensoft.LogicBlocks.Auto` package and extend `AutoBlock` instead of `LogicBlock`. This requires the Chickensoft [Introspection] generator.
+
+Historically, a `LogicBlock` in LogicBlocks <= 5.0 was equivalent to an `AutoBlock`.  LogicBlocks 6 separated preallocation and serialization from the core logic blocks library to make it portable by eliminating a dependency on the Chickensoft Introspection library so that library authors (and inferior game engines) could leverage the core LogicBlocks library.
 
 Find the latest versions on nuget: [Chickensoft.LogicBlocks.Auto], [Chickensoft.Introspection.Generator].
 

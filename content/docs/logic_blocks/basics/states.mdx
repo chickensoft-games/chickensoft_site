@@ -36,7 +36,7 @@ public abstract record LightSwitchState : LogicBlockState {
 
 Each state type can extend other state types using traditional C# inheritance, representing the idea of [compound states] from statechart theory.
 
-State instances are pre-allocated and stored on the blackboard. Only one state is ever active at once. When a state is the active state of the logic block, we say it is `attached`. When a state change occurs, the previous state is `detached`.
+State instances are allocated and stored on the blackboard (and can be pre-allocated with AutoBlock). Only one state is ever active at once. When a state is the active state of the logic block, we say it is `attached`. When a state change occurs, the previous state is `detached`.
 
 ### 📥 Handling Inputs & State Changes
 
@@ -240,25 +240,27 @@ LogicBlocks determines which entrance/exit callbacks to run when changing states
 
 ### ⚙️ Adding Inputs from Callbacks
 
-Entrance and exit callbacks (and event subscriptions) are great places to add inputs that force state changes.
+OnStart and OnStop callbacks (and event subscriptions) are great places to get inputs from services.
 
 ```csharp
-public record MyState : ExerciseState, IGet<Input.SomethingHappened> {
-  public MyState() {
-    this.OnEnter(() => Get<ISomeService>().DataReceived += OnDataReceived);
-    this.OnExit(() => Get<ISomeService>().DataReceived -= OnDataReceived);
-  }
+[Meta]
+public partial class ExerciseLogic : LogicBlock {
+  public override void OnStart() => Get<ISomeService>().DataReceived += OnDataReceived);
+
+  public override void OnStop() => Get<ISomeService>().DataReceived -= OnDataReceived);
 
   private void OnDataReceived(int data) {
-    // Trigger an input on the logic block that owns us.
-    Input(new Input.SomethingHappened(data));
+    if (State is ExerciseState state)
+      state.Input(new Input.SomethingHappened(data));
   }
+}
 
+public record MyState : ExerciseState, IGet<Input.SomethingHappened> {
   public Type On(in Input.SomethingHappened input) => To<OtherState>();
 }
 ```
 
-We subscribe to a service when entering the state and unsubscribe when exiting. When the service fires an event, we add an input to the logic block — effectively forcing a state change reactively.
+We subscribe to a service when starting the logicblock and unsubscribe when stopping. When the service fires an event, we add an input to the logic block — effectively forcing a state change reactively.
 
 [compound states]: https://statecharts.dev/glossary/compound-state.html
 [blackboard]: https://github.com/chickensoft-games/Collections?tab=readme-ov-file#blackboard

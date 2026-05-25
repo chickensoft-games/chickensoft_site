@@ -17,7 +17,6 @@ public partial class LightSwitch : LogicBlock {
   }
 
   // Optionally override GetInitialState to specify the starting state.
-  // If omitted, you must call Start<TState>() explicitly.
   public override Type GetInitialState() => typeof(LightSwitchState.PoweredOff);
 }
 

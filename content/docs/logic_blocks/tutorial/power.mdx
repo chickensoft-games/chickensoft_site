@@ -88,7 +88,7 @@ public static class Input {
 
 public record Idle : PoweredOn, IGet<Input.ChangeDuration> {
   public Type On(in Input.ChangeDuration input) {
-    Get<TimerLogic.Data>().Duration = input.Duration;
+    Get<TimerState.Data>().Duration = input.Duration;
     return ToSelf();
   }
 }
@@ -107,7 +107,7 @@ public static class Input {
 
 public record Idle : PoweredOn, IGet<Input.StartStopButtonPressed>, IGet<Input.ChangeDuration> {
   public Type On(in Input.ChangeDuration input) {
-    Get<TimerLogic.Data>().Duration = input.Duration;
+    Get<TimerState.Data>().Duration = input.Duration;
     return ToSelf();
   }
 
