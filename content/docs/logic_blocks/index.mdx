@@ -48,35 +48,36 @@ _A logic block is a class that **receives inputs**, **maintains a single state i
 _Logic blocks enable you to efficiently model complex behaviors_[^1].
 
 ```csharp
-using Chickensoft.Introspection;
+public class LightSwitch : LogicBlock {
+  public LightSwitch() {
+    Set(new LightSwitchState.PoweredOff());
+    Set(new LightSwitchState.PoweredOn());
+  }
+}
 
-[Meta, LogicBlock(typeof(State), Diagram = true)]
-public class LightSwitch : LogicBlock<LightSwitch.State> {
-  public override Transition GetInitialState() => To<State.PoweredOff>();
-
+[StateDiagram]
+public abstract record LightSwitchState : LogicBlockState {
   public static class Input {
     public readonly record struct Toggle;
   }
 
-  public abstract record State : StateLogic<State> {
-    public record PoweredOn : State, IGet<Input.Toggle> {
-      public Transition On(in Input.Toggle input) => To<PoweredOff>();
-    }
-
-    public record PoweredOff : State, IGet<Input.Toggle> {
-      public Transition On(in Input.Toggle input) => To<PoweredOn>();
-    }
-  }
-
   public static class Output {
     public readonly record struct StatusChanged(bool IsOn);
+  }
+
+  public record PoweredOn : LightSwitchState, IGet<Input.Toggle> {
+    public Type On(in Input.Toggle input) => To<PoweredOff>();
+  }
+
+  public record PoweredOff : LightSwitchState, IGet<Input.Toggle> {
+    public Type On(in Input.Toggle input) => To<PoweredOn>();
   }
 }
 ```
 
 ## 🖼️ Visualizing Logic Blocks
 
-LogicBlocks provides a source generator that can generate [UML state diagrams][UML] of your code.
+LogicBlocks provides a source generator that can generate [UML state diagrams][UML] of your code. Add the `[StateDiagram]` attribute to your state base class to enable diagram generation.
 
 ```mermaid
 stateDiagram-v2
@@ -109,9 +110,9 @@ In the interest of convenience, logic blocks have a few subtle differences from 
 
   Use conditional logic in an input handler
 
-- 🪢 Attach/Detach callbacks
+- 🪢 OnStartSubscriptions callback
 
-  These are an implementation specific detail that are called whenever the state _instance_ changes, as opposed to only being called when the state type hierarchy (i.e., state configuration) changes.
+  Called when the logic block starts. Use it to register disposables tied to the logic block's lifecycle, which are automatically disposed along with the LogicBlock.
 
 - 🕰️ No event deferral
 

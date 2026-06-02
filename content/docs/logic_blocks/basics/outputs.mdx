@@ -4,15 +4,15 @@ description: Drive other systems indirectly.
 image: /docs/logic_blocks/header.jpg
 ---
 
-**Outputs** are temporary, transient objects that are produced by a state and immediately passed to each of the logic block's listeners and bindings.
+**Outputs** are temporary, disposable objects that are produced by a state and immediately passed to each of the logic block's listeners and bindings.
 
 An output is a state's way of indicating something of interest has happened without having to be tightly coupled to interested systems.
 
 ```csharp
-partial class DimmableLightSwitch {
-    public static class Output {
-        public readonly record struct StatusChanged(bool IsOn);
-    }
+public abstract record DimmableLightSwitchState : LogicBlockState {
+  public static class Output {
+    public readonly record struct StatusChanged(bool IsOn);
+  }
 }
 ```
 
@@ -23,7 +23,7 @@ By convention, outputs are shown stored in a simple static class called `Output`
 Outputs are produced from inside a state by calling the `Output` method.
 
 ```csharp
-public record PoweredOn : State {
+public record PoweredOn : DimmableLightSwitchState {
   public PoweredOn() {
     this.OnEnter(() =>
       // Produce an output when we enter this state.
@@ -43,7 +43,7 @@ Whenever an output is produced, any bindings or logic block listeners will be in
 using var binding = lightSwitch.Bind();
 
 // Monitor an output:
-binding.Handle((in LightSwitch.Output.StatusChanged output) =>
+binding.OnOutput((in LightSwitchState.Output.StatusChanged output) =>
   System.Console.WriteLine(
     $"Status changed to {(output.IsOn ? "on" : "off")}"
   )
@@ -57,7 +57,7 @@ LogicBlocks provides two different mechanisms that states can use to mutate obje
 - call methods directly on blackboard objects
 
   ```csharp
-  public Transition On(in Input.SomethingHappened input) {
+  public Type On(in Input.SomethingHappened input) {
     Get<MyRelatedService>().ChangeSomething(input.Value);
 
     return ToSelf();
@@ -67,7 +67,7 @@ LogicBlocks provides two different mechanisms that states can use to mutate obje
 - produce outputs for objects that bind to the logic block
 
   ```csharp
-  public Transition On(in Input.SomethingHappened input) {
+  public Type On(in Input.SomethingHappened input) {
     Output(new Output.ChangeSomething(input.Value));
 
     return ToSelf();
@@ -88,14 +88,14 @@ logic.Set(new MyRelatedService() as IMyRelatedService)
 logic.Set<IMyRelatedService>(new MyRelatedService())
 
 // elsewhere, in your logic block state
-  public Transition On(in Input.SomethingHappened input) {
-    // must access by the type it was stored as
-    var something = Get<IMyRelatedService>().GrabSomethingForMe();
+public Type On(in Input.SomethingHappened input) {
+  // must access by the type it was stored as
+  var something = Get<IMyRelatedService>().GrabSomethingForMe();
 
-    // ...
+  // ...
 
-    return ToSelf();
-  }
+  return ToSelf();
+}
 ```
 
 [enjoyable game architecture]: /blog/game-architecture

@@ -9,34 +9,36 @@ We know we'll need a `PoweredOn` state, too. Whenever the user presses the power
 Fortunately, that's easy to do. We just create another state and an input for the power button being toggled.
 
 ```csharp
-[Meta, LogicBlock(typeof(State), Diagram = true)]
-public partial class Timer : LogicBlock<Timer.State> {
-  public override Transition GetInitialState() => To<State.PoweredOff>();
+public class TimerLogic : LogicBlock {
+  public TimerLogic() {
+    Set(new TimerState.PoweredOff());
+    Set(new TimerState.PoweredOn.Idle());
+  }
+}
 
+[StateDiagram]
+public abstract record TimerState : LogicBlockState {
   public static class Input {
     public readonly record struct PowerButtonPressed;
   }
 
   public static class Output;
 
-  public abstract record State : StateLogic<State> {
+  public record PoweredOff : TimerState, IGet<Input.PowerButtonPressed> {
+    public Type On(in TimerInput.PowerButtonPressed input) =>
+      To<PoweredOn.Idle>();
+  }
 
-    public record PoweredOff : State, IGet<Input.PowerButtonPressed> {
-      public Transition On(in Input.PowerButtonPressed input) =>
-        To<PoweredOn.Idle>();
-    }
+  public abstract record PoweredOn : TimerState, IGet<Input.PowerButtonPressed> {
+    public Type On(in TimerInput.PowerButtonPressed input) =>
+      To<PoweredOff>();
 
-    public abstract record PoweredOn : State, IGet<Input.PowerButtonPressed> {
-      public Transition On(in Input.PowerButtonPressed input) =>
-        To<PoweredOff>();
-
-      public record Idle : PoweredOn;
-    }
+    public record Idle : PoweredOn;
   }
 }
 ```
 
-Whenever a state wants to handle a type of input, it simply implements the `IGet<TInput>` interface with the type of the input we're interested in. Then, you simply implement the `On(in TInput input)` method and return the transition to the next state.
+Whenever a state wants to handle a type of input, it simply implements the `IGet<TInput>` interface with the type of the input we're interested in. Then, you implement the `On(in TInput input)` method and return the type of the next state.
 
 Transitions are defined with the `To<TState>()` method. If you don't want to transition to another state in an input handler, you can always return `ToSelf()`.
 
@@ -48,29 +50,29 @@ Likewise, the `PoweredOn` state also handles the same `PowerButtonPressed` input
 
 We know we want the user to specify how long the timer should run. That raises another question: where do we store the value?
 
-Well, we could always add a property to one of our states. But since LogicBlocks constructs states for us (something we'll appreciate more when we talk about [serializing] them), we don't really have a clean way of passing that data around.
+We could always add a property to one of our states. But since all state instances are pre-allocated singletons in the blackboard, they're shared across all transitions — this is actually perfect for mutable shared data.
 
-Instead, let's use the shared ✨ blackboard ✨. We'll create a new type that contains the values we'll need to share between states and put that on the blackboard. Since this data bucket is specific to our logic block, we'll go ahead and make it a nested type of the logic block, too.
+Instead of putting data in a state, let's use the shared ✨ blackboard ✨. We'll create a new type that contains the values we'll need to share between states.
 
 ```csharp
-[Meta, LogicBlock(typeof(State), Diagram = true)]
-public partial class Timer : LogicBlock<Timer.State> {
-  public override Transition GetInitialState() => To<State.PoweredOff>();
-
+[Meta]
+public class TimerLogic : LogicBlock {
   public sealed record Data {
     public double Duration { get; set; }
     public double TimeRemaining { get; set; }
   }
 
-  public Timer() {
+  public TimerLogic() {
     // Set shared data for all states in the blackboard.
     Set(new Data() { Duration = 30.0d });
-  }
 
-  ...
+    Set(new TimerState.PoweredOff());
+    Set(new TimerState.PoweredOn.Idle());
+  }
+}
 ```
 
-Now, whenever we create a new timer logic block, it'll add a new instance of the timer `Data` to the blackboard. Now all of our states can access the same data!
+Now, whenever we create a new timer logic block, it'll add a new instance of the timer `Data` to the blackboard. All of our states can access the same data!
 
 Let's modify our `Idle` state to receive a new input, `ChangeDuration`. We'll add a property to `ChangeDuration` that specifies the new duration.
 
@@ -81,8 +83,8 @@ public static class Input {
 }
 
 public record Idle : PoweredOn, IGet<Input.ChangeDuration> {
-  public Transition On(in Input.ChangeDuration input) {
-    Get<Data>().Duration = input.Duration;
+  public Type On(in Input.ChangeDuration input) {
+    Get<TimerState.Data>().Duration = input.Duration;
     return ToSelf();
   }
 }
@@ -100,12 +102,12 @@ public static class Input {
 }
 
 public record Idle : PoweredOn, IGet<Input.StartStopButtonPressed>, IGet<Input.ChangeDuration> {
-  public Transition On(in Input.ChangeDuration input) {
-    Get<Data>().Duration = input.Duration;
+  public Type On(in Input.ChangeDuration input) {
+    Get<TimerState.Data>().Duration = input.Duration;
     return ToSelf();
   }
 
-  public Transition On(in Input.StartStopButtonPressed input) =>
+  public Type On(in Input.StartStopButtonPressed input) =>
     To<Countdown>();
 }
 ```

@@ -12,58 +12,46 @@ This tutorial assumes a high degree of familiarity with state machines and C#. I
 
 ### 📦 Environment Setup
 
-If you haven't already, make sure you've [installed everything]. You'll need LogicBlocks and the Chickensoft [Introspection] generator. Feel free to install the optional diagram generator so you can [see your code as a state diagram][state diagram].
-
-<Callout type="note">
-The introspection generator produces information about types at build time, allowing logic blocks to know about all the possible states when it runs. If we don't use the introspection generator, we'd have to manually create and register every state manually.
-</Callout>
+If you haven't already, make sure you've [installed everything]. Feel free to install the optional diagram generator so you can [see your code as a state diagram][state diagram].
 
 ### 📝 Creating a Logic Block
 
-To define a logic block, we simply make a class that extends `LogicBlock<TState>`. By convention, we usually define our state inside the logic block itself as a [nested type].
-
-<Callout type="tip">
-If you don't define your state nested inside the logic block, the diagram generator won't be able to generate diagrams of your code since it won't know where to look to find your logic block's state.
-</Callout>
+To define a logic block, we make a class that extends `LogicBlock`. By convention, we define our state types near the logic block, often in the same file or a companion file.
 
 Let's go ahead and make an empty logic block for the timer.
 
 ```csharp
-using Chickensoft.Introspection;
+public partial class TimerLogic : LogicBlock {
+  public TimerLogic() {
+    // Register all possible state instances on the blackboard.
+    Set(new TimerState.PoweredOff());
+  }
+}
 
-[Meta, LogicBlock(typeof(State), Diagram = true)]
-public partial class Timer : LogicBlock<Timer.State> {
-  public override Transition GetInitialState() => To<State.PoweredOff>();
+[StateDiagram]
+public abstract record TimerState : LogicBlockState {
 
   public static class Input;
 
   public static class Output;
 
-  public abstract partial record State : StateLogic<State> {
-    public record PoweredOff : State;
-  }
+  public record PoweredOff : TimerState;
 }
 ```
 
-We've created an empty abstract base state, a starting state `PoweredOff`, and two empty static classes which will store our input and output types. We've also specified that our initial state should be `PoweredOff`.
-
-The `[Meta]` attribute tells the Chickensoft [Introspection] generator that we want to generate additional metadata about our logic block at build time by making it an _introspective type_. LogicBlocks is smart enough to know if it has been upgraded to an introspective type, and if it has, it will automatically identify the possible states and create them.
+We've created an empty abstract base state, a starting state `PoweredOff`, and two empty static classes which will store our input and output types. The starting state will be specified when calling `Start<T>()` on the logic block.
 
 <Callout type="note">
-If you really don't want to use the introspection generator, you don't have to — but you'll have to register each state manually in the constructor. Here's what that would look like so far:
+Each state must be registered on the blackboard using `Set()` in the logic block's constructor. This pre-allocates state instances so the logic block doesn't need to create them during transitions, preventing heap allocations at runtime.
+</Callout>
 
-```csharp
-public Timer() {
-  Set(new PoweredOff()); // Do this for each possible state.
-}
-```
-
-For best results, just use the introspection generator: it prevents human error by protecting you against forgetting to register a state type, especially as you refactor your code and change up the state type hierarchy — a common occurrence when working with state machines.
+<Callout type="tip">
+If you use the [Chickensoft Introspection] generator and the `AutoBlock` base class (from [Chickensoft.LogicBlocks.Auto]), states can be preallocated automatically using `Preallocate<TBaseState>()`. This prevents human error from forgetting to register a state, especially as you refactor.
 </Callout>
 
 [installed everything]: /docs/logic_blocks/installation
 [state diagram]: /docs/logic_blocks/#%EF%B8%8F-visualizing-logic-blocks
 [learn csharp]: http://rbwhitaker.wikidot.com/c-sharp-tutorials
 [statecharts]: /docs/logic_blocks/#-what-to-read-next
-[nested type]: https://learn.microsoft.com/en-us/dotnet/csharp/programming-guide/classes-and-structs/nested-types
-[Introspection]: https://github.com/chickensoft-games/Introspection
+[Chickensoft Introspection]: https://github.com/chickensoft-games/Introspection
+[Chickensoft.LogicBlocks.Auto]: https://www.nuget.org/packages/Chickensoft.LogicBlocks.Auto

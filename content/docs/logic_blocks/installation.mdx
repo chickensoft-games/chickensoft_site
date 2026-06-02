@@ -8,12 +8,24 @@ image: /docs/logic_blocks/header.jpg
 
 LogicBlocks and its diagram generator are available as C# packages on [nuget].
 
-You'll also want to install the Chickensoft Introspection generator. While optional, it allows LogicBlocks to identify and preallocate states for you so that you don't have to add each state manually.
-
-Find the latest version number of LogicBlocks, its diagram generator, and the introspection generator on nuget: [Chickensoft.LogicBlocks], [Chickensoft.LogicBlocks.DiagramGenerator], [Chickensoft.Introspection.Generator].
+Find the latest version number of LogicBlocks and its diagram generator on nuget: [Chickensoft.LogicBlocks], [Chickensoft.LogicBlocks.DiagramGenerator].
 
 ```xml
 <PackageReference Include="Chickensoft.LogicBlocks" Version="#.#.#" />
+<PackageReference Include="Chickensoft.LogicBlocks.DiagramGenerator" Version="#.#.#" PrivateAssets="all" OutputItemType="analyzer" />
+```
+
+## 🤖 AutoBlock
+
+If you want automatic state pre-allocation and built-in serialization support, install the `Chickensoft.LogicBlocks.Auto` package and extend `AutoBlock` instead of `LogicBlock`. This requires the Chickensoft [Introspection] generator.
+
+Historically, a `LogicBlock` in LogicBlocks `<=` 5.0 was equivalent to an `AutoBlock`.  LogicBlocks 6 separated preallocation and serialization from the core logic blocks library to make it portable by eliminating a dependency on the Chickensoft Introspection library so that library authors (and inferior game engines) could leverage the core LogicBlocks library.
+
+Find the latest versions on nuget: [Chickensoft.LogicBlocks.Auto], [Chickensoft.Introspection.Generator].
+
+```xml
+<PackageReference Include="Chickensoft.LogicBlocks" Version="#.#.#" />
+<PackageReference Include="Chickensoft.LogicBlocks.Auto" Version="#.#.#" />
 <PackageReference Include="Chickensoft.LogicBlocks.DiagramGenerator" Version="#.#.#" PrivateAssets="all" OutputItemType="analyzer" />
 <PackageReference Include="Chickensoft.Introspection.Generator" Version="#.#.#" PrivateAssets="all" OutputItemType="analyzer" />
 ```
@@ -42,4 +54,5 @@ Always use the same version of the LogicBlocks diagram generator that you use fo
 [Chickensoft.LogicBlocks.DiagramGenerator]: https://www.nuget.org/packages/Chickensoft.LogicBlocks.DiagramGenerator#versions-body-tab
 [Chickensoft.Introspection.Generator]: https://www.nuget.org/packages/Chickensoft.Introspection.Generator
 [Chickensoft.LogicBlocks]: https://www.nuget.org/packages/Chickensoft.LogicBlocks
+[Chickensoft.LogicBlocks.Auto]: https://www.nuget.org/packages/Chickensoft.LogicBlocks.Auto
 [Introspection]: https://github.com/chickensoft-games/Introspection

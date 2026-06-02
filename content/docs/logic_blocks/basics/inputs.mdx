@@ -9,7 +9,7 @@ image: /docs/logic_blocks/header.jpg
 For example, a logic block for a dimmable light switch might have an input that contains the dimmer value as a percentage between `0` and `1`.
 
 ```csharp
-partial class DimmableLightSwitch {
+public partial abstract record DimmableLightSwitchState : LogicBlockState {
   public static class Input {
     public readonly record struct DimmerUpdated(double Value);
   }
@@ -17,9 +17,9 @@ partial class DimmableLightSwitch {
 ```
 
 <Callout type="tip">
-By convention, inputs are shown stored in a simple static class called `Input` inside the logic block that owns them. This organizational pattern groups inputs and allows consistent referencing: e.g., `DimmableLightSwitch.Input.DimmerUpdated`.
+By convention, inputs are stored in a simple static class called `Input` inside the logic block that owns them. This organizational pattern groups inputs and allows consistent referencing: e.g., `DimmableLightSwitchState.Input.DimmerUpdated`.
 
-If that feels too verbose, you can always import the logic block statically with a `using static Project.DimmableLightSwitch;` statement and then reference the nested types directly: `Input.DimmerUpdated`.
+If that feels too verbose, you can always import the state statically with a `using static Project.DimmableLightSwitchState;` statement and then reference the nested types directly: `Input.DimmerUpdated`.
 </Callout>
 
 You'll primarily interact with a logic block by giving it an input whenever something interesting happens. Inputs are designed to be short lived, ephemeral objects that simply carry relevant data.
@@ -27,7 +27,7 @@ You'll primarily interact with a logic block by giving it an input whenever some
 ```csharp
 var dimmableLightSwitch = new DimmableLightSwitch();
 
-dimmableLightSwitch.Input(new DimmableLightSwitch.Input.DimmerUpdated(0.5d));
+dimmableLightSwitch.Input(new DimmableLightSwitchState.Input.DimmerUpdated(0.5d));
 ```
 
 <Callout type="info">
