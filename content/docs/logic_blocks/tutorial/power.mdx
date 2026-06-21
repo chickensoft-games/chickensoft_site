@@ -25,12 +25,12 @@ public abstract record TimerState : LogicBlockState {
   public static class Output;
 
   public record PoweredOff : TimerState, IGet<Input.PowerButtonPressed> {
-    public Type On(in TimerInput.PowerButtonPressed input) =>
+    public Type On(in Input.PowerButtonPressed input) =>
       To<PoweredOn.Idle>();
   }
 
   public abstract record PoweredOn : TimerState, IGet<Input.PowerButtonPressed> {
-    public Type On(in TimerInput.PowerButtonPressed input) =>
+    public Type On(in Input.PowerButtonPressed input) =>
       To<PoweredOff>();
 
     public record Idle : PoweredOn;
@@ -84,7 +84,7 @@ public static class Input {
 
 public record Idle : PoweredOn, IGet<Input.ChangeDuration> {
   public Type On(in Input.ChangeDuration input) {
-    Get<TimerState.Data>().Duration = input.Duration;
+    Get<TimerLogic.Data>().Duration = input.Duration;
     return ToSelf();
   }
 }
@@ -103,7 +103,7 @@ public static class Input {
 
 public record Idle : PoweredOn, IGet<Input.StartStopButtonPressed>, IGet<Input.ChangeDuration> {
   public Type On(in Input.ChangeDuration input) {
-    Get<TimerState.Data>().Duration = input.Duration;
+    Get<TimerLogic.Data>().Duration = input.Duration;
     return ToSelf();
   }
 

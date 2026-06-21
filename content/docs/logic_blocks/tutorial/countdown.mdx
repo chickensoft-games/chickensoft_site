@@ -45,7 +45,7 @@ public record Countdown : PoweredOn, IGet<Input.TimeElapsed>, IGet<Input.StartSt
     Input(new Input.TimeElapsed(delta));
 
   public Type On(in Input.TimeElapsed input) {
-    var data = Get<TimerState.Data>();
+    var data = Get<TimerLogic.Data>();
     data.TimeRemaining -= input.Delta;
     return data.TimeRemaining <= 0.0d ? To<Beeping>() : ToSelf();
   }
@@ -77,7 +77,7 @@ Don't forget to also register the new `Countdown` state in the logic block const
 
 ```csharp
 public TimerLogic() {
-  Set(new TimerState.Data() { Duration = 30.0d });
+  Set(new Data() { Duration = 30.0d });
   Set(new TimerState.PoweredOff());
   Set(new TimerState.PoweredOn.Idle());
   Set(new TimerState.PoweredOn.Countdown()); // add this

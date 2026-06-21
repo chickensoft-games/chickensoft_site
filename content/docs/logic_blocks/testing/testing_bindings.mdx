@@ -41,7 +41,7 @@ var binding = MyLogicBlock.CreateFakeBinding();
 logic.Setup(logic => logic.Bind()).Returns(binding);
 
 // Simulate an input with our fake binding.
-binding.Input(new MyLogicBlock.Input.SomeInput());
+binding.Input(new MyBaseState.Input.SomeInput());
 ```
 
 ### 📤 Output Simulation
@@ -52,7 +52,7 @@ var binding = MyLogicBlock.CreateFakeBinding();
 logic.Setup(logic => logic.Bind()).Returns(binding);
 
 // Simulate an output with our fake binding.
-binding.Output(new MyLogicBlock.Output.SomeOutput());
+binding.Output(new MyBaseState.Output.SomeOutput());
 ```
 
 ### 🔄 State Change Simulation
@@ -63,7 +63,7 @@ var binding = MyLogicBlock.CreateFakeBinding();
 logic.Setup(logic => logic.Bind()).Returns(binding);
 
 // Simulate a state change with our fake binding.
-binding.SetState(new MyLogicBlock.SomeOtherState());
+binding.SetState(new MyBaseState.SomeOtherState());
 ```
 
 ### 🔁 Lifecycle Simulation

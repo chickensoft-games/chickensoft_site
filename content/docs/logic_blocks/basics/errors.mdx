@@ -21,7 +21,7 @@ public record MyState : MyBaseState, IGet<Input.SomethingRisky> {
 
 ```csharp
 try {
-  logic.Input(new MyLogicBlock.Input.SomethingRisky());
+  logic.Input(new MyBaseState.Input.SomethingRisky());
 }
 catch (Exception e) {
   // Handle or log the error.
