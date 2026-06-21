@@ -31,7 +31,7 @@ Don't forget to register `Beeping` in the logic block constructor:
 
 ```csharp
 public TimerLogic() {
-  Set(new TimerState.Data() { Duration = 30.0d });
+  Set(new Data() { Duration = 30.0d });
   Set(new TimerState.PoweredOff());
   Set(new TimerState.PoweredOn.Idle());
   Set(new TimerState.PoweredOn.Countdown());

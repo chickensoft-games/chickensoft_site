@@ -72,7 +72,7 @@ public void Initializes() {
   var state = timer.Start<TimerState.PoweredOff>();
 
   // Verify the timer has set its blackboard data correctly.
-  timer.Has<TimerState.Data>().ShouldBeTrue();
+  timer.Has<TimerLogic.Data>().ShouldBeTrue();
   timer.Get<IClock>().ShouldBe(clock.Object);
 }
 ```

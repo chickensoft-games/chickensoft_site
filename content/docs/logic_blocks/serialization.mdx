@@ -71,14 +71,14 @@ Serializable type `[Id]`s need to be globally unique across all serializable typ
 
 ### 🤐 Saving a Logic Block
 
-Use `logic.Save()` to get a snapshot of the current state, blackboard, and history:
+Use `logic.GetSaveData()` to get a snapshot of the current state, blackboard, and history:
 
 ```csharp
 var logic = new MyLogic();
 logic.Start<MyState.Off>();
 
 // Get save data (can be serialized to JSON)
-var saveData = logic.Save();
+var saveData = logic.GetSaveData();
 ```
 
 You can serialize `saveData` to JSON using the Chickensoft Serialization system:

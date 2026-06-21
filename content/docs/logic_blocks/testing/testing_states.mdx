@@ -44,7 +44,7 @@ public void ChangesDuration() {
   var tester = state.Test();
 
   // Put a value on the blackboard for the state to use.
-  tester.Set(new TimerState.Data() { Duration = 30.0d });
+  tester.Set(new TimerLogic.Data() { Duration = 30.0d });
 
   var duration = 45;
 
@@ -52,7 +52,7 @@ public void ChangesDuration() {
   var nextState = state.On(new TimerInput.ChangeDuration(duration));
   nextState.ShouldBe(typeof(TimerState.PoweredOn.Idle));
 
-  tester.Get<TimerState.Data>().Duration.ShouldBe(duration);
+  tester.Get<TimerLogic.Data>().Duration.ShouldBe(duration);
 }
 ```
 
