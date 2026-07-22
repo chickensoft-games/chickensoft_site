@@ -99,10 +99,11 @@ Be careful with the `using` keyword. If placed before the binding declaration, o
 public override void _Ready()
 {
     Logic = new MyLogicBlock();
-    using var binding = logic.Bind()
+    using var binding = Logic.Bind()
       .OnOutput((in MyBaseState.Output.SomeOutput output) => HandleOutput(output))
 
     Logic.Start<MyBaseState.SomeState>();
-    // After the _Ready method exits, OnOutput for `MyBaseState.Output.SomeOutput` will never be executed
+    // After the _Ready method exits, OnOutput for `MyBaseState.Output.SomeOutput` 
+    // will never be executed
 }
 ```
