@@ -3,6 +3,7 @@ import { promises as fs } from "fs";
 import { cn } from "fumadocs-ui/components/api";
 import defaultMdxComponents from "fumadocs-ui/mdx";
 import Link from "next/link";
+import path from "path";
 import { JSX } from "react";
 import Markdown from "react-markdown";
 import "server-only";
@@ -14,7 +15,7 @@ export type BlogPreviewProps = {
 };
 
 export default async function BlogPreview(
-  props: BlogPreviewProps
+  props: BlogPreviewProps,
 ): Promise<JSX.Element> {
   const blogPost = blogLoader.getPage([props.slug]);
 
@@ -22,11 +23,7 @@ export default async function BlogPreview(
     throw new Error(`Blog with slug '${props.slug}' not found`);
   }
 
-  const filePath = blogPost.data._file.absolutePath;
-  let contents = await fs.readFile(filePath, { encoding: "utf-8" });
-  contents = contents.split("---")[2];
-  // get everything before the {/* truncate */} comment
-  const preview = contents.split("{/* truncate */}")[0];
+  const preview = await readPreview(blogPost.data._file.path);
 
   return (
     <section
@@ -51,7 +48,7 @@ export default async function BlogPreview(
         flex
         flex-col
       `,
-        props.className
+        props.className,
       )}
     >
       <Link href={`/blog/${props.slug}`} className="grow flex flex-col">
@@ -131,4 +128,14 @@ export default async function BlogPreview(
       </Link>
     </section>
   );
+}
+
+const blogContentDir = path.join(process.cwd(), "content", "blog");
+
+// Read markdown preview snippet from a markdown file.
+async function readPreview(fileName: string): Promise<string> {
+  const filePath = path.join(blogContentDir, fileName);
+  const contents = await fs.readFile(filePath, { encoding: "utf-8" });
+  const body = contents.split("---")[2];
+  return body.split("{/* truncate */}")[0];
 }
