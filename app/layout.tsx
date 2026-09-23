@@ -6,9 +6,7 @@ import { Catamaran } from "next/font/google";
 import type { ReactNode } from "react";
 import { site } from "./global";
 
-// nextjs magic:
-export const revalidate = 600; // 600 seconds = 10 mins
-export const dynamicParams = true;
+export const revalidate = 600;
 
 /** SEO */
 export const metadata: Metadata = {
