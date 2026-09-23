@@ -9,7 +9,7 @@ LogicBlocks provides a binding system that allows objects to listen to a particu
 ## 📥 Observing Inputs
 
 ```csharp
-using var binding = logic.Bind();
+var binding = logic.Bind();
 
 binding.OnInput((in MyBaseState.Input.SomeInput input) => {
   // Observe a particular input.
@@ -19,7 +19,7 @@ binding.OnInput((in MyBaseState.Input.SomeInput input) => {
 ## 📤 Observing Outputs
 
 ```csharp
-using var binding = logic.Bind();
+var binding = logic.Bind();
 
 binding.OnOutput((in MyBaseState.Output.SomeOutput output) => {
   // Handle a particular output.
@@ -29,7 +29,7 @@ binding.OnOutput((in MyBaseState.Output.SomeOutput output) => {
 ## 🔄 Observing State Changes
 
 ```csharp
-using var binding = logic.Bind();
+var binding = logic.Bind();
 
 binding.OnState((MyBaseState.SomeState state) => {
   // Respond to a state change. This is only called when the logic block
@@ -40,7 +40,7 @@ binding.OnState((MyBaseState.SomeState state) => {
 ## 🔁 Observing Lifecycle Events
 
 ```csharp
-using var binding = logic.Bind();
+var binding = logic.Bind();
 
 binding.OnStart(() => {
   // Called when the logic block is started.
@@ -60,9 +60,50 @@ binding.OnLoad(() => {
 All binding methods return the binding itself, so you can chain them together.
 
 ```csharp
-using var binding = logic.Bind()
+var binding = logic.Bind()
   .OnOutput((in MyBaseState.Output.SomeOutput output) => HandleOutput(output))
   .OnState((MyBaseState.SomeState state) => HandleState(state))
   .OnStart(() => HandleStart())
   .OnStop(() => HandleStop());
+```
+
+## ♻️ Disposing
+
+Bindings should be disposed of once they are no longer needed. 
+
+```csharp
+
+public IMyLogicBlock Logic { get; set; } = default!;
+public LogicBlock.Binding LogicBlockBinding { get; set; } = default!;
+
+public override void _Ready()
+{
+    Logic = new MyLogicBlock();
+    LogicBlockBinding = Logic.Bind()
+      .OnOutput((in MyBaseState.Output.SomeOutput output) => HandleOutput(output))
+
+    Logic.Start<MyBaseState.SomeState>();
+}
+
+public override void _ExitTree()
+{
+    Logic.Stop();
+    LogicBlockBinding.Dispose();
+}
+```
+
+Be careful with the `using` keyword. If placed before the binding declaration, once the scope has been left 
+(i.e., the method has been exited) then the binding will be disposed of.
+
+```csharp
+public override void _Ready()
+{
+    Logic = new MyLogicBlock();
+    using var binding = Logic.Bind()
+      .OnOutput((in MyBaseState.Output.SomeOutput output) => HandleOutput(output))
+
+    Logic.Start<MyBaseState.SomeState>();
+    // After the _Ready method exits, OnOutput for `MyBaseState.Output.SomeOutput` 
+    // will never be executed
+}
 ```

@@ -77,7 +77,7 @@ logic.Input(new LightSwitchState.Input.Toggle());
 var state = logic.State; // PoweredOn
 
 // Bindings allow you to observe the logic block easily.
-using var binding = logic.Bind();
+var binding = logic.Bind();
 
 // Monitor an output:
 binding.OnOutput((in LightSwitchState.Output.StatusChanged output) =>
@@ -104,4 +104,8 @@ binding.OnState((LightSwitchState.PoweredOn _) =>
 // Monitor lifecycle events:
 binding.OnStart(() => Console.WriteLine("Logic block started!"));
 binding.OnStop(() => Console.WriteLine("Logic block stopped!"));
+
+// Make sure to dispose of the binding once you no longer need 
+// to listen to the events.
+binding.Dispose();
 ```
