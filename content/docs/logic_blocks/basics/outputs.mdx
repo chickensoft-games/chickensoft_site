@@ -40,7 +40,7 @@ Like inputs, outputs should be `readonly record struct` types.
 Whenever an output is produced, any bindings or logic block listeners will be invoked immediately. If you're using structs, this will keep outputs from ever hitting the heap — ensuring zero memory allocations occur.
 
 ```csharp
-using var binding = lightSwitch.Bind();
+var binding = lightSwitch.Bind();
 
 // Monitor an output:
 binding.OnOutput((in LightSwitchState.Output.StatusChanged output) =>
